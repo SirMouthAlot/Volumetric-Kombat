@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using SoarSDK;
 using UnityEngine.UI;
+using System;
 
 public class PlaybackControls : MonoBehaviour
 {
-
     public VolumetricRender playbackComponent;
     public Slider scrubbingSlider;
+    public Text _timeIndicator;
     private bool playbackPaused = false;
     private bool getSliderHandle;
     private int volumetricIndex;
@@ -25,6 +26,9 @@ public class PlaybackControls : MonoBehaviour
                 if (!getSliderHandle)
                 {
                     scrubbingSlider.value = playbackComponent.GetCurrentPosition(0);
+                    float time = (playbackComponent.GetCurrentPosition(0) / 1000000.0f);
+
+                    _timeIndicator.text = Math.Round(time, 2).ToString() + "s";
                 }
                 else
                 {
@@ -36,9 +40,19 @@ public class PlaybackControls : MonoBehaviour
 
     public void SeekToTimestamp()
     {
+        bool paused = playbackComponent.paused;
+
         getSliderHandle = false;
         playbackComponent.SeekToCursor(volumetricIndex, (int)scrubbingSlider.value);
-        PlaybackStart();
+
+        if (paused)
+        {
+            PlaybackPause();
+        }
+        else
+        {
+            PlaybackStart();
+        }
     }
 
     public void GetSliderHandle()

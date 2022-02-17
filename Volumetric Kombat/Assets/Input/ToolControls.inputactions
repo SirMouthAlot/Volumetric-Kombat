@@ -6,18 +6,27 @@
             "id": "06fca0a3-9828-4152-94ca-5019a9b2d7a9",
             "actions": [
                 {
-                    "name": "Leftclick",
+                    "name": "Movement",
+                    "type": "Value",
+                    "id": "e011bd6c-039a-420f-84b7-9f6c9ced65ed",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ControlCamera",
                     "type": "Button",
-                    "id": "2c81db37-a51c-4e2f-8208-964b6ae2a5c4",
+                    "id": "a5d0b55b-c2e9-48c7-8a1c-4c8a5f471ab9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Rightclick",
+                    "name": "GrabItem",
                     "type": "Button",
-                    "id": "a5d0b55b-c2e9-48c7-8a1c-4c8a5f471ab9",
+                    "id": "2c81db37-a51c-4e2f-8208-964b6ae2a5c4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -31,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SpawnMarker",
+                    "type": "Button",
+                    "id": "410032fb-5681-4690-8438-4d9442fd3c09",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -41,7 +59,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse&Keyboard",
-                    "action": "Leftclick",
+                    "action": "GrabItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -63,7 +81,73 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse&Keyboard",
-                    "action": "Rightclick",
+                    "action": "ControlCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "WASD",
+                    "id": "4f9b6205-de40-42c2-9a86-5f4d7e43b75e",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Movement",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "0dfd28f8-11c1-4475-9a93-2ce1d6a13dbe",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "c883f94d-0e90-42d1-a2bc-fd260aa74de6",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "2373d4b3-dd38-414d-a8ef-da41c5b6253b",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "cac6ae82-2610-465d-a7ac-e7166941f72e",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse&Keyboard",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "a9248472-81c9-411e-a5fa-e5b5a53b7cff",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpawnMarker",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

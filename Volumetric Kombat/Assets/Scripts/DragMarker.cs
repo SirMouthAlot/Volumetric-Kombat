@@ -15,20 +15,26 @@ public class DragMarker : MonoBehaviour
     public Axis _movementAxis;
     public Vector3 _holdOffset;
 
-    public void Drag(Vector3 moveVal)
+    public void Drag(Vector2 mousePosition)
     {
+        float zDistToObj = _movementTarget.transform.position.z - Camera.main.transform.position.z;
+
+        Vector3 mousePosWithZ = new Vector3(mousePosition.x, mousePosition.y, zDistToObj);
+        Vector3 mousePosWorld = Camera.main.ScreenToWorldPoint(mousePosWithZ);
+
         Vector3 vectorMovement = _movementTarget.transform.position;
 
-        switch(_movementAxis)
+        switch (_movementAxis)
         {
             case Axis.X:
-                vectorMovement[(int)Axis.X] = moveVal[(int)Axis.X] - _holdOffset.x;
+                vectorMovement[(int)Axis.X] = mousePosWorld[(int)Axis.X] - _holdOffset.x;
                 break;
             case Axis.Y:
-                vectorMovement[(int)Axis.Y] = moveVal[(int)Axis.Y] - _holdOffset.y;
+                vectorMovement[(int)Axis.Y] = mousePosWorld[(int)Axis.Y] - _holdOffset.y;
                 break;
             case Axis.Z:
-                vectorMovement[(int)Axis.Z] = moveVal[(int)Axis.Y];
+                //should use combination of x and y axis movement
+                
                 break;
             default:
                 break;
@@ -36,4 +42,6 @@ public class DragMarker : MonoBehaviour
 
         _movementTarget.transform.position = vectorMovement;
     }
+
+    
 }

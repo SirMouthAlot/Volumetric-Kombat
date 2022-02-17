@@ -7,7 +7,7 @@ Shader "Unlit/DoubleSidedTransparent"
     SubShader
     {
         Tags { "Queue"="Transparent" "RenderType"="Transparent" }
-        Cull Front
+        Cull Off
         ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
         LOD 100

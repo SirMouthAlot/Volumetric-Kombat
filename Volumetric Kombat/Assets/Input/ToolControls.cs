@@ -28,18 +28,27 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
             ""id"": ""06fca0a3-9828-4152-94ca-5019a9b2d7a9"",
             ""actions"": [
                 {
-                    ""name"": ""Leftclick"",
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""e011bd6c-039a-420f-84b7-9f6c9ced65ed"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ControlCamera"",
                     ""type"": ""Button"",
-                    ""id"": ""2c81db37-a51c-4e2f-8208-964b6ae2a5c4"",
+                    ""id"": ""a5d0b55b-c2e9-48c7-8a1c-4c8a5f471ab9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Rightclick"",
+                    ""name"": ""GrabItem"",
                     ""type"": ""Button"",
-                    ""id"": ""a5d0b55b-c2e9-48c7-8a1c-4c8a5f471ab9"",
+                    ""id"": ""2c81db37-a51c-4e2f-8208-964b6ae2a5c4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -53,6 +62,15 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SpawnMarker"",
+                    ""type"": ""Button"",
+                    ""id"": ""410032fb-5681-4690-8438-4d9442fd3c09"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -63,7 +81,7 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Leftclick"",
+                    ""action"": ""GrabItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -85,7 +103,73 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Rightclick"",
+                    ""action"": ""ControlCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""4f9b6205-de40-42c2-9a86-5f4d7e43b75e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0dfd28f8-11c1-4475-9a93-2ce1d6a13dbe"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""c883f94d-0e90-42d1-a2bc-fd260aa74de6"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""2373d4b3-dd38-414d-a8ef-da41c5b6253b"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cac6ae82-2610-465d-a7ac-e7166941f72e"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9248472-81c9-411e-a5fa-e5b5a53b7cff"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpawnMarker"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -113,9 +197,11 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
 }");
         // Default
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
-        m_Default_Leftclick = m_Default.FindAction("Leftclick", throwIfNotFound: true);
-        m_Default_Rightclick = m_Default.FindAction("Rightclick", throwIfNotFound: true);
+        m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
+        m_Default_ControlCamera = m_Default.FindAction("ControlCamera", throwIfNotFound: true);
+        m_Default_GrabItem = m_Default.FindAction("GrabItem", throwIfNotFound: true);
         m_Default_Drag = m_Default.FindAction("Drag", throwIfNotFound: true);
+        m_Default_SpawnMarker = m_Default.FindAction("SpawnMarker", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -175,16 +261,20 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
     // Default
     private readonly InputActionMap m_Default;
     private IDefaultActions m_DefaultActionsCallbackInterface;
-    private readonly InputAction m_Default_Leftclick;
-    private readonly InputAction m_Default_Rightclick;
+    private readonly InputAction m_Default_Movement;
+    private readonly InputAction m_Default_ControlCamera;
+    private readonly InputAction m_Default_GrabItem;
     private readonly InputAction m_Default_Drag;
+    private readonly InputAction m_Default_SpawnMarker;
     public struct DefaultActions
     {
         private @ToolControls m_Wrapper;
         public DefaultActions(@ToolControls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Leftclick => m_Wrapper.m_Default_Leftclick;
-        public InputAction @Rightclick => m_Wrapper.m_Default_Rightclick;
+        public InputAction @Movement => m_Wrapper.m_Default_Movement;
+        public InputAction @ControlCamera => m_Wrapper.m_Default_ControlCamera;
+        public InputAction @GrabItem => m_Wrapper.m_Default_GrabItem;
         public InputAction @Drag => m_Wrapper.m_Default_Drag;
+        public InputAction @SpawnMarker => m_Wrapper.m_Default_SpawnMarker;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -194,28 +284,40 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_DefaultActionsCallbackInterface != null)
             {
-                @Leftclick.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnLeftclick;
-                @Leftclick.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnLeftclick;
-                @Leftclick.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnLeftclick;
-                @Rightclick.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnRightclick;
-                @Rightclick.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnRightclick;
-                @Rightclick.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnRightclick;
+                @Movement.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
+                @Movement.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
+                @Movement.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
+                @ControlCamera.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnControlCamera;
+                @ControlCamera.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnControlCamera;
+                @ControlCamera.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnControlCamera;
+                @GrabItem.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnGrabItem;
+                @GrabItem.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnGrabItem;
+                @GrabItem.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnGrabItem;
                 @Drag.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDrag;
                 @Drag.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDrag;
                 @Drag.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDrag;
+                @SpawnMarker.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSpawnMarker;
+                @SpawnMarker.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSpawnMarker;
+                @SpawnMarker.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSpawnMarker;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Leftclick.started += instance.OnLeftclick;
-                @Leftclick.performed += instance.OnLeftclick;
-                @Leftclick.canceled += instance.OnLeftclick;
-                @Rightclick.started += instance.OnRightclick;
-                @Rightclick.performed += instance.OnRightclick;
-                @Rightclick.canceled += instance.OnRightclick;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @ControlCamera.started += instance.OnControlCamera;
+                @ControlCamera.performed += instance.OnControlCamera;
+                @ControlCamera.canceled += instance.OnControlCamera;
+                @GrabItem.started += instance.OnGrabItem;
+                @GrabItem.performed += instance.OnGrabItem;
+                @GrabItem.canceled += instance.OnGrabItem;
                 @Drag.started += instance.OnDrag;
                 @Drag.performed += instance.OnDrag;
                 @Drag.canceled += instance.OnDrag;
+                @SpawnMarker.started += instance.OnSpawnMarker;
+                @SpawnMarker.performed += instance.OnSpawnMarker;
+                @SpawnMarker.canceled += instance.OnSpawnMarker;
             }
         }
     }
@@ -231,8 +333,10 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
     }
     public interface IDefaultActions
     {
-        void OnLeftclick(InputAction.CallbackContext context);
-        void OnRightclick(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
+        void OnControlCamera(InputAction.CallbackContext context);
+        void OnGrabItem(InputAction.CallbackContext context);
         void OnDrag(InputAction.CallbackContext context);
+        void OnSpawnMarker(InputAction.CallbackContext context);
     }
 }
