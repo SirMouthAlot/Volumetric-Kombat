@@ -1,45 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RuntimeHandle;
 
 public class Utility
 {
-    static GameObject _gameControllerObj;
-    static GameController _gameController;
+    static GameObject _gameManagerObj;
+    static GameManager _gameManager;
     static MarkerManager _markerManager;
-    static bool _foundGameControllerObj = false;
-    static bool _foundGameController = false;
+    static bool _foundGameManagerObj = false;
+    static bool _foundGameManager = false;
     static bool _foundMarkerManager = false;
 
-    public static GameObject GetGameControllerObj()
+    public static GameObject GetGameManagerObj()
     {
-        if (!_foundGameControllerObj)
+        if (!_foundGameManagerObj)
         {
             GameObject eventSystem = GameObject.FindGameObjectWithTag("GameController");
 
-            _gameControllerObj = eventSystem;
-            _foundGameControllerObj = true;
+            _gameManagerObj = eventSystem;
+            _foundGameManagerObj = true;
         }
         
-        return _gameControllerObj;
+        return _gameManagerObj;
     }
 
-    public static GameController GetGameController()
+    public static GameManager GetGameManager()
     {
-        if (!_foundGameController)
+        if (!_foundGameManager)
         {
-            _gameController = GetGameControllerObj().GetComponent<GameController>();
-            _foundGameController = true;
+            _gameManager = GetGameManagerObj().GetComponent<GameManager>();
+            _foundGameManager = true;
         }
 
-        return _gameController;
+        return _gameManager;
     }
 
     public static MarkerManager GetMarkerManager()
     {
         if (!_foundMarkerManager)
         {
-            _markerManager = GetGameControllerObj().GetComponent<MarkerManager>();
+            _markerManager = GetGameManagerObj().GetComponent<MarkerManager>();
             _foundMarkerManager = true;
         }
 
@@ -48,6 +49,11 @@ public class Utility
 
     public static ToolControls GetToolControlsAsset()
     {
-        return GetGameController()._tc;
+        return GetGameManager()._tc;
+    }
+
+    public static RuntimeTransformHandle GetTransformHandleAsset()
+    {
+        return GetGameManager()._transformHandle;
     }
 }

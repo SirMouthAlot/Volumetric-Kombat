@@ -37,16 +37,9 @@ public class MarkerManager : MonoBehaviour
     {
         //Grab items
         _tc.Default.GrabItem.started += ctx => CheckIfGrabbed();
-        _tc.Default.GrabItem.canceled += ctx => ReleaseObject();
 
         //Spawn marker
         _tc.Default.SpawnMarker.performed += ctx => SpawnMarker();
-
-        //Read in mouse position value
-        _tc.Default.Drag.performed += ctx => DragObject(ctx.ReadValue<Vector2>());
-        //Read in mouse scroll wheel value
-        _tc.Default.DragZ.performed += ctx => DragObjectZ(ctx.ReadValue<Vector2>());
-    
     }
 
     public void UnselectCurrentMarker()
@@ -89,17 +82,7 @@ public class MarkerManager : MonoBehaviour
         Ray cast = mainCam.ScreenPointToRay(mouse.position.ReadValue());
         RaycastHit hit;
 
-        if (Physics.Raycast(cast, out hit, 1000.0f, handleCast))
-        {
-            DragMarker markerAxis;
-            
-            if (hit.collider.gameObject.TryGetComponent<DragMarker>(out markerAxis))
-            {
-                _isHeld = true;
-                _activePortionOfMarker = markerAxis;
-            }
-        }
-        else if (Physics.Raycast(cast, out hit, 1000.0f, inactiveHandleCast))
+        if (Physics.Raycast(cast, out hit, 1000.0f, inactiveHandleCast))
         {
             InactiveMarker inactiveMarker;
             if (hit.collider.gameObject.TryGetComponent<InactiveMarker>(out inactiveMarker))
@@ -109,32 +92,6 @@ public class MarkerManager : MonoBehaviour
                 UnselectCurrentMarker();
                 SelectNewMarker(newMarkerToggler);
             }
-        }
-    }
-
-    private void ReleaseObject()
-    {
-        _isHeld = false;
-        _activePortionOfMarker = null;
-    }
-
-    private void DragObject(Vector2 mousePosition)
-    {
-        //if currently holding an object
-        if (_isHeld && _activePortionOfMarker != null)
-        {
-            //Drag around the object
-            _activePortionOfMarker.Drag(mousePosition);
-        }
-    }
-
-    private void DragObjectZ(Vector2 scrollMovement)
-    {
-        //if currently holding an object
-        if (_isHeld && _activePortionOfMarker._movementAxis == Axis.Z)
-        {
-            //Drag around the object
-            _activePortionOfMarker.DragZ(scrollMovement.y);
         }
     }
 

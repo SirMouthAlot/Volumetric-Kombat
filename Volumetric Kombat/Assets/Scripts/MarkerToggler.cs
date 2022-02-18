@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using RuntimeHandle;
 
 public class MarkerToggler : MonoBehaviour
 {
-    public GameObject _activeAxisObject;
-    public Collider _inactiveCollider; 
+    RuntimeTransformHandle _handle;
+
+    private void Awake()
+    {
+        _handle = Utility.GetTransformHandleAsset();
+    }
 
     public void SetSelected()
     {
-        _activeAxisObject.SetActive(true);
-        _inactiveCollider.enabled = false;
+        _handle.target = transform;
     }
 
     public void SetUnselected()
     {
-        _activeAxisObject.SetActive(false);
-        _inactiveCollider.enabled = true;
+        _handle.target = null;
     }
 }
