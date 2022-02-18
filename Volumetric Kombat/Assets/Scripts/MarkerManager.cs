@@ -42,8 +42,11 @@ public class MarkerManager : MonoBehaviour
         //Spawn marker
         _tc.Default.SpawnMarker.performed += ctx => SpawnMarker();
 
-        //Read in mouse delta value
+        //Read in mouse position value
         _tc.Default.Drag.performed += ctx => DragObject(ctx.ReadValue<Vector2>());
+        //Read in mouse scroll wheel value
+        _tc.Default.DragZ.performed += ctx => DragObjectZ(ctx.ReadValue<Vector2>());
+    
     }
 
     public void UnselectCurrentMarker()
@@ -122,6 +125,16 @@ public class MarkerManager : MonoBehaviour
         {
             //Drag around the object
             _activePortionOfMarker.Drag(mousePosition);
+        }
+    }
+
+    private void DragObjectZ(Vector2 scrollMovement)
+    {
+        //if currently holding an object
+        if (_isHeld && _activePortionOfMarker._movementAxis == Axis.Z)
+        {
+            //Drag around the object
+            _activePortionOfMarker.DragZ(scrollMovement.y);
         }
     }
 

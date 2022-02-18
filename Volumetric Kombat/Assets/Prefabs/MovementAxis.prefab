@@ -299,6 +299,7 @@ MonoBehaviour:
   _movementTarget: {fileID: 1560704992677908856}
   _movementAxis: 1
   _holdOffset: {x: 0, y: 0.2416, z: 0}
+  _zMoveSpeed: 1
 --- !u!1 &3944871109733938688
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +527,7 @@ MonoBehaviour:
   _movementTarget: {fileID: 1560704992677908856}
   _movementAxis: 2
   _holdOffset: {x: 0, y: 0, z: -0.2416}
+  _zMoveSpeed: 1
 --- !u!1 &3944871110369373765
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +722,7 @@ MonoBehaviour:
   _movementTarget: {fileID: 1560704992677908856}
   _movementAxis: 0
   _holdOffset: {x: 0.2416, y: 0, z: 0}
+  _zMoveSpeed: 1
 --- !u!1 &3944871110788918989
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,7 +740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3944871110788918978
 Transform:
   m_ObjectHideFlags: 0

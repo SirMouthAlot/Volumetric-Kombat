@@ -78,5 +78,6 @@ public class PlaybackControls : MonoBehaviour
     public void PlaybackStop()
     {
         playbackComponent.StopModel(volumetricIndex);
+        _timeIndicator.text = "0.00s";
     }
 }

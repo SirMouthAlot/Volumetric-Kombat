@@ -37,6 +37,15 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Rise&Fall"",
+                    ""type"": ""Value"",
+                    ""id"": ""503e91aa-6a37-4c24-8a77-539ac95c888a"",
+                    ""expectedControlType"": ""Double"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""ControlCamera"",
                     ""type"": ""Button"",
                     ""id"": ""a5d0b55b-c2e9-48c7-8a1c-4c8a5f471ab9"",
@@ -71,6 +80,15 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DragZ"",
+                    ""type"": ""Value"",
+                    ""id"": ""5070899f-e4a7-419a-8c45-4a67d0bd5a52"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -172,6 +190,50 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                     ""action"": ""SpawnMarker"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b17923f3-2838-4e14-9113-ef6b77e585cc"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DragZ"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""a2d908ed-0952-40a7-802d-c3f0f3d7fa91"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rise&Fall"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""f52a7b1f-db30-415a-bb53-ac00c0110346"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rise&Fall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""17e7ecaa-5169-42ff-b72a-c08fa0c077cf"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rise&Fall"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -198,10 +260,12 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
         // Default
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
         m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
+        m_Default_RiseFall = m_Default.FindAction("Rise&Fall", throwIfNotFound: true);
         m_Default_ControlCamera = m_Default.FindAction("ControlCamera", throwIfNotFound: true);
         m_Default_GrabItem = m_Default.FindAction("GrabItem", throwIfNotFound: true);
         m_Default_Drag = m_Default.FindAction("Drag", throwIfNotFound: true);
         m_Default_SpawnMarker = m_Default.FindAction("SpawnMarker", throwIfNotFound: true);
+        m_Default_DragZ = m_Default.FindAction("DragZ", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -262,19 +326,23 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Default;
     private IDefaultActions m_DefaultActionsCallbackInterface;
     private readonly InputAction m_Default_Movement;
+    private readonly InputAction m_Default_RiseFall;
     private readonly InputAction m_Default_ControlCamera;
     private readonly InputAction m_Default_GrabItem;
     private readonly InputAction m_Default_Drag;
     private readonly InputAction m_Default_SpawnMarker;
+    private readonly InputAction m_Default_DragZ;
     public struct DefaultActions
     {
         private @ToolControls m_Wrapper;
         public DefaultActions(@ToolControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Default_Movement;
+        public InputAction @RiseFall => m_Wrapper.m_Default_RiseFall;
         public InputAction @ControlCamera => m_Wrapper.m_Default_ControlCamera;
         public InputAction @GrabItem => m_Wrapper.m_Default_GrabItem;
         public InputAction @Drag => m_Wrapper.m_Default_Drag;
         public InputAction @SpawnMarker => m_Wrapper.m_Default_SpawnMarker;
+        public InputAction @DragZ => m_Wrapper.m_Default_DragZ;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -287,6 +355,9 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
+                @RiseFall.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnRiseFall;
+                @RiseFall.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnRiseFall;
+                @RiseFall.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnRiseFall;
                 @ControlCamera.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnControlCamera;
                 @ControlCamera.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnControlCamera;
                 @ControlCamera.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnControlCamera;
@@ -299,6 +370,9 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                 @SpawnMarker.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSpawnMarker;
                 @SpawnMarker.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSpawnMarker;
                 @SpawnMarker.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnSpawnMarker;
+                @DragZ.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDragZ;
+                @DragZ.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDragZ;
+                @DragZ.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnDragZ;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -306,6 +380,9 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @RiseFall.started += instance.OnRiseFall;
+                @RiseFall.performed += instance.OnRiseFall;
+                @RiseFall.canceled += instance.OnRiseFall;
                 @ControlCamera.started += instance.OnControlCamera;
                 @ControlCamera.performed += instance.OnControlCamera;
                 @ControlCamera.canceled += instance.OnControlCamera;
@@ -318,6 +395,9 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
                 @SpawnMarker.started += instance.OnSpawnMarker;
                 @SpawnMarker.performed += instance.OnSpawnMarker;
                 @SpawnMarker.canceled += instance.OnSpawnMarker;
+                @DragZ.started += instance.OnDragZ;
+                @DragZ.performed += instance.OnDragZ;
+                @DragZ.canceled += instance.OnDragZ;
             }
         }
     }
@@ -334,9 +414,11 @@ public partial class @ToolControls : IInputActionCollection2, IDisposable
     public interface IDefaultActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnRiseFall(InputAction.CallbackContext context);
         void OnControlCamera(InputAction.CallbackContext context);
         void OnGrabItem(InputAction.CallbackContext context);
         void OnDrag(InputAction.CallbackContext context);
         void OnSpawnMarker(InputAction.CallbackContext context);
+        void OnDragZ(InputAction.CallbackContext context);
     }
 }

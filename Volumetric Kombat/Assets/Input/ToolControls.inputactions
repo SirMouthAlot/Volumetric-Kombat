@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Rise&Fall",
+                    "type": "Value",
+                    "id": "503e91aa-6a37-4c24-8a77-539ac95c888a",
+                    "expectedControlType": "Double",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "ControlCamera",
                     "type": "Button",
                     "id": "a5d0b55b-c2e9-48c7-8a1c-4c8a5f471ab9",
@@ -49,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DragZ",
+                    "type": "Value",
+                    "id": "5070899f-e4a7-419a-8c45-4a67d0bd5a52",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -150,6 +168,50 @@
                     "action": "SpawnMarker",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b17923f3-2838-4e14-9113-ef6b77e585cc",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DragZ",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "a2d908ed-0952-40a7-802d-c3f0f3d7fa91",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rise&Fall",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "f52a7b1f-db30-415a-bb53-ac00c0110346",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rise&Fall",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "17e7ecaa-5169-42ff-b72a-c08fa0c077cf",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rise&Fall",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }

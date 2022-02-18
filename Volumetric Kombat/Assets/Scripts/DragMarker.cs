@@ -15,6 +15,9 @@ public class DragMarker : MonoBehaviour
     public Axis _movementAxis;
     public Vector3 _holdOffset;
 
+    [Range(0.1f, 5.0f)]
+    public float _zMoveSpeed = 1.0f;
+
     public void Drag(Vector2 mousePosition)
     {
         float zDistToObj = _movementTarget.transform.position.z - Camera.main.transform.position.z;
@@ -32,13 +35,18 @@ public class DragMarker : MonoBehaviour
             case Axis.Y:
                 vectorMovement[(int)Axis.Y] = mousePosWorld[(int)Axis.Y] - _holdOffset.y;
                 break;
-            case Axis.Z:
-                //should use combination of x and y axis movement
-                
-                break;
             default:
                 break;
         }
+
+        _movementTarget.transform.position = vectorMovement;
+    }
+
+    public void DragZ(float scrollMovement)
+    {
+        Vector3 vectorMovement = _movementTarget.transform.position;
+
+        vectorMovement[(int)Axis.Z] += (scrollMovement/120.0f) * (_zMoveSpeed * Time.deltaTime);
 
         _movementTarget.transform.position = vectorMovement;
     }
