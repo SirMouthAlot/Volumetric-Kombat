@@ -4,21 +4,21 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Mesh
+  - Projectile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - HandleCast
+  - 
   - Water
   - UI
-  - InactiveHandleCast
   - 
   - 
+  - Ground
+  - Player
   - 
-  - 
-  - 
-  - 
+  - Projectile1
+  - Projectile2
   - 
   - 
   - 
