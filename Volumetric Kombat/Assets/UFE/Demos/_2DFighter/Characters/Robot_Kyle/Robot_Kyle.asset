@@ -13,21 +13,16 @@ MonoBehaviour:
   m_Name: Robot_Kyle
   m_EditorClassIdentifier: 
   gameplayType: 0
-  profilePictureSmall: {fileID: 2800000, guid: 482c02beb7d257d41821a2f63c89b2fd, type: 3}
-  profilePictureBig: {fileID: 2800000, guid: e6f43d0a029116142b97009a6f46de43, type: 3}
+  profilePictureSmall: {fileID: 2800000, guid: 0d1252de720a84d44ae23af704e231ef, type: 3}
+  profilePictureBig: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
   characterName: Robot Kyle
-  gender: 1
-  characterDescription: 'Project: Fighter 2D
-
-    Model Type: 3D Model
-
-    Animation
-    Type: Mecanim'
+  gender: 0
+  characterDescription: UFE Test Setup
   selectionAnimation: {fileID: 7400000, guid: 3a48688ef36f42d44b85984ef29cce4d, type: 2}
   selectionSound: {fileID: 0}
   deathSound: {fileID: 0}
   height: 182
-  age: 1
+  age: 999
   bloodType: Unknown
   lifePoints: 1000
   maxGaugePoints: 1000

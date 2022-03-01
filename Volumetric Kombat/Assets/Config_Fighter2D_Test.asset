@@ -286,7 +286,7 @@ MonoBehaviour:
     enableZoom: 0
     followCharacters: 0
     initialFieldOfView: 100
-    verticalPriority: 2
+    verticalPriority: 1
     verticalThreshold: 2
     movementSpeed: 12
     minZoom: -3.3
@@ -594,7 +594,7 @@ MonoBehaviour:
         _serializedValue: 4294967296
       hideHitBoxesOnFrame: 10
       hideHitBoxes: 1
-      editorToggle: 1
+      editorToggle: 0
       hasQuickStand: 0
       _predefinedPushForce:
         x:
@@ -1156,9 +1156,9 @@ MonoBehaviour:
       x:
         _serializedValue: 0
       y:
-        _serializedValue: 42949672
+        _serializedValue: 0
       z:
-        _serializedValue: -55834574848
+        _serializedValue: 0
   - stageName: Training Room (Scene)
     stageLoadingMethod: 2
     stagePath: Assets/UFE/Demos/Shared_Assets/Stages/TrainingRoom2D/TrainingRoom.unity

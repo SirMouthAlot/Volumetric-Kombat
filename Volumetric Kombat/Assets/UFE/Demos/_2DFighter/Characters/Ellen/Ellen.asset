@@ -76,7 +76,7 @@ MonoBehaviour:
     _jumpBackDistance:
       _serializedValue: 42949672960
     cumulativeForce: 1
-    multiJumps: 1
+    multiJumps: 2
     _weight:
       _serializedValue: 1632087572480
     jumpDelay: 5

@@ -493,17 +493,19 @@ public class DefaultBattleGUI : BattleGUI{
         if (UFE.config.gameGUI.hasGauge){
             for (int i = 0; i < this.player1GUI.gauges.Length; i++)
             {
+
+				
                 if (this.player1.controlsScript.myInfo.hideGauges[i]) continue;
                 this.player1GUI.gauges[i].gameObject.SetActive(true);
-                this.player1GUI.gauges[i].fillAmount = (float)cPlayer1.currentGaugesPoints[i] / UFE.config.player1Character.maxGaugePoints;
-            }
+                this.player1GUI.gauges[i].fillAmount = (float)cPlayer1.currentGaugesPoints[i] / UFE.config.player2Character.maxGaugePoints;  //(float)cPlayer1.currentGaugesPoints[i] / UFE.config.player2Character.maxGaugePoints
+			}
 
             for (int i = 0; i < this.player2GUI.gauges.Length; i++)
             {
                 if (this.player2.controlsScript.myInfo.hideGauges[i]) continue;
                 this.player2GUI.gauges[i].gameObject.SetActive(true);
-                this.player2GUI.gauges[i].fillAmount = (float)cPlayer2.currentGaugesPoints[i] / UFE.config.player2Character.maxGaugePoints;
-            }
+                this.player2GUI.gauges[i].fillAmount = (float)cPlayer2.currentGaugesPoints[i] / UFE.config.player2Character.maxGaugePoints; ////(float)cPlayer2.currentGaugesPoints[i] / UFE.config.player2Character.maxGaugePoints
+			}
 		}
 	}
 

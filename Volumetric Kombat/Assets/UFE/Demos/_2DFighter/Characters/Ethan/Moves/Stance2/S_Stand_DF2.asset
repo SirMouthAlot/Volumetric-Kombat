@@ -6692,6 +6692,7 @@ MonoBehaviour:
   invertRotationLeft: 0
   invertRotationRight: 0
   autoCorrectRotation: 0
+  allowSideSwitch: 0
   frameWindowRotation: 0
   cooldown: 0
   cooldownFrames: 0
@@ -6701,8 +6702,8 @@ MonoBehaviour:
   animSpeedKeyFrame: []
   totalFrames: 55
   startUpFrames: 25
-  activeFrames: 5
-  recoveryFrames: 25
+  activeFrames: 7
+  recoveryFrames: 23
   applyRootMotion: 1
   lockXMotion: 0
   lockYMotion: 0
@@ -6800,7 +6801,7 @@ MonoBehaviour:
     onBlock: 1
     onParry: 1
     activeFramesBegins: 49
-    activeFramesEnds: 55
+    activeFramesEnds: 54
     counterMoveType: 0
     counterMoveFilter: {fileID: 0}
     disableHitImpact: 1
@@ -6826,7 +6827,7 @@ MonoBehaviour:
     onBlock: 1
     onParry: 1
     activeFramesBegins: 35
-    activeFramesEnds: 55
+    activeFramesEnds: 54
     counterMoveType: 0
     counterMoveFilter: {fileID: 0}
     disableHitImpact: 1
@@ -7161,8 +7162,8 @@ MonoBehaviour:
           _serializedValue: 7215544832
       shape: 1
       type: 0
-  - activeFramesBegin: 27
-    activeFramesEnds: 30
+  - activeFramesBegin: 28
+    activeFramesEnds: 31
     hitConfirmType: 0
     throwMove: {fileID: 0}
     techMove: {fileID: 0}
@@ -7451,9 +7452,9 @@ MonoBehaviour:
       height: 3.73
     _rect:
       _x:
-        _serializedValue: 0
+        _serializedValue: -7430293504
       _y:
-        _serializedValue: 0
+        _serializedValue: -8203387392
       topRight:
         x:
           _serializedValue: 6914896896
@@ -7554,3 +7555,4 @@ MonoBehaviour:
     damageAbsorption: 0
     nonAffectedBodyParts: 
   projectiles: []
+  rotationPreview: {x: 0, y: 90, z: 0}

@@ -30,7 +30,7 @@ MonoBehaviour:
   age: 1
   bloodType: Unknown
   lifePoints: 1000
-  maxGaugePoints: 400
+  maxGaugePoints: 1000
   characterPrefabStorage: 1
   characterPrefab: {fileID: 0}
   prefabResourcePath: _2DFighter\Characters\Mecanim_Bot
