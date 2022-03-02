@@ -40,9 +40,9 @@ MonoBehaviour:
       x:
         _serializedValue: 0
       y:
-        _serializedValue: 42949672
+        _serializedValue: 0
       z:
-        _serializedValue: -55834574848
+        _serializedValue: 0
   gameName: Volumetric Kombat
   gameplayType: 0
   selectedLanguage:
@@ -222,7 +222,7 @@ MonoBehaviour:
   detect3D_Hits: 0
   lockZAxis: 1
   runInBackground: 1
-  useFixedUpdateInputs: 0
+  useFixedUpdateInputs: 1
   sortCharacterOnHit: 1
   foregroundSortLayer: 200
   backgroundSortLayer: 100

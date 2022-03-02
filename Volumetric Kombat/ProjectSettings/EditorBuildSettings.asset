@@ -20,4 +20,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/UFE/Demos/_3DFighter/Demo_Fighter3D - Type 2.unity
     guid: c9868bd024a5cfc45a00f980547f92ee
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: a4f7e1e1b626f214c930255b85fd61ed,
+      type: 2}
