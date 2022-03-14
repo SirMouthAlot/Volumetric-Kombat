@@ -1725,7 +1725,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5243300760852669038, guid: ab698e7e20e914aa69d83ae72b00a3f8,
         type: 3}
+      propertyPath: pausePreview
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243300760852669038, guid: ab698e7e20e914aa69d83ae72b00a3f8,
+        type: 3}
       propertyPath: createPreview
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243300760852669038, guid: ab698e7e20e914aa69d83ae72b00a3f8,
+        type: 3}
+      propertyPath: currentTimestamp
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
