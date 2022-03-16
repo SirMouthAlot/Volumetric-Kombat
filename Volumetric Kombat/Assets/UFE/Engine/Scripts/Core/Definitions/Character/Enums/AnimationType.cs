@@ -4,6 +4,7 @@
     {
         Legacy,
         Mecanim3D,
-        Mecanim2D
+        Mecanim2D,
+        Volumetric
     }
 }

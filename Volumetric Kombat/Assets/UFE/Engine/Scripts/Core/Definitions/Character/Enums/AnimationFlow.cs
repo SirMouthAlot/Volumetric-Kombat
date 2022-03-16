@@ -1,5 +1,6 @@
 ﻿public enum AnimationFlow
 {
     UFEEngine,
-    UnityEngine
+    UnityEngine,
+    Volumetric
 }

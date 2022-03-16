@@ -8,6 +8,7 @@ namespace UFE3D
     {
         public GameplayType gameplayType;
         public SerializedAnimationMap animMap = new SerializedAnimationMap();
+        public VolumetricAnimationMap voluMap = new VolumetricAnimationMap();
         public Fix64 _animationSpeed = 1;
         public WrapMode wrapMode;
 
@@ -24,6 +25,7 @@ namespace UFE3D
         public bool invertRotationRight;
         public bool autoCorrectRotation;
         public bool allowSideSwitch;
+        public bool _isVolumetric;
         public int frameWindowRotation;
         public bool cooldown;
         public int cooldownFrames;

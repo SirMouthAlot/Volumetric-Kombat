@@ -3,6 +3,7 @@ using UnityEditor;
 using System;
 using System.Collections;
 using System.Reflection;
+using UnityEngine.Playables;
 using System.Collections.Generic;
 using FPLibrary;
 using UFE3D;
@@ -333,7 +334,16 @@ public class MoveEditorWindow : EditorWindow {
 
 						}EditorGUILayout.EndHorizontal();
 
-						
+						EditorGUILayout.BeginHorizontal();
+						{
+							
+							//EditorGUIUtility.labelWidth = 230;
+
+							moveInfo._isVolumetric = EditorGUILayout.Toggle("isVolumetric", moveInfo._isVolumetric, toggleStyle);
+						}
+						EditorGUILayout.EndHorizontal();
+
+
 						SubGroupTitle("Behaviour");
 						EditorGUIUtility.labelWidth = 230;
 						moveInfo.ignoreGravity = EditorGUILayout.Toggle("Ignore Gravity", moveInfo.ignoreGravity, toggleStyle);
@@ -457,324 +467,739 @@ public class MoveEditorWindow : EditorWindow {
 
 
 			// Begin Animation Options
-			EditorGUILayout.BeginVertical(rootGroupStyle);{
-				EditorGUILayout.BeginHorizontal();{
+			EditorGUILayout.BeginVertical(rootGroupStyle);
+			{
+				EditorGUILayout.BeginHorizontal();
+				{
 					animationOptions = EditorGUILayout.Foldout(animationOptions, "Animation", foldStyle);
 					helpButton("move:animation");
-				}EditorGUILayout.EndHorizontal();
+				}
+				EditorGUILayout.EndHorizontal();
 
-				if (animationOptions){
-					EditorGUILayout.BeginVertical(subGroupStyle);{
-						EditorGUILayout.Space();
-						EditorGUI.indentLevel += 1;
-						EditorGUIUtility.labelWidth = 200;
+				if (animationOptions)
+				{
 
-						SubGroupTitle("File");
-                        if (moveInfo.gameplayType == GameplayType._2DFighter)
-                            moveInfo.animMap.hitBoxDefinitionType = (HitBoxDefinitionType)EditorGUILayout.EnumPopup("Hit Box Definition Type:", moveInfo.animMap.hitBoxDefinitionType, enumStyle);
-                        else
-                            moveInfo.animMap.hitBoxDefinitionType = HitBoxDefinitionType.AutoMap;
-
-                        moveInfo.animMap.clip = (AnimationClip)EditorGUILayout.ObjectField("Animation Clip:", moveInfo.animMap.clip, typeof(AnimationClip), true);
-                        if (moveInfo.animMap.hitBoxDefinitionType == HitBoxDefinitionType.AutoMap)
-                        {
-                            previewRecordedMaps = EditorGUILayout.Toggle("Preview Recorded Maps", previewRecordedMaps, toggleStyle);
-                        }
-                        else
+					if (moveInfo._isVolumetric == false)
+					{
+						EditorGUILayout.BeginVertical(subGroupStyle);
 						{
-							EditorGUILayout.BeginHorizontal();
-							bool refresh = false;
-							moveInfo.animMap.customHitBoxDefinition = (CustomHitBoxesInfo)EditorGUILayout.ObjectField("Custom Hit Boxes:", moveInfo.animMap.customHitBoxDefinition, typeof(CustomHitBoxesInfo), false, GUILayout.ExpandWidth(true));
-							if (moveInfo.gameplayType == GameplayType._2DFighter && GUILayout.Button("Refresh", addButtonStyle, GUILayout.Width(55)))
-								refresh = true;
-							EditorGUILayout.EndHorizontal();
+							EditorGUILayout.Space();
+							EditorGUI.indentLevel += 1;
+							EditorGUIUtility.labelWidth = 200;
 
-							if (moveInfo.animMap.customHitBoxDefinition != null && moveInfo.animMap.customHitBoxDefinition.clip != null && (moveInfo.animMap.clip == null || refresh))
-                            {
-								if (moveInfo.animMap.clip == null)
-									moveInfo.animMap.clip = moveInfo.animMap.customHitBoxDefinition.clip;
-                                moveInfo.totalFrames = (int)Mathf.Abs(Mathf.Ceil((moveInfo.fps * moveInfo.animMap.clip.length) / (float)moveInfo.animMap.customHitBoxDefinition.speed));
-
-                                if (moveInfo.blockableArea != null) moveInfo.blockableArea.hitBoxDefinitionIndex = 0;
-                            }
-
-                            if (moveInfo.animMap.customHitBoxDefinition != null)
-                            {
-                                moveInfo.fixedSpeed = true;
-                                moveInfo._animationSpeed = moveInfo.animMap.customHitBoxDefinition.speed;
-                            }
-                        }
-
-                        EditorGUILayout.Space();
-                        EditorGUILayout.Space();
-
-                        if (moveInfo.animMap.clip != null){
-                            moveInfo.animMap.length = moveInfo.animMap.clip.length;
-                            moveInfo.wrapMode = (WrapMode)EditorGUILayout.EnumPopup("Wrap Mode:",moveInfo.wrapMode, enumStyle);
-							
-							moveInfo.disableHeadLook = EditorGUILayout.Toggle("Disable Head Look", moveInfo.disableHeadLook, toggleStyle);
-                            moveInfo.applyRootMotion = EditorGUILayout.Toggle("Apply Root Motion", moveInfo.applyRootMotion, toggleStyle);
-                            if (moveInfo.applyRootMotion)
-                            {
-                                EditorGUI.indentLevel += 1;
-                                moveInfo.lockXMotion = EditorGUILayout.Toggle("Lock X Motion", moveInfo.lockXMotion, toggleStyle);
-                                moveInfo.lockYMotion = EditorGUILayout.Toggle("Lock Y Motion", moveInfo.lockYMotion, toggleStyle);
-                                moveInfo.lockZMotion = EditorGUILayout.Toggle("Lock Z Motion", moveInfo.lockZMotion, toggleStyle);
-                                EditorGUI.indentLevel -= 1;
-                            }
-                            EditorGUILayout.Space();
-
-                            if (moveInfo.animMap.hitBoxDefinitionType == HitBoxDefinitionType.AutoMap)
-                            {
-                                SubGroupTitle("Speed");
-                                moveInfo.fixedSpeed = EditorGUILayout.Toggle("Fixed Speed", moveInfo.fixedSpeed, toggleStyle);
-                                moveInfo._animationSpeed = EditorGUILayout.FloatField("Base Speed:", (float)moveInfo._animationSpeed);
-                                if (moveInfo._animationSpeed < .1) moveInfo._animationSpeed = .1;
-
-                                float animTime = 0;
-
-                                if (moveInfo.fixedSpeed)
-                                {
-                                    totalFramesTemp = totalFramesOriginal;
-                                    animTime = moveInfo.animMap.clip.length * (float)moveInfo._animationSpeed;
-
-                                }
-                                else
-                                {
-                                    moveInfo.speedKeyFrameToggle = EditorGUILayout.Foldout(moveInfo.speedKeyFrameToggle, "Speed Key Frames", EditorStyles.foldout);
-                                    if (moveInfo.speedKeyFrameToggle)
-                                    {
-                                        EditorGUILayout.BeginVertical(subGroupStyle);
-                                        {
-                                            EditorGUI.indentLevel += 1;
-
-                                            List<int> castingValues = new List<int>();
-                                            foreach (AnimSpeedKeyFrame animationKeyFrame in moveInfo.animSpeedKeyFrame)
-                                                castingValues.Add(animationKeyFrame.castingFrame);
-                                            StyledMarker("Casting Timeline", castingValues.ToArray(), totalFramesOriginal, EditorGUI.indentLevel);
-
-                                            totalFramesTemp = 0;
-                                            int previousCastingFrame = 0;
-                                            float displacement = 0;
-
-                                            for (int i = 0; i < moveInfo.animSpeedKeyFrame.Length; i++)
-                                            {
-                                                EditorGUILayout.Space();
-                                                EditorGUILayout.BeginVertical(arrayElementStyle);
-                                                {
-                                                    EditorGUILayout.Space();
-                                                    EditorGUILayout.BeginHorizontal();
-                                                    {
-                                                        moveInfo.animSpeedKeyFrame[i].castingFrame = EditorGUILayout.IntSlider("Casting Frame:", moveInfo.animSpeedKeyFrame[i].castingFrame, 0, totalFramesOriginal);
-                                                        if (GUILayout.Button("", "PaneOptions"))
-                                                        {
-                                                            PaneOptions<AnimSpeedKeyFrame>(moveInfo.animSpeedKeyFrame, moveInfo.animSpeedKeyFrame[i], delegate (AnimSpeedKeyFrame[] newElement) { moveInfo.animSpeedKeyFrame = newElement; });
-                                                        }
-                                                    }
-                                                    EditorGUILayout.EndHorizontal();
-                                                    moveInfo.animSpeedKeyFrame[i]._speed = EditorGUILayout.FloatField("New Speed:", (float)moveInfo.animSpeedKeyFrame[i]._speed);
-                                                    if (moveInfo.animSpeedKeyFrame[i]._speed < .1) moveInfo.animSpeedKeyFrame[i]._speed = .1;
-                                                    moveInfo.animSpeedKeyFrame[i].castingFrame = Mathf.Max(moveInfo.animSpeedKeyFrame[i].castingFrame, previousCastingFrame);
-                                                    moveInfo.animSpeedKeyFrame[i].castingFrame = Mathf.Min(moveInfo.animSpeedKeyFrame[i].castingFrame, totalFramesOriginal);
-
-                                                    if (i == moveInfo.animSpeedKeyFrame.Length - 1)
-                                                    {
-                                                        displacement = totalFramesOriginal;
-                                                    }
-                                                    else
-                                                    {
-                                                        displacement = moveInfo.animSpeedKeyFrame[i + 1].castingFrame;
-                                                    }
-
-                                                    // Update Display Value
-                                                    displacement -= moveInfo.animSpeedKeyFrame[i].castingFrame;
-                                                    displacement /= (float)moveInfo.animSpeedKeyFrame[i]._speed;
-                                                    EditorGUILayout.LabelField("Frame Window (Aprox.):", displacement.ToString());
-
-                                                    previousCastingFrame = moveInfo.animSpeedKeyFrame[i].castingFrame;
-
-                                                    EditorGUILayout.Space();
-
-                                                }
-                                                EditorGUILayout.EndVertical();
-                                                EditorGUILayout.Space();
-                                            }
-
-                                            animTime = 0;
-                                            int frameCounter = 0;
-                                            int currentKeyFrame = 0;
-                                            float frameSpeed = (float)moveInfo._animationSpeed;
-                                            do
-                                            {
-                                                frameCounter++;
-                                                int keyFrameCount = 0;
-                                                foreach (AnimSpeedKeyFrame speedKeyFrame in moveInfo.animSpeedKeyFrame)
-                                                {
-                                                    keyFrameCount++;
-                                                    if (frameCounter > speedKeyFrame.castingFrame && keyFrameCount > currentKeyFrame)
-                                                    {
-                                                        currentKeyFrame = keyFrameCount;
-                                                        frameSpeed = (float)moveInfo._animationSpeed * (float)speedKeyFrame._speed;
-                                                        break;
-                                                    }
-                                                }
-                                                animTime += ((float)1 / moveInfo.fps) * frameSpeed;
-
-                                            } while (animTime < moveInfo.animMap.clip.length);
-                                            totalFramesTemp = frameCounter;
-
-                                            if (totalFramesTemp == 0) totalFramesTemp = moveInfo.totalFrames;
-
-                                            if (StyledButton("New Keyframe"))
-                                                moveInfo.animSpeedKeyFrame = AddElement<AnimSpeedKeyFrame>(moveInfo.animSpeedKeyFrame, new AnimSpeedKeyFrame());
-
-                                            EditorGUILayout.Space();
-                                            EditorGUI.indentLevel -= 1;
-
-                                        }
-                                        EditorGUILayout.EndVertical();
-                                    }
-                                }
-
-                                string unsaved = totalFramesTemp != moveInfo.totalFrames ? "*" : "";
-                                EditorGUILayout.LabelField("Original Frames:", totalFramesOriginal.ToString());
-                                EditorGUILayout.LabelField("Time (seconds):", animTime.ToString() + unsaved);
-                                EditorGUILayout.BeginHorizontal();
-                                {
-                                    EditorGUILayout.LabelField("Total frames:", totalFramesTemp.ToString() + unsaved);
-                                    if (StyledButton("Apply"))
-                                    {
-                                        moveInfo.totalFrames = totalFramesTemp;
-                                    }
-                                }
-                                EditorGUILayout.EndHorizontal();
-                                EditorGUILayout.Space();
-                            }
+							SubGroupTitle("File");
 
 
-							SubGroupTitle("Blending");
-							moveInfo.overrideBlendingIn = EditorGUILayout.Toggle("Override Blending (In)", moveInfo.overrideBlendingIn, toggleStyle);
-							if (moveInfo.overrideBlendingIn){
-								moveInfo._blendingIn = EditorGUILayout.FloatField("Blend In Duration:", (float)moveInfo._blendingIn);
+							if (moveInfo.gameplayType == GameplayType._2DFighter)
+								moveInfo.animMap.hitBoxDefinitionType = (HitBoxDefinitionType)EditorGUILayout.EnumPopup("Hit Box Definition Type:", moveInfo.animMap.hitBoxDefinitionType, enumStyle);
+							else
+								moveInfo.animMap.hitBoxDefinitionType = HitBoxDefinitionType.AutoMap;
+
+
+
+							moveInfo.animMap.clip = (AnimationClip)EditorGUILayout.ObjectField("Animation Clip:", moveInfo.animMap.clip, typeof(AnimationClip), true);
+							if (moveInfo.animMap.hitBoxDefinitionType == HitBoxDefinitionType.AutoMap)
+							{
+								previewRecordedMaps = EditorGUILayout.Toggle("Preview Recorded Maps", previewRecordedMaps, toggleStyle);
 							}
-							
-							moveInfo.overrideBlendingOut = EditorGUILayout.Toggle("Override Blending (Out)", moveInfo.overrideBlendingOut, toggleStyle);
-							if (moveInfo.overrideBlendingOut){
-								moveInfo._blendingOut = EditorGUILayout.FloatField("Blend Out Duration:", (float)moveInfo._blendingOut);
+							else
+							{
+								EditorGUILayout.BeginHorizontal();
+								bool refresh = false;
+								moveInfo.animMap.customHitBoxDefinition = (CustomHitBoxesInfo)EditorGUILayout.ObjectField("Custom Hit Boxes:", moveInfo.animMap.customHitBoxDefinition, typeof(CustomHitBoxesInfo), false, GUILayout.ExpandWidth(true));
+								if (moveInfo.gameplayType == GameplayType._2DFighter && GUILayout.Button("Refresh", addButtonStyle, GUILayout.Width(55)))
+									refresh = true;
+								EditorGUILayout.EndHorizontal();
+
+								if (moveInfo.animMap.customHitBoxDefinition != null && moveInfo.animMap.customHitBoxDefinition.clip != null && (moveInfo.animMap.clip == null || refresh))
+								{
+									if (moveInfo.animMap.clip == null)
+										moveInfo.animMap.clip = moveInfo.animMap.customHitBoxDefinition.clip;
+									moveInfo.totalFrames = (int)Mathf.Abs(Mathf.Ceil((moveInfo.fps * moveInfo.animMap.clip.length) / (float)moveInfo.animMap.customHitBoxDefinition.speed));
+
+									if (moveInfo.blockableArea != null) moveInfo.blockableArea.hitBoxDefinitionIndex = 0;
+								}
+
+								if (moveInfo.animMap.customHitBoxDefinition != null)
+								{
+									moveInfo.fixedSpeed = true;
+									moveInfo._animationSpeed = moveInfo.animMap.customHitBoxDefinition.speed;
+								}
 							}
+
+							EditorGUILayout.Space();
 							EditorGUILayout.Space();
 
-							
-							SubGroupTitle("Orientation");
-							EditorGUIUtility.labelWidth = 230;
-							moveInfo.forceMirrorLeft = EditorGUILayout.Toggle("Mirror Animation (Left)", moveInfo.forceMirrorLeft, toggleStyle);
-							moveInfo.invertRotationLeft = EditorGUILayout.Toggle("Rotate Character (Left)", moveInfo.invertRotationLeft, toggleStyle);
-							
-							EditorGUILayout.Space();
-							moveInfo.forceMirrorRight = EditorGUILayout.Toggle("Mirror Animation (Right)", moveInfo.forceMirrorRight, toggleStyle);
-							moveInfo.invertRotationRight = EditorGUILayout.Toggle("Rotate Character (Right)", moveInfo.invertRotationRight, toggleStyle);
-							EditorGUILayout.Space();
+							if (moveInfo.animMap.clip != null)
+							{
+								moveInfo.animMap.length = moveInfo.animMap.clip.length;
+								moveInfo.wrapMode = (WrapMode)EditorGUILayout.EnumPopup("Wrap Mode:", moveInfo.wrapMode, enumStyle);
+
+								moveInfo.disableHeadLook = EditorGUILayout.Toggle("Disable Head Look", moveInfo.disableHeadLook, toggleStyle);
+								moveInfo.applyRootMotion = EditorGUILayout.Toggle("Apply Root Motion", moveInfo.applyRootMotion, toggleStyle);
+								if (moveInfo.applyRootMotion)
+								{
+									EditorGUI.indentLevel += 1;
+									moveInfo.lockXMotion = EditorGUILayout.Toggle("Lock X Motion", moveInfo.lockXMotion, toggleStyle);
+									moveInfo.lockYMotion = EditorGUILayout.Toggle("Lock Y Motion", moveInfo.lockYMotion, toggleStyle);
+									moveInfo.lockZMotion = EditorGUILayout.Toggle("Lock Z Motion", moveInfo.lockZMotion, toggleStyle);
+									EditorGUI.indentLevel -= 1;
+								}
+								EditorGUILayout.Space();
+
+								if (moveInfo.animMap.hitBoxDefinitionType == HitBoxDefinitionType.AutoMap)
+								{
+									SubGroupTitle("Speed");
+									moveInfo.fixedSpeed = EditorGUILayout.Toggle("Fixed Speed", moveInfo.fixedSpeed, toggleStyle);
+									moveInfo._animationSpeed = EditorGUILayout.FloatField("Base Speed:", (float)moveInfo._animationSpeed);
+									if (moveInfo._animationSpeed < .1) moveInfo._animationSpeed = .1;
+
+									float animTime = 0;
+
+									if (moveInfo.fixedSpeed)
+									{
+										totalFramesTemp = totalFramesOriginal;
+										animTime = moveInfo.animMap.clip.length * (float)moveInfo._animationSpeed;
+
+									}
+									else
+									{
+										moveInfo.speedKeyFrameToggle = EditorGUILayout.Foldout(moveInfo.speedKeyFrameToggle, "Speed Key Frames", EditorStyles.foldout);
+										if (moveInfo.speedKeyFrameToggle)
+										{
+											EditorGUILayout.BeginVertical(subGroupStyle);
+											{
+												EditorGUI.indentLevel += 1;
+
+												List<int> castingValues = new List<int>();
+												foreach (AnimSpeedKeyFrame animationKeyFrame in moveInfo.animSpeedKeyFrame)
+													castingValues.Add(animationKeyFrame.castingFrame);
+												StyledMarker("Casting Timeline", castingValues.ToArray(), totalFramesOriginal, EditorGUI.indentLevel);
+
+												totalFramesTemp = 0;
+												int previousCastingFrame = 0;
+												float displacement = 0;
+
+												for (int i = 0; i < moveInfo.animSpeedKeyFrame.Length; i++)
+												{
+													EditorGUILayout.Space();
+													EditorGUILayout.BeginVertical(arrayElementStyle);
+													{
+														EditorGUILayout.Space();
+														EditorGUILayout.BeginHorizontal();
+														{
+															moveInfo.animSpeedKeyFrame[i].castingFrame = EditorGUILayout.IntSlider("Casting Frame:", moveInfo.animSpeedKeyFrame[i].castingFrame, 0, totalFramesOriginal);
+															if (GUILayout.Button("", "PaneOptions"))
+															{
+																PaneOptions<AnimSpeedKeyFrame>(moveInfo.animSpeedKeyFrame, moveInfo.animSpeedKeyFrame[i], delegate (AnimSpeedKeyFrame[] newElement) { moveInfo.animSpeedKeyFrame = newElement; });
+															}
+														}
+														EditorGUILayout.EndHorizontal();
+														moveInfo.animSpeedKeyFrame[i]._speed = EditorGUILayout.FloatField("New Speed:", (float)moveInfo.animSpeedKeyFrame[i]._speed);
+														if (moveInfo.animSpeedKeyFrame[i]._speed < .1) moveInfo.animSpeedKeyFrame[i]._speed = .1;
+														moveInfo.animSpeedKeyFrame[i].castingFrame = Mathf.Max(moveInfo.animSpeedKeyFrame[i].castingFrame, previousCastingFrame);
+														moveInfo.animSpeedKeyFrame[i].castingFrame = Mathf.Min(moveInfo.animSpeedKeyFrame[i].castingFrame, totalFramesOriginal);
+
+														if (i == moveInfo.animSpeedKeyFrame.Length - 1)
+														{
+															displacement = totalFramesOriginal;
+														}
+														else
+														{
+															displacement = moveInfo.animSpeedKeyFrame[i + 1].castingFrame;
+														}
+
+														// Update Display Value
+														displacement -= moveInfo.animSpeedKeyFrame[i].castingFrame;
+														displacement /= (float)moveInfo.animSpeedKeyFrame[i]._speed;
+														EditorGUILayout.LabelField("Frame Window (Aprox.):", displacement.ToString());
+
+														previousCastingFrame = moveInfo.animSpeedKeyFrame[i].castingFrame;
+
+														EditorGUILayout.Space();
+
+													}
+													EditorGUILayout.EndVertical();
+													EditorGUILayout.Space();
+												}
+
+												animTime = 0;
+												int frameCounter = 0;
+												int currentKeyFrame = 0;
+												float frameSpeed = (float)moveInfo._animationSpeed;
+												do
+												{
+													frameCounter++;
+													int keyFrameCount = 0;
+													foreach (AnimSpeedKeyFrame speedKeyFrame in moveInfo.animSpeedKeyFrame)
+													{
+														keyFrameCount++;
+														if (frameCounter > speedKeyFrame.castingFrame && keyFrameCount > currentKeyFrame)
+														{
+															currentKeyFrame = keyFrameCount;
+															frameSpeed = (float)moveInfo._animationSpeed * (float)speedKeyFrame._speed;
+															break;
+														}
+													}
+													animTime += ((float)1 / moveInfo.fps) * frameSpeed;
+
+												} while (animTime < moveInfo.animMap.clip.length);
+												totalFramesTemp = frameCounter;
+
+												if (totalFramesTemp == 0) totalFramesTemp = moveInfo.totalFrames;
+
+												if (StyledButton("New Keyframe"))
+													moveInfo.animSpeedKeyFrame = AddElement<AnimSpeedKeyFrame>(moveInfo.animSpeedKeyFrame, new AnimSpeedKeyFrame());
+
+												EditorGUILayout.Space();
+												EditorGUI.indentLevel -= 1;
+
+											}
+											EditorGUILayout.EndVertical();
+										}
+									}
+
+									string unsaved = totalFramesTemp != moveInfo.totalFrames ? "*" : "";
+									EditorGUILayout.LabelField("Original Frames:", totalFramesOriginal.ToString());
+									EditorGUILayout.LabelField("Time (seconds):", animTime.ToString() + unsaved);
+									EditorGUILayout.BeginHorizontal();
+									{
+										EditorGUILayout.LabelField("Total frames:", totalFramesTemp.ToString() + unsaved);
+										if (StyledButton("Apply"))
+										{
+											moveInfo.totalFrames = totalFramesTemp;
+										}
+									}
+									EditorGUILayout.EndHorizontal();
+									EditorGUILayout.Space();
+								}
 
 
-                            SubGroupTitle("Preview");
-							EditorGUIUtility.labelWidth = 180;
-							GameObject newCharacterPrefab = (GameObject) EditorGUILayout.ObjectField("Character Prefab:", moveInfo.characterPrefab, typeof(UnityEngine.GameObject), true);
-                            moveInfo.rotationPreview = EditorGUILayout.Vector3Field("Rotation Preview:", moveInfo.rotationPreview);
+								SubGroupTitle("Blending");
+								moveInfo.overrideBlendingIn = EditorGUILayout.Toggle("Override Blending (In)", moveInfo.overrideBlendingIn, toggleStyle);
+								if (moveInfo.overrideBlendingIn)
+								{
+									moveInfo._blendingIn = EditorGUILayout.FloatField("Blend In Duration:", (float)moveInfo._blendingIn);
+								}
 
-                            if (newCharacterPrefab != null && moveInfo.characterPrefab != newCharacterPrefab && !EditorApplication.isPlayingOrWillChangePlaymode){
+								moveInfo.overrideBlendingOut = EditorGUILayout.Toggle("Override Blending (Out)", moveInfo.overrideBlendingOut, toggleStyle);
+								if (moveInfo.overrideBlendingOut)
+								{
+									moveInfo._blendingOut = EditorGUILayout.FloatField("Blend Out Duration:", (float)moveInfo._blendingOut);
+								}
+								EditorGUILayout.Space();
+
+
+								SubGroupTitle("Orientation");
+								EditorGUIUtility.labelWidth = 230;
+								moveInfo.forceMirrorLeft = EditorGUILayout.Toggle("Mirror Animation (Left)", moveInfo.forceMirrorLeft, toggleStyle);
+								moveInfo.invertRotationLeft = EditorGUILayout.Toggle("Rotate Character (Left)", moveInfo.invertRotationLeft, toggleStyle);
+
+								EditorGUILayout.Space();
+								moveInfo.forceMirrorRight = EditorGUILayout.Toggle("Mirror Animation (Right)", moveInfo.forceMirrorRight, toggleStyle);
+								moveInfo.invertRotationRight = EditorGUILayout.Toggle("Rotate Character (Right)", moveInfo.invertRotationRight, toggleStyle);
+								EditorGUILayout.Space();
+
+
+								SubGroupTitle("Preview");
+								EditorGUIUtility.labelWidth = 180;
+								GameObject newCharacterPrefab = (GameObject)EditorGUILayout.ObjectField("Character Prefab:", moveInfo.characterPrefab, typeof(UnityEngine.GameObject), true);
+								moveInfo.rotationPreview = EditorGUILayout.Vector3Field("Rotation Preview:", moveInfo.rotationPreview);
+
+								if (newCharacterPrefab != null && moveInfo.characterPrefab != newCharacterPrefab && !EditorApplication.isPlayingOrWillChangePlaymode)
+								{
 #if UNITY_2018_3_OR_NEWER
-                                if (PrefabUtility.GetPrefabAssetType(newCharacterPrefab) != PrefabAssetType.Regular) {
+									if (PrefabUtility.GetPrefabAssetType(newCharacterPrefab) != PrefabAssetType.Regular)
+									{
 #else
                                 if (PrefabUtility.GetPrefabType(newCharacterPrefab) != PrefabType.Prefab) {
 #endif
-                                    characterWarning = true;
-									errorMsg = "This character is not a prefab.";
-								}else if (newCharacterPrefab.GetComponent<HitBoxesScript>() == null){
-									characterWarning = true;
-									errorMsg = "This character doesn't have hitboxes!\n Please add the HitboxScript and try again.";
-								}else{
-									characterWarning = false;
-									moveInfo.characterPrefab = newCharacterPrefab;
-								}
-							}else if (moveInfo.characterPrefab != newCharacterPrefab && EditorApplication.isPlayingOrWillChangePlaymode){
-								characterWarning = true;
-								errorMsg = "You can't change this field while in play mode.";
-							}else if (newCharacterPrefab == null) moveInfo.characterPrefab = null;
-
-							if (characterPrefab == null){
-								if (StyledButton("Animation Preview")){
-									if (moveInfo.characterPrefab == null) {
 										characterWarning = true;
-										errorMsg = "Drag a character into 'Character Prefab' first.";
-									}else if (EditorApplication.isPlayingOrWillChangePlaymode){
+										errorMsg = "This character is not a prefab.";
+									}
+									else if (newCharacterPrefab.GetComponent<HitBoxesScript>() == null)
+									{
 										characterWarning = true;
-										errorMsg = "You can't preview animations while in play mode.";
-									}else{
+										errorMsg = "This character doesn't have hitboxes!\n Please add the HitboxScript and try again.";
+									}
+									else
+									{
 										characterWarning = false;
-										EditorCamera.SetPosition(Vector3.up * 4);
-										EditorCamera.SetRotation(Quaternion.identity);
-										EditorCamera.SetOrthographic(true);
-										EditorCamera.SetSize(10);
+										moveInfo.characterPrefab = newCharacterPrefab;
+									}
+								}
+								else if (moveInfo.characterPrefab != newCharacterPrefab && EditorApplication.isPlayingOrWillChangePlaymode)
+								{
+									characterWarning = true;
+									errorMsg = "You can't change this field while in play mode.";
+								}
+								else if (newCharacterPrefab == null) moveInfo.characterPrefab = null;
 
-										characterPrefab = (GameObject) PrefabUtility.InstantiatePrefab(moveInfo.characterPrefab);
-										characterPrefab.transform.position = new Vector3(0,0,0);
-                                        characterPrefab.transform.rotation = Quaternion.Euler(moveInfo.rotationPreview);
+								if (characterPrefab == null)
+								{
+									if (StyledButton("Animation Preview"))
+									{
+										if (moveInfo.characterPrefab == null)
+										{
+											characterWarning = true;
+											errorMsg = "Drag a character into 'Character Prefab' first.";
+										}
+										else if (EditorApplication.isPlayingOrWillChangePlaymode)
+										{
+											characterWarning = true;
+											errorMsg = "You can't preview animations while in play mode.";
+										}
+										else
+										{
+											characterWarning = false;
+											EditorCamera.SetPosition(Vector3.up * 4);
+											EditorCamera.SetRotation(Quaternion.identity);
+											EditorCamera.SetOrthographic(true);
+											EditorCamera.SetSize(10);
 
-                                        AnimationSampler(characterPrefab, moveInfo.animMap.clip, 0, true, true, moveInfo.forceMirrorLeft, moveInfo.invertRotationLeft);
-                                    }
+											characterPrefab = (GameObject)PrefabUtility.InstantiatePrefab(moveInfo.characterPrefab);
+											characterPrefab.transform.position = new Vector3(0, 0, 0);
+											characterPrefab.transform.rotation = Quaternion.Euler(moveInfo.rotationPreview);
+
+											AnimationSampler(characterPrefab, moveInfo.animMap.clip, 0, true, true, moveInfo.forceMirrorLeft, moveInfo.invertRotationLeft);
+										}
+									}
+
+									if (characterWarning)
+									{
+										GUILayout.BeginHorizontal("GroupBox");
+										GUILayout.FlexibleSpace();
+										GUILayout.Label(errorMsg, "CN EntryWarn");
+										GUILayout.FlexibleSpace();
+										GUILayout.EndHorizontal();
+									}
+								}
+								else
+								{
+									EditorGUI.indentLevel += 1;
+									if (smoothPreview)
+									{
+										animFrame = StyledSlider("Animation Frames", animFrame, EditorGUI.indentLevel, 0, maxCastingFrame);
+									}
+									else
+									{
+										animFrame = StyledSlider("Animation Frames", (int)animFrame, EditorGUI.indentLevel, 0, maxCastingFrame);
+									}
+									EditorGUI.indentLevel -= 1;
+
+									if (cameraOptions)
+									{
+										GUILayout.BeginHorizontal("GroupBox");
+										GUILayout.Label("You must close 'Cinematic Options' first.", "CN EntryError");
+										GUILayout.EndHorizontal();
+									}
+
+									smoothPreview = EditorGUILayout.Toggle("Smooth Preview", smoothPreview, toggleStyle);
+									AnimationSampler(characterPrefab, moveInfo.animMap.clip, 0, true, true, moveInfo.forceMirrorLeft, moveInfo.invertRotationLeft);
+
+									EditorGUILayout.LabelField("Current Speed:", currentSpeed.ToString());
+
+									EditorGUILayout.Space();
+
+									EditorGUILayout.BeginHorizontal();
+									{
+										if (StyledButton("Reset Scene View"))
+										{
+											EditorCamera.SetPosition(Vector3.up * 4);
+											EditorCamera.SetRotation(Quaternion.identity);
+											EditorCamera.SetOrthographic(true);
+											EditorCamera.SetSize(10);
+										}
+										if (StyledButton("Close Preview")) Clear(true, true);
+									}
+									EditorGUILayout.EndHorizontal();
+
+									EditorGUILayout.Space();
+								}
+							}
+							EditorGUI.indentLevel -= 1;
+							EditorGUIUtility.labelWidth = 150;
+
+						}
+						EditorGUILayout.EndVertical();
+
+
+						if (characterPrefab != null && !cameraOptions)
+						{
+							Clear(true, true);
+						}
+
+					}
+					else
+					{
+						EditorGUILayout.BeginVertical(subGroupStyle);
+						{
+							EditorGUILayout.Space();
+							EditorGUI.indentLevel += 1;
+							EditorGUIUtility.labelWidth = 200;
+
+							SubGroupTitle("File");
+
+
+							if (moveInfo.gameplayType == GameplayType._2DFighter)
+							{
+								moveInfo.voluMap.hitBoxDefinitionType = (HitBoxDefinitionType)EditorGUILayout.EnumPopup("Hit Box Definition Type:", moveInfo.voluMap.hitBoxDefinitionType, enumStyle);
+							}
+							else
+							{
+								moveInfo.voluMap.hitBoxDefinitionType = HitBoxDefinitionType.AutoMap;
+							}
+
+							//@TIMELINE: Fix to get total time of clip
+
+							moveInfo.voluMap._move = EditorGUILayout.TextField("Animation Clip:", moveInfo.voluMap._move);
+
+							if (moveInfo.voluMap.hitBoxDefinitionType == HitBoxDefinitionType.AutoMap)
+							{
+								previewRecordedMaps = EditorGUILayout.Toggle("Preview Recorded Maps", previewRecordedMaps, toggleStyle);
+							}
+							else
+							{
+								EditorGUILayout.BeginHorizontal();
+								bool refresh = false;
+								moveInfo.voluMap.customHitBoxDefinition = (CustomHitBoxesInfo)EditorGUILayout.ObjectField("Custom Hit Boxes:", moveInfo.voluMap.customHitBoxDefinition, typeof(CustomHitBoxesInfo), false, GUILayout.ExpandWidth(true));
+								if (moveInfo.gameplayType == GameplayType._2DFighter && GUILayout.Button("Refresh", addButtonStyle, GUILayout.Width(55)))
+									refresh = true;
+								EditorGUILayout.EndHorizontal();
+								//@TIMELINE: Fix to get total time of clip
+								if (moveInfo.voluMap.customHitBoxDefinition != null && moveInfo.voluMap.customHitBoxDefinition.clip != null && (moveInfo.voluMap._timeline == null || refresh))
+								{
+									if (moveInfo.voluMap._timeline == null)
+										moveInfo.voluMap._timeline = moveInfo.voluMap.customHitBoxDefinition._timeline;
+
+									if ((float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time != 0)
+									{
+										//@TIMELINE: Fix to get total time of clip
+										moveInfo.totalFrames = (int)Mathf.Abs(Mathf.Ceil((moveInfo.fps * (float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time) / (float)moveInfo.voluMap.customHitBoxDefinition.speed));
+									}
+
+									if (moveInfo.blockableArea != null) moveInfo.blockableArea.hitBoxDefinitionIndex = 0;
 								}
 
-								if (characterWarning){
-									GUILayout.BeginHorizontal("GroupBox");
-									GUILayout.FlexibleSpace();
-									GUILayout.Label(errorMsg,"CN EntryWarn");
-									GUILayout.FlexibleSpace();
-									GUILayout.EndHorizontal();
+								if (moveInfo.voluMap.customHitBoxDefinition != null)
+								{
+									moveInfo.fixedSpeed = true;
+									moveInfo._animationSpeed = moveInfo.voluMap.customHitBoxDefinition.speed;
 								}
-							}else {
-								EditorGUI.indentLevel += 1;
-								if (smoothPreview){
-									animFrame = StyledSlider("Animation Frames", animFrame, EditorGUI.indentLevel, 0, maxCastingFrame);
-								}else{
-									animFrame = StyledSlider("Animation Frames", (int)animFrame, EditorGUI.indentLevel, 0, maxCastingFrame);
+							}
+
+							EditorGUILayout.Space();
+							EditorGUILayout.Space();
+
+							//@TIMELINE: Fix to get total time of clip
+							if (moveInfo.voluMap._timeline!= null)
+							{
+								//@TIMELINE: Fix to get total time of clip
+								moveInfo.voluMap.length = (float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time;
+								moveInfo.wrapMode = (WrapMode)EditorGUILayout.EnumPopup("Wrap Mode:", moveInfo.wrapMode, enumStyle);
+
+								moveInfo.disableHeadLook = EditorGUILayout.Toggle("Disable Head Look", moveInfo.disableHeadLook, toggleStyle);
+								moveInfo.applyRootMotion = EditorGUILayout.Toggle("Apply Root Motion", moveInfo.applyRootMotion, toggleStyle);
+								if (moveInfo.applyRootMotion)
+								{
+									EditorGUI.indentLevel += 1;
+									moveInfo.lockXMotion = EditorGUILayout.Toggle("Lock X Motion", moveInfo.lockXMotion, toggleStyle);
+									moveInfo.lockYMotion = EditorGUILayout.Toggle("Lock Y Motion", moveInfo.lockYMotion, toggleStyle);
+									moveInfo.lockZMotion = EditorGUILayout.Toggle("Lock Z Motion", moveInfo.lockZMotion, toggleStyle);
+									EditorGUI.indentLevel -= 1;
+								}
+								EditorGUILayout.Space();
+
+								if (moveInfo.voluMap.hitBoxDefinitionType == HitBoxDefinitionType.AutoMap)
+								{
+									SubGroupTitle("Speed");
+									moveInfo.fixedSpeed = EditorGUILayout.Toggle("Fixed Speed", moveInfo.fixedSpeed, toggleStyle);
+									moveInfo._animationSpeed = EditorGUILayout.FloatField("Base Speed:", (float)moveInfo._animationSpeed);
+									if (moveInfo._animationSpeed < .1) moveInfo._animationSpeed = .1;
+
+									float animTime = 0;
+
+									if (moveInfo.fixedSpeed)
+									{
+										totalFramesTemp = totalFramesOriginal;
+										//@TIMELINE: Fix to get total time of clip
+										animTime = (float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time * (float)moveInfo._animationSpeed;
+
+									}
+									else
+									{
+										moveInfo.speedKeyFrameToggle = EditorGUILayout.Foldout(moveInfo.speedKeyFrameToggle, "Speed Key Frames", EditorStyles.foldout);
+										if (moveInfo.speedKeyFrameToggle)
+										{
+											EditorGUILayout.BeginVertical(subGroupStyle);
+											{
+												EditorGUI.indentLevel += 1;
+
+												List<int> castingValues = new List<int>();
+												foreach (AnimSpeedKeyFrame animationKeyFrame in moveInfo.animSpeedKeyFrame)
+													castingValues.Add(animationKeyFrame.castingFrame);
+												StyledMarker("Casting Timeline", castingValues.ToArray(), totalFramesOriginal, EditorGUI.indentLevel);
+
+												totalFramesTemp = 0;
+												int previousCastingFrame = 0;
+												float displacement = 0;
+
+												for (int i = 0; i < moveInfo.animSpeedKeyFrame.Length; i++)
+												{
+													EditorGUILayout.Space();
+													EditorGUILayout.BeginVertical(arrayElementStyle);
+													{
+														EditorGUILayout.Space();
+														EditorGUILayout.BeginHorizontal();
+														{
+															moveInfo.animSpeedKeyFrame[i].castingFrame = EditorGUILayout.IntSlider("Casting Frame:", moveInfo.animSpeedKeyFrame[i].castingFrame, 0, totalFramesOriginal);
+															if (GUILayout.Button("", "PaneOptions"))
+															{
+																PaneOptions<AnimSpeedKeyFrame>(moveInfo.animSpeedKeyFrame, moveInfo.animSpeedKeyFrame[i], delegate (AnimSpeedKeyFrame[] newElement) { moveInfo.animSpeedKeyFrame = newElement; });
+															}
+														}
+														EditorGUILayout.EndHorizontal();
+														moveInfo.animSpeedKeyFrame[i]._speed = EditorGUILayout.FloatField("New Speed:", (float)moveInfo.animSpeedKeyFrame[i]._speed);
+														if (moveInfo.animSpeedKeyFrame[i]._speed < .1) moveInfo.animSpeedKeyFrame[i]._speed = .1;
+														moveInfo.animSpeedKeyFrame[i].castingFrame = Mathf.Max(moveInfo.animSpeedKeyFrame[i].castingFrame, previousCastingFrame);
+														moveInfo.animSpeedKeyFrame[i].castingFrame = Mathf.Min(moveInfo.animSpeedKeyFrame[i].castingFrame, totalFramesOriginal);
+
+														if (i == moveInfo.animSpeedKeyFrame.Length - 1)
+														{
+															displacement = totalFramesOriginal;
+														}
+														else
+														{
+															displacement = moveInfo.animSpeedKeyFrame[i + 1].castingFrame;
+														}
+
+														// Update Display Value
+														displacement -= moveInfo.animSpeedKeyFrame[i].castingFrame;
+														displacement /= (float)moveInfo.animSpeedKeyFrame[i]._speed;
+														EditorGUILayout.LabelField("Frame Window (Aprox.):", displacement.ToString());
+
+														previousCastingFrame = moveInfo.animSpeedKeyFrame[i].castingFrame;
+
+														EditorGUILayout.Space();
+
+													}
+													EditorGUILayout.EndVertical();
+													EditorGUILayout.Space();
+												}
+
+												animTime = 0;
+												int frameCounter = 0;
+												int currentKeyFrame = 0;
+												float frameSpeed = (float)moveInfo._animationSpeed;
+												do
+												{
+													frameCounter++;
+													int keyFrameCount = 0;
+													foreach (AnimSpeedKeyFrame speedKeyFrame in moveInfo.animSpeedKeyFrame)
+													{
+														keyFrameCount++;
+														if (frameCounter > speedKeyFrame.castingFrame && keyFrameCount > currentKeyFrame)
+														{
+															currentKeyFrame = keyFrameCount;
+															frameSpeed = (float)moveInfo._animationSpeed * (float)speedKeyFrame._speed;
+															break;
+														}
+													}
+													animTime += ((float)1 / moveInfo.fps) * frameSpeed;
+
+													//@TIMELINE: Fix to get total time of clip
+												} while (animTime < (float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time);
+												totalFramesTemp = frameCounter;
+
+												if (totalFramesTemp == 0) totalFramesTemp = moveInfo.totalFrames;
+
+												if (StyledButton("New Keyframe"))
+													moveInfo.animSpeedKeyFrame = AddElement<AnimSpeedKeyFrame>(moveInfo.animSpeedKeyFrame, new AnimSpeedKeyFrame());
+
+												EditorGUILayout.Space();
+												EditorGUI.indentLevel -= 1;
+
+											}
+											EditorGUILayout.EndVertical();
+										}
+									}
+
+									string unsaved = totalFramesTemp != moveInfo.totalFrames ? "*" : "";
+									EditorGUILayout.LabelField("Original Frames:", totalFramesOriginal.ToString());
+									EditorGUILayout.LabelField("Time (seconds):", animTime.ToString() + unsaved);
+									EditorGUILayout.BeginHorizontal();
+									{
+										EditorGUILayout.LabelField("Total frames:", totalFramesTemp.ToString() + unsaved);
+										if (StyledButton("Apply"))
+										{
+											moveInfo.totalFrames = totalFramesTemp;
+										}
+									}
+									EditorGUILayout.EndHorizontal();
+									EditorGUILayout.Space();
+								}
+
+
+								SubGroupTitle("Blending");
+								moveInfo.overrideBlendingIn = EditorGUILayout.Toggle("Override Blending (In)", moveInfo.overrideBlendingIn, toggleStyle);
+								if (moveInfo.overrideBlendingIn)
+								{
+									moveInfo._blendingIn = EditorGUILayout.FloatField("Blend In Duration:", (float)moveInfo._blendingIn);
+								}
+
+								moveInfo.overrideBlendingOut = EditorGUILayout.Toggle("Override Blending (Out)", moveInfo.overrideBlendingOut, toggleStyle);
+								if (moveInfo.overrideBlendingOut)
+								{
+									moveInfo._blendingOut = EditorGUILayout.FloatField("Blend Out Duration:", (float)moveInfo._blendingOut);
+								}
+								EditorGUILayout.Space();
+
+
+								SubGroupTitle("Orientation");
+								EditorGUIUtility.labelWidth = 230;
+								moveInfo.forceMirrorLeft = EditorGUILayout.Toggle("Mirror Animation (Left)", moveInfo.forceMirrorLeft, toggleStyle);
+								moveInfo.invertRotationLeft = EditorGUILayout.Toggle("Rotate Character (Left)", moveInfo.invertRotationLeft, toggleStyle);
+
+								EditorGUILayout.Space();
+								moveInfo.forceMirrorRight = EditorGUILayout.Toggle("Mirror Animation (Right)", moveInfo.forceMirrorRight, toggleStyle);
+								moveInfo.invertRotationRight = EditorGUILayout.Toggle("Rotate Character (Right)", moveInfo.invertRotationRight, toggleStyle);
+								EditorGUILayout.Space();
+
+
+								SubGroupTitle("Preview");
+								EditorGUIUtility.labelWidth = 180;
+								GameObject newCharacterPrefab = (GameObject)EditorGUILayout.ObjectField("Character Prefab:", moveInfo.characterPrefab, typeof(UnityEngine.GameObject), true);
+								moveInfo.rotationPreview = EditorGUILayout.Vector3Field("Rotation Preview:", moveInfo.rotationPreview);
+
+								if (newCharacterPrefab != null && moveInfo.characterPrefab != newCharacterPrefab && !EditorApplication.isPlayingOrWillChangePlaymode)
+								{
+#if UNITY_2018_3_OR_NEWER
+									if (PrefabUtility.GetPrefabAssetType(newCharacterPrefab) != PrefabAssetType.Regular)
+									{
+#else
+                                if (PrefabUtility.GetPrefabType(newCharacterPrefab) != PrefabType.Prefab) {
+#endif
+										characterWarning = true;
+										errorMsg = "This character is not a prefab.";
+									}
+									else if (newCharacterPrefab.GetComponent<HitBoxesScript>() == null)
+									{
+										characterWarning = true;
+										errorMsg = "This character doesn't have hitboxes!\n Please add the HitboxScript and try again.";
+									}
+									else
+									{
+										characterWarning = false;
+										moveInfo.characterPrefab = newCharacterPrefab;
+									}
+								}
+								else if (moveInfo.characterPrefab != newCharacterPrefab && EditorApplication.isPlayingOrWillChangePlaymode)
+								{
+									characterWarning = true;
+									errorMsg = "You can't change this field while in play mode.";
+								}
+								else if (newCharacterPrefab == null) moveInfo.characterPrefab = null;
+
+								if (characterPrefab == null)
+								{
+									if (StyledButton("Animation Preview"))
+									{
+										if (moveInfo.characterPrefab == null)
+										{
+											characterWarning = true;
+											errorMsg = "Drag a character into 'Character Prefab' first.";
+										}
+										else if (EditorApplication.isPlayingOrWillChangePlaymode)
+										{
+											characterWarning = true;
+											errorMsg = "You can't preview animations while in play mode.";
+										}
+										//else
+										//{
+										//	characterWarning = false;
+										//	EditorCamera.SetPosition(Vector3.up * 4);
+										//	EditorCamera.SetRotation(Quaternion.identity);
+										//	EditorCamera.SetOrthographic(true);
+										//	EditorCamera.SetSize(10);
+
+										//	characterPrefab = (GameObject)PrefabUtility.InstantiatePrefab(moveInfo.characterPrefab);
+										//	characterPrefab.transform.position = new Vector3(0, 0, 0);
+										//	characterPrefab.transform.rotation = Quaternion.Euler(moveInfo.rotationPreview);
+
+										//	AnimationSampler(characterPrefab, moveInfo.voluMap.clip, 0, true, true, moveInfo.forceMirrorLeft, moveInfo.invertRotationLeft);
+										//}
+									}
+
+									if (characterWarning)
+									{
+										GUILayout.BeginHorizontal("GroupBox");
+										GUILayout.FlexibleSpace();
+										GUILayout.Label(errorMsg, "CN EntryWarn");
+										GUILayout.FlexibleSpace();
+										GUILayout.EndHorizontal();
+									}
+								}
+								else
+								{
+									EditorGUI.indentLevel += 1;
+									if (smoothPreview)
+									{
+										animFrame = StyledSlider("Animation Frames", animFrame, EditorGUI.indentLevel, 0, maxCastingFrame);
+									}
+									else
+									{
+										animFrame = StyledSlider("Animation Frames", (int)animFrame, EditorGUI.indentLevel, 0, maxCastingFrame);
+									}
+									EditorGUI.indentLevel -= 1;
+
+									if (cameraOptions)
+									{
+										GUILayout.BeginHorizontal("GroupBox");
+										GUILayout.Label("You must close 'Cinematic Options' first.", "CN EntryError");
+										GUILayout.EndHorizontal();
+									}
+
+									smoothPreview = EditorGUILayout.Toggle("Smooth Preview", smoothPreview, toggleStyle);
+									//AnimationSampler(characterPrefab, moveInfo.voluMap.clip, 0, true, true, moveInfo.forceMirrorLeft, moveInfo.invertRotationLeft);
+
+									EditorGUILayout.LabelField("Current Speed:", currentSpeed.ToString());
+
+									EditorGUILayout.Space();
+
+									EditorGUILayout.BeginHorizontal();
+									{
+										if (StyledButton("Reset Scene View"))
+										{
+											EditorCamera.SetPosition(Vector3.up * 4);
+											EditorCamera.SetRotation(Quaternion.identity);
+											EditorCamera.SetOrthographic(true);
+											EditorCamera.SetSize(10);
+										}
+										if (StyledButton("Close Preview")) Clear(true, true);
+									}
+									EditorGUILayout.EndHorizontal();
+
+									EditorGUILayout.Space();
 								}
 								EditorGUI.indentLevel -= 1;
-								
-								if (cameraOptions){
-									GUILayout.BeginHorizontal("GroupBox");
-									GUILayout.Label("You must close 'Cinematic Options' first.","CN EntryError");
-									GUILayout.EndHorizontal();
+								EditorGUIUtility.labelWidth = 150;
+
+								if (characterPrefab != null && !cameraOptions)
+								{
+									Clear(true, true);
 								}
 
-								smoothPreview = EditorGUILayout.Toggle("Smooth Preview", smoothPreview, toggleStyle);
-								AnimationSampler(characterPrefab, moveInfo.animMap.clip, 0, true, true, moveInfo.forceMirrorLeft, moveInfo.invertRotationLeft);
-
-                                EditorGUILayout.LabelField("Current Speed:", currentSpeed.ToString());
-
-								EditorGUILayout.Space();
-								
-								EditorGUILayout.BeginHorizontal();{
-									if (StyledButton("Reset Scene View")){
-										EditorCamera.SetPosition(Vector3.up * 4);
-										EditorCamera.SetRotation(Quaternion.identity);
-										EditorCamera.SetOrthographic(true);
-										EditorCamera.SetSize(10);
-									}
-									if (StyledButton("Close Preview")) Clear (true, true);
-								}EditorGUILayout.EndHorizontal();
-								
-								EditorGUILayout.Space();
 							}
+							EditorGUILayout.EndVertical();
 						}
-						EditorGUI.indentLevel -= 1;
-						EditorGUIUtility.labelWidth = 150;
-
-					}EditorGUILayout.EndVertical();
-				}else if (characterPrefab != null && !cameraOptions){
-					Clear (true, true);
+						
+					}
 				}
 				
-			}EditorGUILayout.EndVertical();
+			}
+			//EditorGUILayout.EndVertical();
+
+
 			// End Animation Options
 
 

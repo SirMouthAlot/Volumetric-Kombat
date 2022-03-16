@@ -42,6 +42,7 @@ namespace UFE3D
     public class CustomHitBoxesInfo : ScriptableObject
     {
         public AnimationClip clip;
+        public GameObject _timeline;
         public Fix64 speed = 1;
         public GameObject preview;
         public int totalFrames = 1;

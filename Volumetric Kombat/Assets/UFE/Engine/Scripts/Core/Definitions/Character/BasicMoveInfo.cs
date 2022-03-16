@@ -8,6 +8,7 @@ namespace UFE3D
     public class BasicMoveInfo : ICloneable
     {
         public SerializedAnimationMap[] animMap = new SerializedAnimationMap[9];
+        public VolumetricAnimationMap[] _voluMap = new VolumetricAnimationMap[9];
         public Fix64 _animationSpeed = 1;
         public WrapMode wrapMode;
 

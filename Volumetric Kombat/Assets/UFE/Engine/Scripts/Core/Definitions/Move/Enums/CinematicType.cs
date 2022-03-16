@@ -2,5 +2,6 @@
 {
     CameraEditor,
     AnimationFile,
-    Prefab
+    Prefab,
+    Volumetric
 }
