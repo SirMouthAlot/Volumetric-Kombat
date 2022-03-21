@@ -255,7 +255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!320 &881552161
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -568,6 +568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Volumetric Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273201142356590502, guid: e144d5aaf4866491d94ff2ab01fa2c09,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e144d5aaf4866491d94ff2ab01fa2c09, type: 3}

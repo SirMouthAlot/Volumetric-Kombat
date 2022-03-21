@@ -114,13 +114,13 @@ MonoBehaviour:
   possibleAirMoves: 10
   _blendingTime:
     _serializedValue: 257698032
-  animationType: 3
+  animationType: 2
   avatar: {fileID: 9000000, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
   useScaleFlip: 0
   applyRootMotion: 0
-  animationFlow: 2
+  animationFlow: 0
   useAnimationMaps: 1
-  normalizeAnimationFrames: 0
+  normalizeAnimationFrames: 1
   stanceResourcePath:
   - _2DFighter\MoveSets\Robot_Kyle
   moves:

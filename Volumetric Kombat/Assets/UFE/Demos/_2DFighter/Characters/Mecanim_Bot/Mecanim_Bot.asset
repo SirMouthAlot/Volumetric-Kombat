@@ -125,13 +125,13 @@ MonoBehaviour:
   possibleAirMoves: 1
   _blendingTime:
     _serializedValue: 214748368
-  animationType: 3
+  animationType: 2
   avatar: {fileID: 9000000, guid: 2f7e662fc0b02fb40ba4fac8f5440e49, type: 3}
   useScaleFlip: 0
   applyRootMotion: 0
-  animationFlow: 2
+  animationFlow: 0
   useAnimationMaps: 1
-  normalizeAnimationFrames: 0
+  normalizeAnimationFrames: 1
   stanceResourcePath:
   - _2DFighter\MoveSets\Mecanim_Bot
   moves:
@@ -206,54 +206,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 1
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -366,54 +375,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -526,54 +544,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -686,54 +713,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -846,54 +882,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1006,54 +1051,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1166,54 +1220,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1326,54 +1389,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1486,54 +1558,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1646,54 +1727,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1806,54 +1896,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1966,54 +2065,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -2126,54 +2234,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -2286,54 +2403,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -2446,54 +2572,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -2606,54 +2741,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -2766,54 +2910,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -2926,54 +3079,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -3086,54 +3248,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -3246,54 +3417,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -3406,54 +3586,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -3566,54 +3755,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -3726,54 +3924,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -3886,54 +4093,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -4046,54 +4262,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -4206,54 +4431,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -4366,54 +4600,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -4526,54 +4769,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -4686,54 +4938,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -4846,54 +5107,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5006,54 +5276,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5166,54 +5445,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5326,54 +5614,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5486,54 +5783,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5646,54 +5952,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5806,54 +6121,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5966,54 +6290,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -6126,54 +6459,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -6286,54 +6628,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -6446,54 +6797,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -6606,54 +6966,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -6766,54 +7135,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -6926,54 +7304,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -7086,54 +7473,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -7246,54 +7642,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -7406,54 +7811,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -7566,54 +7980,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -7726,54 +8149,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -7886,54 +8318,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -8046,54 +8487,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -8206,54 +8656,63 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _voluMap:
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - _move: 
+          _timeline: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
