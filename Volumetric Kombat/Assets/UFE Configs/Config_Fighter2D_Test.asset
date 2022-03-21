@@ -177,11 +177,15 @@ MonoBehaviour:
           possibleStagesIndexes: 00000000
         showOpponentsInEditor: 1
       showStoryInEditor: 1
-    selectableCharactersInStoryMode: 010000000000000002000000030000000400000005000000
-    selectableCharactersInVersusMode: 000000000100000002000000030000000400000005000000
+    selectableCharactersInStoryMode: 01000000000000000200000003000000040000000500000006000000
+    selectableCharactersInVersusMode: 00000000010000000200000003000000040000000500000006000000
     characterStories:
-      _keys: 000000000100000002000000030000000400000005000000
+      _keys: 00000000010000000200000003000000040000000500000006000000
       _values:
+      - opening: {fileID: 0}
+        ending: {fileID: 0}
+        fightsGroups: []
+        showStoryInEditor: 0
       - opening: {fileID: 0}
         ending: {fileID: 0}
         fightsGroups: []
@@ -1179,12 +1183,13 @@ MonoBehaviour:
       z:
         _serializedValue: 0
   characters:
-  - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
   - {fileID: 11400000, guid: f0ed0d0ea0c86e24e8af99019d695928, type: 2}
   - {fileID: 11400000, guid: d6338f103bbb0da46ba6acf3b027f17a, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
   - {fileID: 11400000, guid: ac6ffbd93fffdbb47a2a75f1f84ecd37, type: 2}
+  - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
+  - {fileID: 11400000, guid: 06c3d4c828b2877449506f593a1cb860, type: 2}
   teamModes:
   - modeName: Tag Battle (DBZF\Marvel) - 2D 3v3 Tag Team
     teams:
@@ -1616,9 +1621,9 @@ MonoBehaviour:
     synchronizationMessageFrequency: 0
     synchronizationAction: 0
   music: 1
-  musicVolume: 1
+  musicVolume: 0.13638276
   soundfx: 1
-  soundfxVolume: 1
+  soundfxVolume: 0.16466469
   colorStateOne: {r: 1, g: 0, b: 0, a: 1}
   colorIsHit: {r: 1, g: 0, b: 1, a: 1}
   colorBodyCollider: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

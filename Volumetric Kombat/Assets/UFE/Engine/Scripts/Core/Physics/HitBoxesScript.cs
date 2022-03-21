@@ -10,6 +10,7 @@ namespace UFE3D
 
         #region trackable definitions
         public bool isHit;
+        public bool isVolumetric;
         public HitBox[] hitBoxes;
         public HurtBox[] activeHurtBoxes;
         public BlockArea blockableArea;

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: AirJuggleReaction_Map
   m_EditorClassIdentifier: 
   clip: {fileID: 7400000, guid: 2fd7d2c1660b5504cb66789058cea6c4, type: 2}
+  _move: fdfdsfds
+  playbackComponent: {fileID: 0}
   speed:
     _serializedValue: 4294967296
   preview: {fileID: 8012443432642201050, guid: 65e844757985fc847ad18a77a3838753, type: 3}

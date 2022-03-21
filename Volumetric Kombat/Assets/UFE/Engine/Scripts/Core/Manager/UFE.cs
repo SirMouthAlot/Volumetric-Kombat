@@ -3587,7 +3587,7 @@ public class UFE : MonoBehaviour, UFEInterface
             }
 
             cScript.Physics = cScript.gameObject.AddComponent<PhysicsScript>();
-            cScript.MoveSet = cScript.character.AddComponent<MoveSetScript>();
+            cScript.MoveSet = cScript.character.AddComponent<MoveSetScript>(); //Error
             cScript.HitBoxes = cScript.character.GetComponent<HitBoxesScript>();
             cScript.HitBoxes.blockableArea = null;
             cScript.HitBoxes.activeHurtBoxes = null;
@@ -3822,7 +3822,7 @@ public class UFE : MonoBehaviour, UFEInterface
         {
             foreach (MoveInfo move in moveSet.attackMoves)
             {
-                foreach(MoveParticleEffect particle in move.particleEffects) SearchAndCastGameObject(particle, warmTimer);
+                foreach(MoveParticleEffect particle in move.particleEffects) SearchAndCastGameObject(particle, warmTimer); //Error
                 foreach(Projectile projectile in move.projectiles) SearchAndCastGameObject(projectile, warmTimer);
             }
         }

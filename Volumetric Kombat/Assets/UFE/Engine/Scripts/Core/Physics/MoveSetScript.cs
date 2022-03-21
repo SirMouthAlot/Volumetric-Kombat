@@ -15,6 +15,10 @@ public class MoveSetScript : MonoBehaviour {
     #region trackable definitions
     public MecanimControl MecanimControl { get { return this.mecanimControl; } set { mecanimControl = value; } }
     public LegacyControl LegacyControl { get { return this.legacyControl; } set { legacyControl = value; } }
+
+    public VolumetricControl VolumetricControl { get { return this.VolumetricControl; } set { VolumetricControl = value; } }
+
+
     public SpriteRenderer SpriteRenderer { get { return this.spriteRenderer; } set { spriteRenderer = value; } }
     public int totalAirMoves;
     public bool animationPaused;
@@ -29,6 +33,7 @@ public class MoveSetScript : MonoBehaviour {
     public HitBoxesScript hitBoxesScript;
     private MecanimControl mecanimControl;
     private LegacyControl legacyControl;
+    private VolumetricControl volumetricControl;
     private SpriteRenderer spriteRenderer;
     private List<BasicMoveInfo> basicMoveList = new List<BasicMoveInfo>();
 
@@ -363,14 +368,24 @@ public class MoveSetScript : MonoBehaviour {
         if (basicMove.animMap.Length > 8 && basicMove.animMap[8].clip != null && IsAnimationPlaying(basicMove.name + "_9")) return true;
         return false;
     }
-	
-	public bool IsAnimationPlaying(string animationName)
+
+    public bool IsAnimationPlaying(string animationName)
     {
-		if (controlsScript.myInfo.animationType == AnimationType.Legacy){
+        if (controlsScript.myInfo.animationType == AnimationType.Legacy) {
             return legacyControl.IsPlaying(animationName);
-		}else{
-			return mecanimControl.IsPlaying(animationName);
-		}
+        }
+
+       else
+        {
+            return mecanimControl.IsPlaying(animationName); //Error
+        }
+
+        //if(controlsScript.myInfo.animationType == AnimationType.Volumetric)
+        //{
+        //    return true;
+        //}
+
+        
 	}
 	
 	public int AnimationTimesPlayed(string animationName)

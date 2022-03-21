@@ -2,6 +2,7 @@
 using FPLibrary;
 using UFE3D;
 using System.Collections.Generic;
+using SoarSDK;
 
 [System.Serializable]
 public class VolumetricAnimationMap
@@ -36,13 +37,14 @@ public class VolumetricAnimationMap
         AIRC,
         SUPER
 }
-        //public AnimationMap[] animationMaps = new AnimationMap[0];
+    //public AnimationMap[] animationMaps = new AnimationMap[0];
 
-    List<string> _volumetricMoves = new List<string>();
+    public VolumetricRender playbackComponent;
+
+    public List<string> _volumetricMoves = new List<string>();
 
     public string _move;
 
-    public GameObject _timeline;
     public CustomHitBoxesInfo customHitBoxDefinition;
     public Fix64 length;
     public bool bakeSpeed = false;
@@ -50,7 +52,7 @@ public class VolumetricAnimationMap
 
     private void Start()
     {
-        _timeline = GameObject.FindGameObjectWithTag("Timeline");
+        //_timeline = GameObject.FindGameObjectWithTag("Timeline");
 
     }
 }

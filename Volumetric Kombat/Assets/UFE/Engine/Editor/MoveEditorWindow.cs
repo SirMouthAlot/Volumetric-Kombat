@@ -867,16 +867,14 @@ public class MoveEditorWindow : EditorWindow {
 									refresh = true;
 								EditorGUILayout.EndHorizontal();
 								//@TIMELINE: Fix to get total time of clip
-								if (moveInfo.voluMap.customHitBoxDefinition != null && moveInfo.voluMap.customHitBoxDefinition.clip != null && (moveInfo.voluMap._timeline == null || refresh))
+								if (moveInfo.voluMap.customHitBoxDefinition != null && moveInfo.voluMap.customHitBoxDefinition._move != null && (moveInfo.voluMap._move == null || refresh))
 								{
-									if (moveInfo.voluMap._timeline == null)
-										moveInfo.voluMap._timeline = moveInfo.voluMap.customHitBoxDefinition._timeline;
+									if (moveInfo.voluMap._move == null)
+										moveInfo.voluMap._move = moveInfo.voluMap.customHitBoxDefinition._move;
 
-									if ((float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time != 0)
-									{
 										//@TIMELINE: Fix to get total time of clip
-										moveInfo.totalFrames = (int)Mathf.Abs(Mathf.Ceil((moveInfo.fps * (float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time) / (float)moveInfo.voluMap.customHitBoxDefinition.speed));
-									}
+										moveInfo.totalFrames = (int)Mathf.Abs(Mathf.Ceil((moveInfo.fps * (float)moveInfo.voluMap.playbackComponent.GetFullDuration(0) * 1000000.0f) / (float)moveInfo.voluMap.customHitBoxDefinition.speed));
+									
 
 									if (moveInfo.blockableArea != null) moveInfo.blockableArea.hitBoxDefinitionIndex = 0;
 								}
@@ -892,10 +890,10 @@ public class MoveEditorWindow : EditorWindow {
 							EditorGUILayout.Space();
 
 							//@TIMELINE: Fix to get total time of clip
-							if (moveInfo.voluMap._timeline!= null)
+							if (moveInfo.voluMap._move != null)
 							{
 								//@TIMELINE: Fix to get total time of clip
-								moveInfo.voluMap.length = (float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time;
+								moveInfo.voluMap.length = (float)moveInfo.voluMap.playbackComponent.GetFullDuration(0) * 1000000.0f;
 								moveInfo.wrapMode = (WrapMode)EditorGUILayout.EnumPopup("Wrap Mode:", moveInfo.wrapMode, enumStyle);
 
 								moveInfo.disableHeadLook = EditorGUILayout.Toggle("Disable Head Look", moveInfo.disableHeadLook, toggleStyle);
@@ -923,7 +921,7 @@ public class MoveEditorWindow : EditorWindow {
 									{
 										totalFramesTemp = totalFramesOriginal;
 										//@TIMELINE: Fix to get total time of clip
-										animTime = (float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time * (float)moveInfo._animationSpeed;
+										animTime = (float)moveInfo.voluMap.playbackComponent.GetFullDuration(0) * 1000000.0f * (float)moveInfo._animationSpeed;
 
 									}
 									else
@@ -1008,7 +1006,7 @@ public class MoveEditorWindow : EditorWindow {
 													animTime += ((float)1 / moveInfo.fps) * frameSpeed;
 
 													//@TIMELINE: Fix to get total time of clip
-												} while (animTime < (float)moveInfo.voluMap._timeline.GetComponent<PlayableDirector>().time);
+												} while (animTime < (float)moveInfo.voluMap.playbackComponent.GetFullDuration(0) * 1000000.0f);
 												totalFramesTemp = frameCounter;
 
 												if (totalFramesTemp == 0) totalFramesTemp = moveInfo.totalFrames;

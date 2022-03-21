@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using FPLibrary;
+using SoarSDK;
 
 namespace UFE3D
 {
@@ -42,7 +43,8 @@ namespace UFE3D
     public class CustomHitBoxesInfo : ScriptableObject
     {
         public AnimationClip clip;
-        public GameObject _timeline;
+        public string _move;
+        public VolumetricRender playbackComponent;
         public Fix64 speed = 1;
         public GameObject preview;
         public int totalFrames = 1;

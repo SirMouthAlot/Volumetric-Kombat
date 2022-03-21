@@ -40,9 +40,9 @@ MonoBehaviour:
       x:
         _serializedValue: 0
       y:
-        _serializedValue: 42949672
+        _serializedValue: 0
       z:
-        _serializedValue: -55834574848
+        _serializedValue: 0
   gameName: Volumetric Kombat
   gameplayType: 0
   selectedLanguage:
@@ -1626,9 +1626,9 @@ MonoBehaviour:
     synchronizationMessageFrequency: 0
     synchronizationAction: 0
   music: 1
-  musicVolume: 1
+  musicVolume: 0.13638276
   soundfx: 1
-  soundfxVolume: 1
+  soundfxVolume: 0.16466469
   colorStateOne: {r: 1, g: 0, b: 0, a: 1}
   colorIsHit: {r: 1, g: 0, b: 1, a: 1}
   colorBodyCollider: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

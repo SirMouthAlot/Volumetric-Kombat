@@ -6071,6 +6071,14 @@ MonoBehaviour:
       _serializedValue: 3579139584
     bakeSpeed: 1
     hitBoxDefinitionType: 0
+  voluMap:
+    playbackComponent: {fileID: 0}
+    _move: 
+    customHitBoxDefinition: {fileID: 0}
+    length:
+      _serializedValue: 0
+    bakeSpeed: 0
+    hitBoxDefinitionType: 0
   _animationSpeed:
     _serializedValue: 4294967296
   wrapMode: 0
@@ -6088,6 +6096,7 @@ MonoBehaviour:
   invertRotationRight: 0
   autoCorrectRotation: 0
   allowSideSwitch: 0
+  _isVolumetric: 0
   frameWindowRotation: 0
   cooldown: 0
   cooldownFrames: 0

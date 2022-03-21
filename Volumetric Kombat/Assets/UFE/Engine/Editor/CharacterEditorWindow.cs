@@ -1914,7 +1914,7 @@ public class CharacterEditorWindow : EditorWindow {
         EditorGUILayout.BeginHorizontal();
 
         animMap._move = EditorGUILayout.TextField(label + " Clip" + required + ":", animMap._move, GUILayout.ExpandWidth(true));
-
+        animMap._volumetricMoves.Add(animMap._move);
         if (characterInfo.gameplayType == GameplayType._2DFighter)
         {
             Rect lastRect = GUILayoutUtility.GetLastRect();
@@ -1927,15 +1927,16 @@ public class CharacterEditorWindow : EditorWindow {
         }
         EditorGUILayout.EndHorizontal();
 
-       //if (animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
-       //{
-       //    animMap.customHitBoxDefinition = (CustomHitBoxesInfo)EditorGUILayout.ObjectField(label + " Map" + required + ":", animMap.customHitBoxDefinition, typeof(CustomHitBoxesInfo), false, GUILayout.ExpandWidth(true));
-       //    if (animMap.customHitBoxDefinition != null && animMap.customHitBoxDefinition.clip != null && animMap._move == null)
-       //    {
-       //        animMap._move = animMap.customHitBoxDefinition._move;
-       //        animMap.length = animMap.clip.length;
-       //    }
-       //}
+        
+       if (animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+       {
+           animMap.customHitBoxDefinition = (CustomHitBoxesInfo)EditorGUILayout.ObjectField(label + " Map" + required + ":", animMap.customHitBoxDefinition, typeof(CustomHitBoxesInfo), false, GUILayout.ExpandWidth(true));
+           if (animMap.customHitBoxDefinition != null && animMap.customHitBoxDefinition.clip != null && animMap._move == null)
+           {
+               animMap._move = animMap.customHitBoxDefinition._move;
+               animMap.length = animMap.playbackComponent.GetFullDuration(0) * 1000000;
+           }
+       }
 
     }
 

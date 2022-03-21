@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b79b52b13c5244e80ebe46669405d3, type: 3}
   m_Name: New Hitbox Map
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
+  clip: {fileID: 7400000, guid: 27655009745692a4482e591bf1920909, type: 2}
+  _move: Test
+  playbackComponent: {fileID: 0}
   speed:
     _serializedValue: 4294967296
   preview: {fileID: 0}
-  totalFrames: 1
+  totalFrames: 20
   customHitBoxes: []
