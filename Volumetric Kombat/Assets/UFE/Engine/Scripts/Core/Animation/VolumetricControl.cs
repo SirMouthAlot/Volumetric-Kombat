@@ -2,16 +2,51 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using FPLibrary;
+using SoarSDK;
 
 [System.Serializable]
 public class VolumetricAnimationData
 {
-    public AnimationClip clip;
-    public string clipName;
-    public WrapMode wrapMode;
+    public string clip;
+    //public string clipName;
     public Fix64 length = 0;
-    public Fix64 originalSpeed = 1;
-    public Fix64 normalizedSpeed = 1;
+
+    public int _EnumMoveType;
+
+    public bool IsPlaying;
+
+    public enum _MoveType
+    {
+        IDEL,
+        FWRD,
+        BACK,
+        LOW,
+        JUMP,
+        FALL,
+        HIT,
+        HIGHHIT,
+        LOWHIT,
+        AIRHIT,
+        BLOCK,
+        LOWBLOCK,
+        KNOCKDOWN,
+        GETUP,
+        TTECH,
+        TATTEMPT,
+        TREACT,
+        STANDA,
+        STANDB,
+        STANDC,
+        LOWA,
+        LOWB,
+        LOWC,
+        AIRA,
+        AIRB,
+        AIRC,
+        SUPER
+    }
+
+
 
     #region trackable definitions
     public Fix64 normalizedTime = 1;
@@ -20,22 +55,23 @@ public class VolumetricAnimationData
     public Fix64 framesPlayed = 0;
     public Fix64 realFramesPlayed = 0;
     public int timesPlayed = 0;
+    public float time;
     public Fix64 speed = 1;
     #endregion
-    [HideInInspector] public AnimationState animState;
+    [HideInInspector] public VolumetricRender animState;
 }
 
 [RequireComponent(typeof(string))]
 public class VolumetricControl : MonoBehaviour
 {
 
-    public LegacyAnimationData[] animations = new LegacyAnimationData[0];
+    public VolumetricAnimationData[] animations = new VolumetricAnimationData[0];
     public bool debugMode = false;
     public bool overrideAnimatorUpdate = false;
-    public Animation animator;
+    public VolumetricRender animator;
 
     #region trackable definitions
-    [HideInInspector] public LegacyAnimationData currentAnimationData;
+    [HideInInspector] public VolumetricAnimationData currentAnimationData;
     [HideInInspector] public bool currentMirror;
     [HideInInspector] public Fix64 globalSpeed = 1;
     [HideInInspector] public Vector3 lastPosition;
@@ -44,7 +80,7 @@ public class VolumetricControl : MonoBehaviour
 
     void Awake()
     {
-        animator = gameObject.GetComponent<Animation>();
+        animator = gameObject.GetComponent<VolumetricRender>();
         lastPosition = transform.position;
     }
 
@@ -52,27 +88,19 @@ public class VolumetricControl : MonoBehaviour
     {
         if (animations[0] == null) Debug.LogWarning("No animation found!");
         currentAnimationData = animations[0];
-
-        if (overrideAnimatorUpdate)
-        {
-            foreach (AnimationState animState in animator)
-            {
-                animState.speed = 0;
-            }
-        }
     }
 
     public void DoFixedUpdate()
     {
-        if (animator == null || currentAnimationData == null || !animator.isPlaying || !overrideAnimatorUpdate) return;
+        if (animator == null || currentAnimationData == null || !animator.playing || !overrideAnimatorUpdate) return;
 
         currentAnimationData.secondsPlayed += (UFE.fixedDeltaTime * globalSpeed);
-        currentAnimationData.ticksPlayed += UFE.fixedDeltaTime * UFE.fps * GetSpeed();
+        currentAnimationData.ticksPlayed += UFE.fixedDeltaTime * UFE.fps * 1;
         currentAnimationData.framesPlayed = (int)FPMath.Floor(currentAnimationData.ticksPlayed);
-        currentAnimationData.realFramesPlayed += FPMath.Abs(UFE.fixedDeltaTime * UFE.fps * GetNormalizedSpeed());
-        currentAnimationData.animState.time = (float)currentAnimationData.secondsPlayed;
-        if (currentAnimationData.secondsPlayed >= currentAnimationData.length && currentAnimationData.clip.wrapMode == WrapMode.Loop) SetCurrentClipPosition(0);
-        animator.Sample();
+        currentAnimationData.realFramesPlayed += FPMath.Abs(UFE.fixedDeltaTime * UFE.fps * 1);
+        currentAnimationData.time = (float)animator.GetFullDuration(0) * 1000000;
+        //if (currentAnimationData.secondsPlayed >= currentAnimationData.length && currentAnimationData.clip.wrapMode == WrapMode.Loop) SetCurrentClipPosition(0);
+        //animator.Sample();
     }
 
     void OnGUI()
@@ -85,14 +113,14 @@ public class VolumetricControl : MonoBehaviour
             {
                 GUILayout.Label("Global Speed: " + globalSpeed);
                 GUILayout.Label("Current Animation Data");
-                GUILayout.Label("-Clip Name: " + currentAnimationData.clipName);
+                GUILayout.Label("-Clip Name: " + currentAnimationData.clip);
                 GUILayout.Label("-Speed: " + currentAnimationData.speed);
-                GUILayout.Label("-Normalized Speed: " + currentAnimationData.normalizedSpeed);
+                //GUILayout.Label("-Normalized Speed: " + currentAnimationData.normalizedSpeed);
                 GUILayout.Label("Animation State");
-                GUILayout.Label("-Time: " + currentAnimationData.animState.time);
-                GUILayout.Label("-Normalized Time: " + currentAnimationData.animState.normalizedTime);
-                GUILayout.Label("-Lengh: " + currentAnimationData.animState.length);
-                GUILayout.Label("-Speed: " + currentAnimationData.animState.speed);
+                GUILayout.Label("-Time: " + animator.GetFullDuration(0) * 1000000);
+               // GUILayout.Label("-Normalized Time: " + currentAnimationData.animState.);
+                //GUILayout.Label("-Lengh: " + currentAnimationData.animState.length);
+                //GUILayout.Label("-Speed: " + currentAnimationData.animState.speed);
             }
             GUI.EndGroup();
         }
@@ -103,67 +131,55 @@ public class VolumetricControl : MonoBehaviour
     // LEGACY CONTROL METHODS
     public void RemoveClip(string name)
     {
-        List<LegacyAnimationData> animationDataList = new List<LegacyAnimationData>(animations);
+        List<VolumetricAnimationData> animationDataList = new List<VolumetricAnimationData>(animations);
         animationDataList.Remove(GetAnimationData(name));
         animations = animationDataList.ToArray();
     }
 
-    public void RemoveClip(AnimationClip clip)
-    {
-        List<LegacyAnimationData> animationDataList = new List<LegacyAnimationData>(animations);
-        animationDataList.Remove(GetAnimationData(clip));
-        animations = animationDataList.ToArray();
-    }
+    //public void RemoveClip(string clip)
+    //{
+    //    List<VolumetricAnimationData> animationDataList = new List<VolumetricAnimationData>(animations);
+    //    animationDataList.Remove(GetAnimationData(clip));
+    //    animations = animationDataList.ToArray();
+    //}
 
     public void RemoveAllClips()
     {
-        animations = new LegacyAnimationData[0];
+        animations = new VolumetricAnimationData[0];
     }
 
-    public void AddClip(AnimationClip clip, string newName)
+    public void AddClip(string clip)
     {
-        AddClip(clip, newName, 1, animator.wrapMode);
+        AddClip(clip, 1);
     }
 
-    public void AddClip(AnimationClip clip, string newName, Fix64 speed, WrapMode wrapMode)
+   
+    public void AddClip(string clip, Fix64 speed)
     {
-        AddClip(clip, newName, speed, wrapMode, clip.length);
-    }
+        if (GetAnimationData(clip) != null) Debug.LogWarning("An animation with the name '" + clip + "' already exists.");
+        VolumetricAnimationData animData = new VolumetricAnimationData();
+      
 
-    public void AddClip(AnimationClip clip, string newName, Fix64 speed, WrapMode wrapMode, Fix64 length)
-    {
-        if (GetAnimationData(newName) != null) Debug.LogWarning("An animation with the name '" + newName + "' already exists.");
-        LegacyAnimationData animData = new LegacyAnimationData();
-        animData.clip = (AnimationClip)Instantiate(clip);
-        if (wrapMode == WrapMode.Default) wrapMode = animator.wrapMode;
-        animData.clip.wrapMode = wrapMode;
-        animData.clip.name = newName;
-        animData.clipName = newName;
-        animData.speed = speed;
-        animData.originalSpeed = speed;
-        animData.length = length;
-        animData.wrapMode = wrapMode;
-
-        List<LegacyAnimationData> animationDataList = new List<LegacyAnimationData>(animations);
+        List<VolumetricAnimationData> animationDataList = new List<VolumetricAnimationData>(animations);
         animationDataList.Add(animData);
         animations = animationDataList.ToArray();
 
-        animator.AddClip(clip, newName);
-        animator[newName].speed = (float)speed;
-        animator[newName].wrapMode = wrapMode;
+        //animator.LoadNewClip(clip, newName, _animation);
+       
 
 
-        foreach (AnimationState animState in animator)
-        {
-            if (animState.name == newName) animData.animState = animState;
-        }
+        //foreach (AnimationState animState in animator)
+        //{
+        //    if (animState.name == newName) animData.animState = animState;
+        //}
     }
 
-    public LegacyAnimationData GetAnimationData(string clipName)
+    
+    public VolumetricAnimationData GetAnimationData(VolumetricAnimationData._MoveType clipName)
     {
-        foreach (LegacyAnimationData animData in animations)
+        foreach (VolumetricAnimationData animData in animations)
         {
-            if (animData.clipName == clipName)
+            if (animData._EnumMoveType == (int)clipName)
             {
                 return animData;
             }
@@ -171,9 +187,9 @@ public class VolumetricControl : MonoBehaviour
         return null;
     }
 
-    public LegacyAnimationData GetAnimationData(AnimationClip clip)
+    public VolumetricAnimationData GetAnimationData(string clip)
     {
-        foreach (LegacyAnimationData animData in animations)
+        foreach (VolumetricAnimationData animData in animations)
         {
             if (animData.clip == clip)
             {
@@ -185,11 +201,11 @@ public class VolumetricControl : MonoBehaviour
 
     public bool IsPlaying(string clipName)
     {
-        if (currentAnimationData == GetAnimationData(clipName) && currentAnimationData.wrapMode == WrapMode.ClampForever) return true;
-        return (animator.IsPlaying(clipName));
+        if (currentAnimationData == GetAnimationData(clipName)) return true;
+        return (animator.playing);
     }
 
-    public bool IsPlaying(LegacyAnimationData animData)
+    public bool IsPlaying(VolumetricAnimationData animData)
     {
         return (currentAnimationData == animData);
     }
@@ -199,47 +215,40 @@ public class VolumetricControl : MonoBehaviour
         return GetAnimationData(clipName).timesPlayed;
     }
 
-    public void Play(string animationName, Fix64 blendingTime, Fix64 normalizedTime)
-    {
-        Play(GetAnimationData(animationName), blendingTime, normalizedTime);
-    }
 
-    public void Play()
+    public void Play(string _clip)
     {
         if (animations[0] == null)
         {
             Debug.LogError("No animation found.");
             return;
         }
-        Play(animations[0], 0, 0);
+        Play(animations[0], _clip);
     }
 
-    public void Play(LegacyAnimationData animData, Fix64 blendingTime, Fix64 normalizedTime)
+    public void Play(VolumetricAnimationData animData, string _clip)
     {
         if (animData == null) return;
 
-        if (currentAnimationData != null)
-        {
-            currentAnimationData.speed = currentAnimationData.originalSpeed;
-            currentAnimationData.normalizedSpeed = 1;
-        }
+        //if (currentAnimationData != null)
+        //{
+        //    currentAnimationData.speed = currentAnimationData.originalSpeed;
+        //    currentAnimationData.normalizedSpeed = 1;
+        //}
 
         currentAnimationData = animData;
 
-        if (blendingTime == 0 ||
-            (UFE.config != null && (UFE.isConnected || UFE.config.debugOptions.emulateNetwork) && UFE.config.networkOptions.disableBlending))
+        if (UFE.config != null && (UFE.isConnected || UFE.config.debugOptions.emulateNetwork) && UFE.config.networkOptions.disableBlending)
         {
-            animator.Play(currentAnimationData.clipName);
+            animator.LoadNewClip(_clip, 0);
+            animator.StartPlayback(0);
         }
-        else
-        {
-            animator.CrossFade(currentAnimationData.clipName, (float)blendingTime);
-        }
+        
 
-        SetSpeed(currentAnimationData.speed);
-        deltaDisplacement = new Vector3();
+        //SetSpeed(currentAnimationData.speed);
+        //deltaDisplacement = new Vector3();
 
-        SetCurrentClipPosition(normalizedTime);
+        //SetCurrentClipPosition(normalizedTime);
     }
 
     public void SetCurrentClipPosition(Fix64 normalizedTime)
@@ -249,21 +258,22 @@ public class VolumetricControl : MonoBehaviour
 
     public void SetCurrentClipPosition(Fix64 normalizedTime, bool pause)
     {
-        normalizedTime = FPMath.Clamp(normalizedTime, 0, 1);
-        currentAnimationData.secondsPlayed = normalizedTime * currentAnimationData.length;
-        currentAnimationData.ticksPlayed = currentAnimationData.secondsPlayed * UFE.config.fps;
-        currentAnimationData.framesPlayed = (int)FPMath.Floor(currentAnimationData.ticksPlayed);
-        currentAnimationData.realFramesPlayed = normalizedTime * currentAnimationData.length * UFE.fps;
-        currentAnimationData.normalizedTime = normalizedTime;
-        currentAnimationData.animState.normalizedTime = (float)normalizedTime;
-        animator.Sample();
+        //normalizedTime = FPMath.Clamp(normalizedTime, 0, 1);
+        //currentAnimationData.secondsPlayed = normalizedTime * currentAnimationData.length;
+        //currentAnimationData.ticksPlayed = currentAnimationData.secondsPlayed * UFE.config.fps;
+        //currentAnimationData.framesPlayed = (int)FPMath.Floor(currentAnimationData.ticksPlayed);
+        //currentAnimationData.realFramesPlayed = normalizedTime * currentAnimationData.length * UFE.fps;
+        //currentAnimationData.normalizedTime = normalizedTime;
+        //currentAnimationData.animState.normalizedTime = (float)normalizedTime;
+        //animator.Sample();
 
-        if (pause) Pause();
+        //if (pause) Pause();
     }
 
     public Fix64 GetCurrentClipPosition()
     {
-        return currentAnimationData.animState.normalizedTime;
+        //return currentAnimationData.animState.normalizedTime;
+        return 0;
     }
 
     public Fix64 GetCurrentClipTime()
@@ -280,7 +290,7 @@ public class VolumetricControl : MonoBehaviour
     public string GetCurrentClipName()
     {
         if (currentAnimationData == null) return null;
-        return currentAnimationData.clipName;
+        return currentAnimationData.clip;
     }
 
     public Vector3 GetDeltaDisplacement()
@@ -298,12 +308,12 @@ public class VolumetricControl : MonoBehaviour
 
     public void Stop()
     {
-        animator.Stop();
+        animator.StopModel(0);
     }
 
     public void Stop(string animName)
     {
-        animator.Stop(animName);
+        //animator.Stop(animName);
     }
 
     public void Pause()
@@ -311,112 +321,111 @@ public class VolumetricControl : MonoBehaviour
         globalSpeed = 0;
     }
 
-    public void SetSpeed(AnimationClip clip, Fix64 speed)
-    {
-        SetSpeed(GetAnimationData(clip), speed);
-    }
+    //public void SetSpeed(AnimationClip clip, Fix64 speed)
+    //{
+    //    SetSpeed(GetAnimationData(clip), speed);
+    //}
 
-    public void SetSpeed(string clipName, Fix64 speed)
-    {
-        SetSpeed(GetAnimationData(clipName), speed);
-    }
+    //public void SetSpeed(string clipName, Fix64 speed)
+    //{
+    //    SetSpeed(GetAnimationData(clipName), speed);
+    //}
 
-    public void SetSpeed(LegacyAnimationData animData, Fix64 speed)
-    {
-        if (animData != null)
-        {
-            animData.speed = speed;
-            animData.normalizedSpeed = speed / animData.originalSpeed;
-            if (IsPlaying(animData)) SetSpeed(speed);
-        }
-    }
+    //public void SetSpeed(VolumetricAnimationData animData, Fix64 speed)
+    //{
+    //    if (animData != null)
+    //    {
+    //        animData.speed = speed;
+    //        animData.normalizedSpeed = speed / animData.originalSpeed;
+    //        if (IsPlaying(animData)) SetSpeed(speed);
+    //    }
+    //}
 
     public void SetSpeed(Fix64 speed)
     {
-        globalSpeed = speed;
-        if (currentAnimationData != null) currentAnimationData.normalizedSpeed = speed / currentAnimationData.originalSpeed;
+        //globalSpeed = speed;
+        //if (currentAnimationData != null) currentAnimationData.normalizedSpeed = speed / currentAnimationData.originalSpeed;
 
-        if (!overrideAnimatorUpdate)
-        {
-            foreach (AnimationState animState in animator)
-            {
-                animState.speed = (float)speed;
-            }
-        }
+        //if (!overrideAnimatorUpdate)
+        //{
+        //    foreach (AnimationState animState in animator)
+        //    {
+        //        animState.speed = (float)speed;
+        //    }
+        //}
     }
 
-    public void SetNormalizedSpeed(AnimationClip clip, Fix64 normalizedSpeed)
-    {
-        SetNormalizedSpeed(GetAnimationData(clip), normalizedSpeed);
-    }
+    //public void SetNormalizedSpeed(AnimationClip clip, Fix64 normalizedSpeed)
+    //{
+    //    SetNormalizedSpeed(GetAnimationData(clip), normalizedSpeed);
+    //}
 
-    public void SetNormalizedSpeed(string clipName, Fix64 normalizedSpeed)
-    {
-        SetNormalizedSpeed(GetAnimationData(clipName), normalizedSpeed);
-    }
+    //public void SetNormalizedSpeed(string clipName, Fix64 normalizedSpeed)
+    //{
+    //    SetNormalizedSpeed(GetAnimationData(clipName), normalizedSpeed);
+    //}
 
-    public void SetNormalizedSpeed(LegacyAnimationData animData, Fix64 normalizedSpeed)
-    {
-        animData.normalizedSpeed = normalizedSpeed;
-        animData.speed = animData.originalSpeed * animData.normalizedSpeed;
-        if (IsPlaying(animData)) SetSpeed(animData.speed);
-    }
+    //public void SetNormalizedSpeed(VolumetricAnimationData animData, Fix64 normalizedSpeed)
+    //{
+    //    animData.normalizedSpeed = normalizedSpeed;
+    //    animData.speed = animData.originalSpeed * animData.normalizedSpeed;
+    //    if (IsPlaying(animData)) SetSpeed(animData.speed);
+    //}
 
-    public Fix64 GetSpeed(AnimationClip clip)
-    {
-        return GetSpeed(GetAnimationData(clip));
-    }
+    //public Fix64 GetSpeed(AnimationClip clip)
+    //{
+    //    return GetSpeed(GetAnimationData(clip));
+    //}
 
-    public Fix64 GetSpeed(string clipName)
-    {
-        return GetSpeed(GetAnimationData(clipName));
-    }
+    //public Fix64 GetSpeed(string clipName)
+    //{
+    //    return GetSpeed(GetAnimationData(clipName));
+    //}
 
-    public Fix64 GetSpeed(LegacyAnimationData animData)
-    {
-        return animData.speed;
-    }
+    //public Fix64 GetSpeed(VolumetricAnimationData animData)
+    //{
+    //    return animData.speed;
+    //}
 
-    public Fix64 GetSpeed()
-    {
-        return globalSpeed;
-    }
+    //public Fix64 GetSpeed()
+    //{
+    //    return globalSpeed;
+    //}
 
-    public Fix64 GetNormalizedSpeed()
-    {
-        return GetNormalizedSpeed(currentAnimationData);
-    }
+    //public Fix64 GetNormalizedSpeed()
+    //{
+    //    return GetNormalizedSpeed(currentAnimationData);
+    //}
 
-    public Fix64 GetNormalizedSpeed(AnimationClip clip)
-    {
-        return GetNormalizedSpeed(GetAnimationData(clip));
-    }
+    //public Fix64 GetNormalizedSpeed(AnimationClip clip)
+    //{
+    //    return GetNormalizedSpeed(GetAnimationData(clip));
+    //}
 
-    public Fix64 GetNormalizedSpeed(string clipName)
-    {
-        return GetNormalizedSpeed(GetAnimationData(clipName));
-    }
+    //public Fix64 GetNormalizedSpeed(string clipName)
+    //{
+    //    return GetNormalizedSpeed(GetAnimationData(clipName));
+    //}
 
-    public Fix64 GetNormalizedSpeed(LegacyAnimationData animData)
-    {
-        return animData.normalizedSpeed;
-    }
+    //public Fix64 GetNormalizedSpeed(VolumetricAnimationData animData)
+    //{
+    //    return animData.normalizedSpeed;
+    //}
 
-    public void OverrideCurrentWrapMode(WrapMode wrap)
-    {
-        currentAnimationData.wrapMode = wrap;
-    }
+    //public void OverrideCurrentWrapMode(WrapMode wrap)
+    //{
+    //    currentAnimationData.wrapMode = wrap;
+    //}
 
     public void RestoreSpeed()
     {
-        SetSpeed(currentAnimationData.speed);
+        //SetSpeed(currentAnimationData.speed);
 
-        if (!overrideAnimatorUpdate)
-        {
-            foreach (AnimationState animState in animator)
-            {
-                animState.speed = (float)GetAnimationData(animState.name).speed;
-            }
+        //if (!overrideAnimatorUpdate)
+        //{
+        //    foreach (AnimationState animState in animator)
+        //    {
+        //        animState.speed = (float)GetAnimationData(animState.name).speed;
+        //    }
         }
     }
-}
