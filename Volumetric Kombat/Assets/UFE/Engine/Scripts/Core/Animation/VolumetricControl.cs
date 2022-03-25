@@ -58,10 +58,9 @@ public class VolumetricAnimationData
     public float time;
     public Fix64 speed = 1;
     #endregion
-    [HideInInspector] public VolumetricRender animState;
 }
 
-[RequireComponent(typeof(string))]
+[RequireComponent(typeof(VolumetricRender))]
 public class VolumetricControl : MonoBehaviour
 {
 
@@ -81,13 +80,17 @@ public class VolumetricControl : MonoBehaviour
     void Awake()
     {
         animator = gameObject.GetComponent<VolumetricRender>();
-        lastPosition = transform.position;
+        
+        //lastPosition = transform.position;
     }
 
     void Start()
     {
         if (animations[0] == null) Debug.LogWarning("No animation found!");
         currentAnimationData = animations[0];
+
+        
+
     }
 
     public void DoFixedUpdate()
@@ -238,11 +241,10 @@ public class VolumetricControl : MonoBehaviour
 
         currentAnimationData = animData;
 
-        if (UFE.config != null && (UFE.isConnected || UFE.config.debugOptions.emulateNetwork) && UFE.config.networkOptions.disableBlending)
-        {
+      
             animator.LoadNewClip(_clip, 0);
             animator.StartPlayback(0);
-        }
+        
         
 
         //SetSpeed(currentAnimationData.speed);

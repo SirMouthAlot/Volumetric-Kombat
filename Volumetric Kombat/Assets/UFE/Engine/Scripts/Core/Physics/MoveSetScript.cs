@@ -88,7 +88,11 @@ public class MoveSetScript : MonoBehaviour {
 
                 if ((controlsScript.myInfo.animationType == AnimationType.Volumetric) && volumetricControl != null)
                 {
+                    //currentState = volumetricControl.currentState;
+                    //currentMirror = volumetricControl.currentMirror;
 
+
+                    //volumetricControl.CopyAnimationData(volumetricControl.currentAnimationData, ref currentMecanimData);
                 }
 
                 basicMoves = moveSetData.basicMoves;
@@ -179,12 +183,19 @@ public class MoveSetScript : MonoBehaviour {
                         PlayAnimation(currentClip, 0, currentNormalizedTime);
                     }
 
-                } else {
+                }
+
+                if(controlsScript.myInfo.animationType == AnimationType.Legacy) { 
                     PlayBasicMove(basicMoves.idle);
                     controlsScript.currentState = PossibleStates.Stand;
                     controlsScript.currentSubState = SubStates.Resting;
                 }
-                return;
+
+                if (controlsScript.myInfo.animationType == AnimationType.Volumetric)
+                {
+                   // PlayBasicMoveVolumetric(basicMoves.idle);
+                }
+                    return;
             }
         }
     }
@@ -193,10 +204,10 @@ public class MoveSetScript : MonoBehaviour {
     {
         DestroyImmediate(gameObject.GetComponent(typeof(MecanimControl)));
         DestroyImmediate(gameObject.GetComponent(typeof(LegacyControl)));
-        // DestroyImmediate(gameObject.GetComponent(typeof(VolumetricControl)));
+      //  DestroyImmediate(gameObject.GetComponent(typeof(VolumetricControl)));
         DestroyImmediate(gameObject.GetComponent(typeof(Animation)));
         DestroyImmediate(gameObject.GetComponent(typeof(Animator)));
-        // DestroyImmediate(gameObject.GetComponent(typeof(VolumetricRender)));
+       // DestroyImmediate(gameObject.GetComponent(typeof(VolumetricRender)));
         DestroyImmediate(gameObject.GetComponent("MecanimControl"));
 
         if ((UFE.isConnected || UFE.config.debugOptions.emulateNetwork)
@@ -217,6 +228,7 @@ public class MoveSetScript : MonoBehaviour {
 
         if (controlsScript.myInfo.animationType == AnimationType.Volumetric)
         {
+            //gameObject.AddComponent(typeof(VolumetricRender));
             volumetricControl = gameObject.AddComponent<VolumetricControl>();
 
         }
@@ -248,14 +260,17 @@ public class MoveSetScript : MonoBehaviour {
             if (move.animMap.clip != null && controlsScript.myInfo.animationType != AnimationType.Volumetric) {
                 attachAnimation(move.animMap.clip, move.name, move._animationSpeed, move.wrapMode, move.animMap.length);
             }
-            else
+
+            if (controlsScript.myInfo.animationType == AnimationType.Volumetric)
             {
                 if (move.voluMap._move != null)
                 {
-                    attachAnimationVolumetric(move.voluMap._move);
+                    gameObject.GetComponent<VolumetricRender>().LoadNewClip(basicMoves.idle._voluMap[0]._move, 0);
+                    attachAnimationVolumetric(move.voluMap._move); //loads move?
                 }
-
             }
+
+            
         }
 
         setBasicMoveAnimation(basicMoves.idle, "idle", BasicMoveReference.Idle);
@@ -355,7 +370,7 @@ public class MoveSetScript : MonoBehaviour {
             {
                 return;
             }
-            basicMove.name = animName;
+            basicMove.name = basicMove._voluMap[0]._move;
             basicMove.reference = basicMoveReference;
 
             basicMoveList.Add(basicMove);
@@ -363,14 +378,14 @@ public class MoveSetScript : MonoBehaviour {
             attachAnimationVolumetric(basicMove._voluMap[0]._move);
 
 
-            if (basicMove._voluMap[1]._move != null) attachAnimationVolumetric(basicMove._voluMap[1]._move);
-            if (basicMove._voluMap[2]._move != null) attachAnimationVolumetric(basicMove._voluMap[2]._move);
-            if (basicMove._voluMap[3]._move != null) attachAnimationVolumetric(basicMove._voluMap[3]._move);
-            if (basicMove._voluMap[4]._move != null) attachAnimationVolumetric(basicMove._voluMap[4]._move);
-            if (basicMove._voluMap[5]._move != null) attachAnimationVolumetric(basicMove._voluMap[5]._move);
-            if (basicMove._voluMap.Length > 6 && basicMove._voluMap[6]._move != null) attachAnimationVolumetric(basicMove._voluMap[6]._move);
-            if (basicMove._voluMap.Length > 7 && basicMove._voluMap[7]._move != null) attachAnimationVolumetric(basicMove._voluMap[7]._move);
-            if (basicMove._voluMap.Length > 8 && basicMove._voluMap[8]._move != null) attachAnimationVolumetric(basicMove._voluMap[8]._move);
+            if (basicMove._voluMap[1]._move != null) attachAnimationVolumetric(basicMove._voluMap[1]._move); /*basicMove.name = basicMove._voluMap[1]._move;*/
+            if (basicMove._voluMap[2]._move != null) attachAnimationVolumetric(basicMove._voluMap[2]._move); /*basicMove.name = basicMove._voluMap[2]._move;*/
+            if (basicMove._voluMap[3]._move != null) attachAnimationVolumetric(basicMove._voluMap[3]._move); /*basicMove.name = basicMove._voluMap[3]._move;*/
+            if (basicMove._voluMap[4]._move != null) attachAnimationVolumetric(basicMove._voluMap[4]._move); /*basicMove.name = basicMove._voluMap[4]._move;*/
+            if (basicMove._voluMap[5]._move != null) attachAnimationVolumetric(basicMove._voluMap[5]._move); /*basicMove.name = basicMove._voluMap[5]._move;*/
+            if (basicMove._voluMap.Length > 6 && basicMove._voluMap[6]._move != null) attachAnimationVolumetric(basicMove._voluMap[6]._move); /*basicMove.name = basicMove._voluMap[6]._move;*/
+            if (basicMove._voluMap.Length > 7 && basicMove._voluMap[7]._move != null) attachAnimationVolumetric(basicMove._voluMap[7]._move); /*basicMove.name = basicMove._voluMap[7]._move;*/
+            if (basicMove._voluMap.Length > 8 && basicMove._voluMap[8]._move != null) attachAnimationVolumetric(basicMove._voluMap[8]._move); /*basicMove.name = basicMove._voluMap[8]._move;*/
         }
     }
 
@@ -415,14 +430,14 @@ public class MoveSetScript : MonoBehaviour {
         else
         {
             if (clipNum == 1) return basicMove.name;
-            if (clipNum == 2 && basicMove._voluMap[1]._move != null) return basicMove.name + "_2";
-            if (clipNum == 3 && basicMove._voluMap[2]._move != null) return basicMove.name + "_3";
-            if (clipNum == 4 && basicMove._voluMap[3]._move != null) return basicMove.name + "_4";
-            if (clipNum == 5 && basicMove._voluMap[4]._move != null) return basicMove.name + "_5";
-            if (clipNum == 6 && basicMove._voluMap[5]._move != null) return basicMove.name + "_6";
-            if (clipNum == 7 && basicMove._voluMap.Length > 6 && basicMove._voluMap[6]._move != null) return basicMove.name + "_7";
-            if (clipNum == 8 && basicMove._voluMap.Length > 7 && basicMove._voluMap[7]._move != null) return basicMove.name + "_8";
-            if (clipNum == 9 && basicMove._voluMap.Length > 8 && basicMove._voluMap[8]._move != null) return basicMove.name + "_9";
+            if (clipNum == 2 && basicMove._voluMap[1]._move != null) return basicMove.name;
+            if (clipNum == 3 && basicMove._voluMap[2]._move != null) return basicMove.name;
+            if (clipNum == 4 && basicMove._voluMap[3]._move != null) return basicMove.name;
+            if (clipNum == 5 && basicMove._voluMap[4]._move != null) return basicMove.name;
+            if (clipNum == 6 && basicMove._voluMap[5]._move != null) return basicMove.name;
+            if (clipNum == 7 && basicMove._voluMap.Length > 6 && basicMove._voluMap[6]._move != null) return basicMove.name;
+            if (clipNum == 8 && basicMove._voluMap.Length > 7 && basicMove._voluMap[7]._move != null) return basicMove.name;
+            if (clipNum == 9 && basicMove._voluMap.Length > 8 && basicMove._voluMap[8]._move != null) return basicMove.name;
             return basicMove.name;
         }
     }
@@ -446,14 +461,14 @@ public class MoveSetScript : MonoBehaviour {
         else
         {
             if (basicMove._voluMap[0]._move != null && IsAnimationPlaying(basicMove.name)) return true;
-            if (basicMove._voluMap[1]._move != null && IsAnimationPlaying(basicMove.name + "_2")) return true;
-            if (basicMove._voluMap[2]._move != null && IsAnimationPlaying(basicMove.name + "_3")) return true;
-            if (basicMove._voluMap[3]._move != null && IsAnimationPlaying(basicMove.name + "_4")) return true;
-            if (basicMove._voluMap[4]._move != null && IsAnimationPlaying(basicMove.name + "_5")) return true;
-            if (basicMove._voluMap[5]._move != null && IsAnimationPlaying(basicMove.name + "_6")) return true;
-            if (basicMove._voluMap.Length > 6 && basicMove.animMap[6].clip != null && IsAnimationPlaying(basicMove.name + "_7")) return true;
-            if (basicMove._voluMap.Length > 7 && basicMove.animMap[7].clip != null && IsAnimationPlaying(basicMove.name + "_8")) return true;
-            if (basicMove._voluMap.Length > 8 && basicMove.animMap[8].clip != null && IsAnimationPlaying(basicMove.name + "_9")) return true;
+            if (basicMove._voluMap[1]._move != null && IsAnimationPlaying(basicMove.name)) return true;
+            if (basicMove._voluMap[2]._move != null && IsAnimationPlaying(basicMove.name)) return true;
+            if (basicMove._voluMap[3]._move != null && IsAnimationPlaying(basicMove.name)) return true;
+            if (basicMove._voluMap[4]._move != null && IsAnimationPlaying(basicMove.name)) return true;
+            if (basicMove._voluMap[5]._move != null && IsAnimationPlaying(basicMove.name)) return true;
+            if (basicMove._voluMap.Length > 6 && basicMove._voluMap[6]._move != null && IsAnimationPlaying(basicMove.name)) return true;
+            if (basicMove._voluMap.Length > 7 && basicMove._voluMap[7]._move != null && IsAnimationPlaying(basicMove.name)) return true;
+            if (basicMove._voluMap.Length > 8 && basicMove._voluMap[8]._move != null && IsAnimationPlaying(basicMove.name)) return true;
             return false;
         }
     }
@@ -861,7 +876,91 @@ public class MoveSetScript : MonoBehaviour {
         UFE.FireBasicMove(basicMove.reference, controlsScript);
     }
 
-	public void SetAnimationPosition(string animationName, Fix64 normalizedTime)
+    public void PlayBasicMoveVolumetric(BasicMoveInfo basicMove)
+    {
+        if (basicMove.useMoveFile && controlsScript.currentMove == null && controlsScript.storedMove == null)
+        {
+            controlsScript.CastMove(basicMove.moveInfo, true);
+            return;
+        }
+
+        if (IsAnimationPlaying(basicMove.name)) return;
+
+        // Play animation
+        PlayAnimation(basicMove.name, 0.0f);
+
+        // Set basic move reference
+        controlsScript.currentBasicMove = basicMove.reference;
+
+        // Set root motion options
+        //controlsScript.applyRootMotion = basicMove.applyRootMotion;
+        //controlsScript.lockXMotion = basicMove.lockXMotion;
+        //controlsScript.lockYMotion = basicMove.lockYMotion;
+        //controlsScript.lockZMotion = basicMove.lockZMotion;
+
+        // Toggle head look
+        controlsScript.ToggleHeadLook(!basicMove.disableHeadLook);
+
+        // Play sound effects
+        UFE.PlaySound(basicMove.soundEffects);
+
+        // Set hit boxes visibility
+        hitBoxesScript.HideHitBoxes(true);
+
+        // Set visibility to nested game objects
+        HitBoxesScript hitBoxes = controlsScript.character.GetComponent<HitBoxesScript>();
+        if (hitBoxes != null)
+        {
+            foreach (HitBox hitBox in hitBoxes.hitBoxes)
+            {
+                if (hitBox != null && hitBox.bodyPart != BodyPart.none && hitBox.position != null)
+                {
+                    hitBox.position.gameObject.SetActive(hitBox.defaultVisibility);
+                }
+            }
+        }
+
+        // Play particle effects
+        if (basicMove.particleEffect.prefab != null)
+        {
+            Vector3 newPosition = hitBoxesScript.GetPosition(basicMove.particleEffect.bodyPart).ToVector();
+            newPosition.x += basicMove.particleEffect.positionOffSet.x * -controlsScript.mirror;
+            newPosition.y += basicMove.particleEffect.positionOffSet.y;
+            newPosition.z += basicMove.particleEffect.positionOffSet.z;
+            GameObject pTemp = UFE.SpawnGameObject(basicMove.particleEffect.prefab, newPosition, Quaternion.identity, Mathf.RoundToInt(basicMove.particleEffect.duration * UFE.config.fps));
+
+            if (basicMove.particleEffect.mirrorOn2PSide && controlsScript.mirror > 0)
+            {
+                pTemp.transform.localEulerAngles = new Vector3(pTemp.transform.localEulerAngles.x, pTemp.transform.localEulerAngles.y + 180, pTemp.transform.localEulerAngles.z);
+            }
+            if (basicMove.particleEffect.stick) pTemp.transform.parent = transform;
+        }
+
+        // Set animation maps
+        for (int i = 0; i < basicMove._voluMap.Length; i++)
+        {
+            if (basicMove.name == GetAnimationString(basicMove, i + 1))
+            {
+                if (basicMove._voluMap[i].hitBoxDefinitionType == HitBoxDefinitionType.AutoMap)
+                {
+                    hitBoxesScript.customHitBoxes = null;
+                    hitBoxesScript.bakeSpeed = basicMove.autoSpeed ? false : basicMove._voluMap[i].bakeSpeed;
+                    hitBoxesScript.animationMaps = basicMove._voluMap[i].animationMaps;
+                    //hitBoxesScript.UpdateMap(0);
+                }
+                else
+                {
+                    hitBoxesScript.customHitBoxes = basicMove._voluMap[i].customHitBoxDefinition;
+                }
+                break;
+            }
+        }
+
+        // Fire basic move event
+        UFE.FireBasicMove(basicMove.reference, controlsScript);
+    }
+
+    public void SetAnimationPosition(string animationName, Fix64 normalizedTime)
     {
 
         if (controlsScript.myInfo.animationType == AnimationType.Legacy)

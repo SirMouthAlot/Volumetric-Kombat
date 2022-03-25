@@ -282,12 +282,13 @@ public class PhysicsScript : MonoBehaviour {
 		ApplyForces(null);
 	}
 
-	public void ApplyForces(MoveInfo move) {
-		if (freeze) return;
+    public void ApplyForces(MoveInfo move)
+    {
+        if (freeze) return;
 
         controlScript.normalizedJumpArc = 1 - ((activeForces.y + verticalTotalForce) / (verticalTotalForce * 2));
-        
-		Fix64 appliedFriction = (moveDirection != 0 || controlScript.myInfo.physics.highMovingFriction) ? UFE.config.selectedStage._groundFriction : controlScript.myInfo.physics._friction;
+
+        Fix64 appliedFriction = (moveDirection != 0 || controlScript.myInfo.physics.highMovingFriction) ? UFE.config.selectedStage._groundFriction : controlScript.myInfo.physics._friction;
 
         if (move != null && move.ignoreFriction) appliedFriction = 0;
 
@@ -341,26 +342,34 @@ public class PhysicsScript : MonoBehaviour {
         }
         else
         {
-			if (!IsGrounded()) {
-				appliedFriction = 0;
-				if (activeForces.y == 0) activeForces.y = .1 * -1;
-			}
+            if (!IsGrounded())
+            {
+                appliedFriction = 0;
+                if (activeForces.y == 0) activeForces.y = .1 * -1;
+            }
 
-			if ((activeForces.x != 0 || activeForces.z != 0) && !isTakingOff) {
-				if (activeForces.x > 0) {
+            if ((activeForces.x != 0 || activeForces.z != 0) && !isTakingOff)
+            {
+                if (activeForces.x > 0)
+                {
                     activeForces.x -= appliedFriction * UFE.fixedDeltaTime;
                     activeForces.x = FPMath.Max(0, activeForces.x);
-				}else if (activeForces.x < 0) {
+                }
+                else if (activeForces.x < 0)
+                {
                     activeForces.x += appliedFriction * UFE.fixedDeltaTime;
                     activeForces.x = FPMath.Min(0, activeForces.x);
-				}
-				if (activeForces.z > 0) {
+                }
+                if (activeForces.z > 0)
+                {
                     activeForces.z -= appliedFriction * UFE.fixedDeltaTime;
                     activeForces.z = FPMath.Max(0, activeForces.z);
-				}else if (activeForces.z < 0) {
+                }
+                else if (activeForces.z < 0)
+                {
                     activeForces.z += appliedFriction * UFE.fixedDeltaTime;
                     activeForces.z = FPMath.Min(0, activeForces.z);
-				}
+                }
 
                 bool bouncingOnCamera = false;
                 if (controlScript.currentHit != null && controlScript.currentHit.bounceOnCameraEdge)
@@ -392,16 +401,18 @@ public class PhysicsScript : MonoBehaviour {
                         bouncingOnBounds = true;
                 }
 
-                if (wallBounceTimes < UFE.config.wallBounceOptions._maximumBounces 
+                if (wallBounceTimes < UFE.config.wallBounceOptions._maximumBounces
                     && controlScript.currentSubState == SubStates.Stunned
                     && controlScript.currentState != PossibleStates.Down
                     && UFE.config.wallBounceOptions.bounceForce != Sizes.None
                     && FPMath.Abs(activeForces.x) >= UFE.config.wallBounceOptions._minimumBounceForce
                     && (bouncingOnBounds || bouncingOnCamera)
                     && controlScript.currentHit != null && controlScript.currentHit.wallBounce
-                    && !isWallBouncing) {
-                    
-                    if (controlScript.currentHit.overrideForcesOnWallBounce) {
+                    && !isWallBouncing)
+                {
+
+                    if (controlScript.currentHit.overrideForcesOnWallBounce)
+                    {
                         if (controlScript.currentHit.resetWallBounceHorizontalPush) activeForces.x = 0;
                         if (controlScript.currentHit.resetWallBounceVerticalPush) activeForces.y = 0;
 
@@ -412,492 +423,670 @@ public class PhysicsScript : MonoBehaviour {
                         if (controlScript.currentHit != null) controlScript.TestRotationOnHit(controlScript.opControlsScript, controlScript.currentHit);
                         AddForce(new FPVector(addedH, addedV, addedZ), -controlScript.opControlsScript.mirror);
 
-                    } else {
-                        if (UFE.config.wallBounceOptions.bounceForce == Sizes.VerySmall) {
+                    }
+                    else
+                    {
+                        if (UFE.config.wallBounceOptions.bounceForce == Sizes.VerySmall)
+                        {
                             activeForces.x *= -(Fix64).8;
-                        } else if (UFE.config.wallBounceOptions.bounceForce == Sizes.Small) {
+                        }
+                        else if (UFE.config.wallBounceOptions.bounceForce == Sizes.Small)
+                        {
                             activeForces.x *= -(Fix64).7;
-                        } else if (UFE.config.wallBounceOptions.bounceForce == Sizes.Medium) {
+                        }
+                        else if (UFE.config.wallBounceOptions.bounceForce == Sizes.Medium)
+                        {
                             activeForces.x *= -(Fix64).6;
-                        } else if (UFE.config.wallBounceOptions.bounceForce == Sizes.High) {
+                        }
+                        else if (UFE.config.wallBounceOptions.bounceForce == Sizes.High)
+                        {
                             activeForces.x *= -(Fix64)1;
-                        } else if (UFE.config.wallBounceOptions.bounceForce == Sizes.VeryHigh) {
+                        }
+                        else if (UFE.config.wallBounceOptions.bounceForce == Sizes.VeryHigh)
+                        {
                             activeForces.x *= -(Fix64)1.2;
                         }
                     }
 
                     wallBounceTimes++;
 
-                    if (activeForces.y > 0 || !IsGrounded()) {
-                        if (moveSetScript.basicMoves.airWallBounce.animMap[0].clip != null) {
-                            moveSetScript.PlayBasicMove(moveSetScript.basicMoves.airWallBounce);
-                            controlScript.currentHitAnimation = moveSetScript.basicMoves.airWallBounce.name;
+                    if (activeForces.y > 0 || !IsGrounded())
+                    {
+                        if (controlScript.myInfo.animationType != AnimationType.Volumetric)
+                        {
+                            if (moveSetScript.basicMoves.airWallBounce.animMap[0].clip != null)
+                            {
+                                moveSetScript.PlayBasicMove(moveSetScript.basicMoves.airWallBounce);
+                                controlScript.currentHitAnimation = moveSetScript.basicMoves.airWallBounce.name;
+                            }
+
+                            else
+                            {
+                                if (controlScript.currentHit.knockOutOnWallBounce)
+                                {
+                                    moveSetScript.PlayBasicMove(moveSetScript.basicMoves.standingWallBounceKnockdown);
+                                    controlScript.currentHitAnimation = moveSetScript.basicMoves.standingWallBounceKnockdown.name;
+                                }
+                                else
+                                {
+                                    moveSetScript.PlayBasicMove(moveSetScript.basicMoves.standingWallBounce);
+                                    controlScript.currentHitAnimation = moveSetScript.basicMoves.standingWallBounce.name;
+                                }
+                            }
+
+                            if (UFE.config.wallBounceOptions.bouncePrefab != null)
+                            {
+                                GameObject pTemp = UFE.SpawnGameObject(UFE.config.wallBounceOptions.bouncePrefab, transform.position, Quaternion.identity, Mathf.RoundToInt(UFE.config.wallBounceOptions.bounceKillTime * UFE.config.fps));
+                                pTemp.transform.rotation = UFE.config.wallBounceOptions.bouncePrefab.transform.rotation;
+                                if (UFE.config.wallBounceOptions.sticky) pTemp.transform.parent = transform;
+                            }
+
+                            if (UFE.config.wallBounceOptions.shakeCamOnBounce)
+                            {
+                                controlScript.shakeCameraDensity = UFE.config.wallBounceOptions._shakeDensity;
+                            }
+
+                            UFE.PlaySound(UFE.config.wallBounceOptions.bounceSound);
+                            isWallBouncing = true;
                         }
-                    } else {
-                        if (controlScript.currentHit.knockOutOnWallBounce) {
-                            moveSetScript.PlayBasicMove(moveSetScript.basicMoves.standingWallBounceKnockdown);
-                            controlScript.currentHitAnimation = moveSetScript.basicMoves.standingWallBounceKnockdown.name;
-                        } else {
-                            moveSetScript.PlayBasicMove(moveSetScript.basicMoves.standingWallBounce);
-                            controlScript.currentHitAnimation = moveSetScript.basicMoves.standingWallBounce.name;
+                        else
+                        {
+                            if (moveSetScript.basicMoves.airWallBounce._voluMap[0]._move != null)
+                            {
+                                moveSetScript.PlayBasicMove(moveSetScript.basicMoves.airWallBounce);
+                                controlScript.currentHitAnimation = moveSetScript.basicMoves.airWallBounce.name;
+                            }
+
+                            else
+                            {
+                                if (controlScript.currentHit.knockOutOnWallBounce)
+                                {
+                                    moveSetScript.PlayBasicMove(moveSetScript.basicMoves.standingWallBounceKnockdown);
+                                    controlScript.currentHitAnimation = moveSetScript.basicMoves.standingWallBounceKnockdown.name;
+                                }
+                                else
+                                {
+                                    moveSetScript.PlayBasicMove(moveSetScript.basicMoves.standingWallBounce);
+                                    controlScript.currentHitAnimation = moveSetScript.basicMoves.standingWallBounce.name;
+                                }
+                            }
+
+                            if (UFE.config.wallBounceOptions.bouncePrefab != null)
+                            {
+                                GameObject pTemp = UFE.SpawnGameObject(UFE.config.wallBounceOptions.bouncePrefab, transform.position, Quaternion.identity, Mathf.RoundToInt(UFE.config.wallBounceOptions.bounceKillTime * UFE.config.fps));
+                                pTemp.transform.rotation = UFE.config.wallBounceOptions.bouncePrefab.transform.rotation;
+                                if (UFE.config.wallBounceOptions.sticky) pTemp.transform.parent = transform;
+                            }
+
+                            if (UFE.config.wallBounceOptions.shakeCamOnBounce)
+                            {
+                                controlScript.shakeCameraDensity = UFE.config.wallBounceOptions._shakeDensity;
+                            }
+
+                            UFE.PlaySound(UFE.config.wallBounceOptions.bounceSound);
+                            isWallBouncing = true;
                         }
                     }
 
-                    if (UFE.config.wallBounceOptions.bouncePrefab != null) {
-                        GameObject pTemp = UFE.SpawnGameObject(UFE.config.wallBounceOptions.bouncePrefab, transform.position, Quaternion.identity, Mathf.RoundToInt(UFE.config.wallBounceOptions.bounceKillTime * UFE.config.fps));
-                        pTemp.transform.rotation = UFE.config.wallBounceOptions.bouncePrefab.transform.rotation;
-                        if (UFE.config.wallBounceOptions.sticky) pTemp.transform.parent = transform;
-                    }
 
-                    if (UFE.config.wallBounceOptions.shakeCamOnBounce) {
-                        controlScript.shakeCameraDensity = UFE.config.wallBounceOptions._shakeDensity;
-                    }
 
-                    UFE.PlaySound(UFE.config.wallBounceOptions.bounceSound);
-                    isWallBouncing = true;
-                }
-
-                FPVector distance = new FPVector(30, 0, 0);
-                if (UFE.config.gameplayType == GameplayType._2DFighter)
-                {
-                    worldTransform.Translate(activeForces.x * UFE.fixedDeltaTime, 0, 0);
-                }
-#if !UFE_LITE && !UFE_BASIC
-                else if (UFE.config.gameplayType == GameplayType._3DFighter)
-                {
-                    Fix64 distanceModifier = (1.3 - controlScript.normalizedDistance) * 10;
-                    worldTransform.RotateAround(opWorldTransform.position, FPVector.up, activeForces.z * distanceModifier * UFE.fixedDeltaTime);
-
-                    FPVector target = (FPQuaternion.Euler(0, angularDirection - 90, 0) * distance) + worldTransform.position;
-                    worldTransform.position = FPVector.MoveTowards(worldTransform.position, target, activeForces.x * UFE.fixedDeltaTime * -controlScript.mirror);
-                }
-                else
-                {
-                    FPVector target = (FPQuaternion.Euler(0, angularDirection - 90, 0) * distance) + worldTransform.position;
-                    worldTransform.position = FPVector.MoveTowards(worldTransform.position, target, activeForces.x * UFE.fixedDeltaTime);
-                }
-#endif
-            }
-			
-			if (move == null || (move != null && !move.ignoreGravity)) {
-				if ((activeForces.y < 0 && !IsGrounded()) || activeForces.y > 0)
-                {
-                    activeForces.y -= appliedGravity * UFE.fixedDeltaTime;
+                    FPVector distance = new FPVector(30, 0, 0);
                     if (UFE.config.gameplayType == GameplayType._2DFighter)
                     {
-                        worldTransform.Translate(horizontalJumpForce * moveDirection * UFE.fixedDeltaTime, activeForces.y * UFE.fixedDeltaTime, 0);
+                        worldTransform.Translate(activeForces.x * UFE.fixedDeltaTime, 0, 0);
                     }
 #if !UFE_LITE && !UFE_BASIC
+                    else if (UFE.config.gameplayType == GameplayType._3DFighter)
+                    {
+                        Fix64 distanceModifier = (1.3 - controlScript.normalizedDistance) * 10;
+                        worldTransform.RotateAround(opWorldTransform.position, FPVector.up, activeForces.z * distanceModifier * UFE.fixedDeltaTime);
+
+                        FPVector target = (FPQuaternion.Euler(0, angularDirection - 90, 0) * distance) + worldTransform.position;
+                        worldTransform.position = FPVector.MoveTowards(worldTransform.position, target, activeForces.x * UFE.fixedDeltaTime * -controlScript.mirror);
+                    }
                     else
                     {
-                        FPVector newPosition = worldTransform.position;
-                        newPosition.y += activeForces.y * UFE.fixedDeltaTime;
-                        worldTransform.position = newPosition;
-
-                        FPVector target = (FPQuaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0) * FPVector.right) + worldTransform.position;
-                        int direction = UFE.config.gameplayType == GameplayType._3DFighter ? -controlScript.mirror : 1;
-                        worldTransform.position = FPVector.MoveTowards(worldTransform.position, target, horizontalJumpForce * moveDirection * UFE.fixedDeltaTime * direction);
+                        FPVector target = (FPQuaternion.Euler(0, angularDirection - 90, 0) * distance) + worldTransform.position;
+                        worldTransform.position = FPVector.MoveTowards(worldTransform.position, target, activeForces.x * UFE.fixedDeltaTime);
                     }
 #endif
                 }
-                else if (activeForces.y < 0 && IsGrounded() && controlScript.currentSubState != SubStates.Stunned)
+
+                if (move == null || (move != null && !move.ignoreGravity))
                 {
-                    activeForces.y = 0;
-				}
-			}
-		}
+                    if ((activeForces.y < 0 && !IsGrounded()) || activeForces.y > 0)
+                    {
+                        activeForces.y -= appliedGravity * UFE.fixedDeltaTime;
+                        if (UFE.config.gameplayType == GameplayType._2DFighter)
+                        {
+                            worldTransform.Translate(horizontalJumpForce * moveDirection * UFE.fixedDeltaTime, activeForces.y * UFE.fixedDeltaTime, 0);
+                        }
+#if !UFE_LITE && !UFE_BASIC
+                        else
+                        {
+                            FPVector newPosition = worldTransform.position;
+                            newPosition.y += activeForces.y * UFE.fixedDeltaTime;
+                            worldTransform.position = newPosition;
+
+                            FPVector target = (FPQuaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0) * FPVector.right) + worldTransform.position;
+                            int direction = UFE.config.gameplayType == GameplayType._3DFighter ? -controlScript.mirror : 1;
+                            worldTransform.position = FPVector.MoveTowards(worldTransform.position, target, horizontalJumpForce * moveDirection * UFE.fixedDeltaTime * direction);
+                        }
+#endif
+                    }
+                    else if (activeForces.y < 0 && IsGrounded() && controlScript.currentSubState != SubStates.Stunned)
+                    {
+                        activeForces.y = 0;
+                    }
+                }
+            }
 
 
-        // Clamp Max Distance Between Players
-        if (!controlScript.isAssist)
-        {
+            // Clamp Max Distance Between Players
+            if (!controlScript.isAssist)
+            {
+                if (UFE.config.gameplayType == GameplayType._2DFighter)
+                {
+                    Fix64 minDist = opWorldTransform.position.x - UFE.config.cameraOptions._maxDistance;
+                    Fix64 maxDist = opWorldTransform.position.x + UFE.config.cameraOptions._maxDistance;
+                    worldTransform.position = new FPVector(FPMath.Clamp(worldTransform.position.x, minDist, maxDist), worldTransform.position.y, worldTransform.position.z);
+                }
+#if !UFE_LITE && !UFE_BASIC
+                else
+                {
+                    if (FPVector.Distance(opWorldTransform.position, worldTransform.position) > UFE.config.cameraOptions._maxDistance)
+                    {
+                        FPVector center = (opWorldTransform.position + worldTransform.position) / 2;
+                        FPVector offset = worldTransform.position - center;
+                        worldTransform.position = center + FPVector.ClampMagnitude(offset, UFE.config.cameraOptions._maxDistance / 2);
+                    }
+                }
+#endif
+            }
+
+
+            // Clamp Max Stage Distance
             if (UFE.config.gameplayType == GameplayType._2DFighter)
             {
-                Fix64 minDist = opWorldTransform.position.x - UFE.config.cameraOptions._maxDistance;
-                Fix64 maxDist = opWorldTransform.position.x + UFE.config.cameraOptions._maxDistance;
-                worldTransform.position = new FPVector(FPMath.Clamp(worldTransform.position.x, minDist, maxDist), worldTransform.position.y, worldTransform.position.z);
+                worldTransform.position = new FPVector(
+                FPMath.Clamp(worldTransform.position.x, UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary, UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary),
+                FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y),
+                worldTransform.position.z);
             }
-#if !UFE_LITE && !UFE_BASIC
             else
             {
-                if (FPVector.Distance(opWorldTransform.position, worldTransform.position) > UFE.config.cameraOptions._maxDistance)
+                FPVector centerPosition = FPVector.zero;
+                Fix64 distanceFromCenter = FPVector.Distance(worldTransform.position, centerPosition);
+                Fix64 radius = UFE.config.selectedStage._rightBoundary;
+                if (distanceFromCenter > radius)
                 {
-                    FPVector center = (opWorldTransform.position + worldTransform.position) / 2;
-                    FPVector offset = worldTransform.position - center;
-                    worldTransform.position = center + FPVector.ClampMagnitude(offset, UFE.config.cameraOptions._maxDistance / 2);
+                    FPVector fromOriginToObject = worldTransform.position - centerPosition;
+                    fromOriginToObject *= radius / distanceFromCenter;
+                    worldTransform.position = centerPosition + fromOriginToObject;
                 }
             }
-#endif
-        }
 
 
-        // Clamp Max Stage Distance
-        if (UFE.config.gameplayType == GameplayType._2DFighter)
-        {
-            worldTransform.position = new FPVector(
-            FPMath.Clamp(worldTransform.position.x, UFE.config.selectedStage.position.x + UFE.config.selectedStage._leftBoundary, UFE.config.selectedStage.position.x + UFE.config.selectedStage._rightBoundary),
-            FPMath.Max(worldTransform.position.y, UFE.config.selectedStage.position.y),
-            worldTransform.position.z);
-        }
-        else
-        {
-            FPVector centerPosition = FPVector.zero;
-            Fix64 distanceFromCenter = FPVector.Distance(worldTransform.position, centerPosition);
-            Fix64 radius = UFE.config.selectedStage._rightBoundary;
-            if (distanceFromCenter > radius)
+            // Clamp Ground Distance
+            if (worldTransform.position.y < 0) worldTransform.Translate(new FPVector(0, -worldTransform.position.y, 0));
+
+            if (controlScript.currentState == PossibleStates.Down) return;
+
+            if (IsGrounded())
             {
-                FPVector fromOriginToObject = worldTransform.position - centerPosition;
-                fromOriginToObject *= radius / distanceFromCenter;
-                worldTransform.position = centerPosition + fromOriginToObject;
-            }
-        }
-
-
-        // Clamp Ground Distance
-        if (worldTransform.position.y < 0) worldTransform.Translate(new FPVector(0, -worldTransform.position.y, 0));
-
-        if (controlScript.currentState == PossibleStates.Down) return;
-
-		if (IsGrounded()){
-            if (verticalTotalForce != 0) {
-				if (groundBounceTimes < UFE.config.groundBounceOptions._maximumBounces 
-                    && controlScript.currentSubState == SubStates.Stunned 
-                    && UFE.config.groundBounceOptions.bounceForce != Sizes.None 
-                    && activeForces.y <= -UFE.config.groundBounceOptions._minimumBounceForce
-                    && controlScript.currentHit.groundBounce)
+                if (verticalTotalForce != 0)
                 {
-                    if (controlScript.currentHit.overrideForcesOnGroundBounce) {
-                        if (controlScript.currentHit.resetGroundBounceHorizontalPush) activeForces.x = 0;
-                        if (controlScript.currentHit.resetGroundBounceVerticalPush) activeForces.y = 0;
-
-                        Fix64 addedH = controlScript.currentHit._groundBouncePushForce.x;
-                        Fix64 addedV = controlScript.currentHit._groundBouncePushForce.y;
-
-                        AddForce(new FPVector(addedH, addedV, 0), controlScript.mirror);
-
-                    } else {
-                        if (UFE.config.groundBounceOptions.bounceForce == Sizes.VerySmall) {
-                            AddForce(new FPVector(0, -activeForces.y * .5, 0), 1);
-                        } else if (UFE.config.groundBounceOptions.bounceForce == Sizes.Small) {
-                            AddForce(new FPVector(0, -activeForces.y * .6, 0), 1);
-                        } else if (UFE.config.groundBounceOptions.bounceForce == Sizes.Medium) {
-                            AddForce(new FPVector(0, -activeForces.y * .7, 0), 1);
-                        } else if (UFE.config.groundBounceOptions.bounceForce == Sizes.High) {
-                            AddForce(new FPVector(0, -activeForces.y * .8, 0), 1);
-                        } else if (UFE.config.groundBounceOptions.bounceForce == Sizes.VeryHigh) {
-                            AddForce(new FPVector(0, -activeForces.y, 0), 1);
-                        }
-                    }
-
-					groundBounceTimes ++;
-
-                    if (!isGroundBouncing) {
-                        controlScript.stunTime += airTime + UFE.config.knockDownOptions.air._knockedOutTime;
-
-                        if (moveSetScript.basicMoves.groundBounce.animMap[0].clip != null) {
-                            controlScript.currentHitAnimation = moveSetScript.basicMoves.groundBounce.name;
-                            moveSetScript.PlayBasicMove(moveSetScript.basicMoves.groundBounce);
-                        }
-
-						if (UFE.config.groundBounceOptions.bouncePrefab != null) {
-							GameObject pTemp = UFE.SpawnGameObject(UFE.config.groundBounceOptions.bouncePrefab, transform.position, Quaternion.identity, Mathf.RoundToInt(UFE.config.groundBounceOptions.bounceKillTime * UFE.config.fps));
-                            pTemp.transform.rotation = UFE.config.groundBounceOptions.bouncePrefab.transform.rotation;
-                            if (UFE.config.groundBounceOptions.sticky) pTemp.transform.parent = transform;
-                        }
-						if (UFE.config.groundBounceOptions.shakeCamOnBounce) {
-							controlScript.shakeCameraDensity = UFE.config.groundBounceOptions._shakeDensity;
-						}
-						UFE.PlaySound(UFE.config.groundBounceOptions.bounceSound);
-						isGroundBouncing = true;
-					}
-					return;
-				}
-				verticalTotalForce = 0;
-				airTime = 0;
-				moveSetScript.totalAirMoves = 0;
-                currentAirJumps = 0;
-                horizontalJumpForce = 0;
-
-                BasicMoveInfo airAnimation = null;
-                string downAnimation = "";
-                
-                isGroundBouncing = false;
-				groundBounceTimes = 0;
-
-                Fix64 animationSpeed = 0;
-                Fix64 delayTime = 0;
-				if (controlScript.currentMove != null && controlScript.currentMove.hitAnimationOverride) return;
-				if (controlScript.currentSubState == SubStates.Stunned){
-
-                    if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.airRecovery.name)) {
-                        controlScript.stunTime = 0;
-					    controlScript.currentState = PossibleStates.Stand;
-
-                    } else {
-					    controlScript.stunTime = UFE.config.knockDownOptions.air._knockedOutTime + UFE.config.knockDownOptions.air._standUpTime;
-
-                        // Hit Clips
-                        if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitKnockBack.name)
-                             && moveSetScript.basicMoves.getHitKnockBack.animMap[1].clip != null) {
-
-                            airAnimation = moveSetScript.basicMoves.getHitKnockBack;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
-
-                        } else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitHighKnockdown.name)
-                             && moveSetScript.basicMoves.getHitHighKnockdown.animMap[1].clip != null) {
-
-                            airAnimation = moveSetScript.basicMoves.getHitHighKnockdown;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
-                            controlScript.stunTime = UFE.config.knockDownOptions.high._knockedOutTime + UFE.config.knockDownOptions.high._standUpTime;
-
-                        } else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitMidKnockdown.name)
-                             && moveSetScript.basicMoves.getHitMidKnockdown.animMap[1].clip != null) {
-
-                            airAnimation = moveSetScript.basicMoves.getHitMidKnockdown;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
-                            controlScript.stunTime = UFE.config.knockDownOptions.highLow._knockedOutTime + UFE.config.knockDownOptions.highLow._standUpTime;
-
-                        } else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitSweep.name)
-                             && moveSetScript.basicMoves.getHitSweep.animMap[1].clip != null) {
-                            airAnimation = moveSetScript.basicMoves.getHitSweep;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
-                            controlScript.stunTime = UFE.config.knockDownOptions.sweep._knockedOutTime + UFE.config.knockDownOptions.sweep._standUpTime;
-
-                        } else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitCrumple.name)
-                             && moveSetScript.basicMoves.getHitCrumple.animMap[1].clip != null) {
-
-                            airAnimation = moveSetScript.basicMoves.getHitCrumple;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
-
-                        // Stage Clips
-                        } else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.standingWallBounceKnockdown.name)
-                             && moveSetScript.basicMoves.standingWallBounceKnockdown.animMap[1].clip != null) {
-
-                            airAnimation = moveSetScript.basicMoves.standingWallBounceKnockdown;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
-                            controlScript.stunTime = UFE.config.knockDownOptions.wallbounce._knockedOutTime + UFE.config.knockDownOptions.wallbounce._standUpTime;
-
-                        } else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.airWallBounce.name)
-                             && moveSetScript.basicMoves.airWallBounce.animMap[1].clip != null) {
-
-                            airAnimation = moveSetScript.basicMoves.airWallBounce;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
-                            controlScript.stunTime = UFE.config.knockDownOptions.wallbounce._knockedOutTime + UFE.config.knockDownOptions.wallbounce._standUpTime;
-
-                        // Fall Clips
-                        } else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.fallingFromAirHit.name)
-                            && moveSetScript.basicMoves.fallingFromAirHit.animMap[1].clip != null) {
-
-                            airAnimation = moveSetScript.basicMoves.fallingFromAirHit;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
-
-                        } else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.fallingFromGroundBounce.name)
-                            && moveSetScript.basicMoves.fallingFromGroundBounce.animMap[1].clip != null) {
-
-                            airAnimation = moveSetScript.basicMoves.fallingFromGroundBounce;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
-
-                        } else {
-                            if (moveSetScript.basicMoves.fallDown.animMap[0].clip == null)
-                                Debug.LogError("Fall Down From Air Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Fall Down From Air Hit");
-
-                            airAnimation = moveSetScript.basicMoves.fallDown;
-                            downAnimation = moveSetScript.GetAnimationString(airAnimation, 1);
-                        }
-                        
-					    controlScript.currentState = PossibleStates.Down;
-
-                    }
-
-				} else if (controlScript.currentState != PossibleStates.Stand) {
-                    if (moveSetScript.basicMoves.landing.animMap[0].clip != null
-                        && (controlScript.currentMove == null ||
-                        (controlScript.currentMove != null && controlScript.currentMove.cancelMoveWheLanding))){
-
-                        controlScript.isAirRecovering = false;
-						airAnimation = moveSetScript.basicMoves.landing;
-						moveDirection = 0;
-                        horizontalJumpForce = 0;
-                        isLanding = true;
-						controlScript.KillCurrentMove();
-                        delayTime = (Fix64)controlScript.myInfo.physics.landingDelay / (Fix64)UFE.config.fps;
-                        UFE.DelaySynchronizedAction(ResetLanding, delayTime);
-
-                        if (airAnimation.autoSpeed) {
-                            animationSpeed = moveSetScript.GetAnimationLength(airAnimation.name) / delayTime;
-                        }
-					}
-
-					if (controlScript.currentState != PossibleStates.Crouch) controlScript.currentState = PossibleStates.Stand;
-
-				}
-
-				if (airAnimation != null) {
-                    if (downAnimation != "") {
-                        moveSetScript.PlayBasicMove(airAnimation, downAnimation);
-                    } else {
-                        moveSetScript.PlayBasicMove(airAnimation);
-                    }
-
-                    if (animationSpeed != 0) {
-                        moveSetScript.SetAnimationSpeed(airAnimation.name, animationSpeed);
-                    }
-				}
-			}
-			
-			if (controlScript.currentSubState != SubStates.Stunned 
-                && !controlScript.isBlocking && !controlScript.blockStunned 
-                && move == null 
-                && !isTakingOff 
-                && !isLanding 
-                && controlScript.currentState == PossibleStates.Stand)
-            {
-				if (controlScript.currentSubState == SubStates.MovingForward) {
-					if (moveSetScript.basicMoves.moveForward.animMap[0].clip == null)
-						Debug.LogError("Move Forward animation not found! Make sure you have it set on Character -> Basic Moves -> Move Forward");
-					if (!moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.moveForward.name)) {
-					    moveSetScript.PlayBasicMove(moveSetScript.basicMoves.moveForward);
-					}
-				}
-                else if (controlScript.currentSubState == SubStates.MovingBack) {
-					if (moveSetScript.basicMoves.moveBack.animMap[0].clip == null)
-						Debug.LogError("Move Back animation not found! Make sure you have it set on Character -> Basic Moves -> Move Back");
-					if (!moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.moveBack.name)) {
-						moveSetScript.PlayBasicMove(moveSetScript.basicMoves.moveBack);
-					}
-                }
-                else if (controlScript.currentSubState == SubStates.MovingSideways) {
-                    if (moveSetScript.basicMoves.moveSideways.animMap[0].clip == null)
-                        Debug.LogError("Move Sidewyas animation not found! Make sure you have it set on Character -> Basic Moves -> Move Sideways");
-                    if (!moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.moveSideways.name))
+                    if (groundBounceTimes < UFE.config.groundBounceOptions._maximumBounces
+                        && controlScript.currentSubState == SubStates.Stunned
+                        && UFE.config.groundBounceOptions.bounceForce != Sizes.None
+                        && activeForces.y <= -UFE.config.groundBounceOptions._minimumBounceForce
+                        && controlScript.currentHit.groundBounce)
                     {
-                        moveSetScript.PlayBasicMove(moveSetScript.basicMoves.moveSideways);
+                        if (controlScript.currentHit.overrideForcesOnGroundBounce)
+                        {
+                            if (controlScript.currentHit.resetGroundBounceHorizontalPush) activeForces.x = 0;
+                            if (controlScript.currentHit.resetGroundBounceVerticalPush) activeForces.y = 0;
+
+                            Fix64 addedH = controlScript.currentHit._groundBouncePushForce.x;
+                            Fix64 addedV = controlScript.currentHit._groundBouncePushForce.y;
+
+                            AddForce(new FPVector(addedH, addedV, 0), controlScript.mirror);
+
+                        }
+                        else
+                        {
+                            if (UFE.config.groundBounceOptions.bounceForce == Sizes.VerySmall)
+                            {
+                                AddForce(new FPVector(0, -activeForces.y * .5, 0), 1);
+                            }
+                            else if (UFE.config.groundBounceOptions.bounceForce == Sizes.Small)
+                            {
+                                AddForce(new FPVector(0, -activeForces.y * .6, 0), 1);
+                            }
+                            else if (UFE.config.groundBounceOptions.bounceForce == Sizes.Medium)
+                            {
+                                AddForce(new FPVector(0, -activeForces.y * .7, 0), 1);
+                            }
+                            else if (UFE.config.groundBounceOptions.bounceForce == Sizes.High)
+                            {
+                                AddForce(new FPVector(0, -activeForces.y * .8, 0), 1);
+                            }
+                            else if (UFE.config.groundBounceOptions.bounceForce == Sizes.VeryHigh)
+                            {
+                                AddForce(new FPVector(0, -activeForces.y, 0), 1);
+                            }
+                        }
+
+                        groundBounceTimes++;
+
+                        if (!isGroundBouncing)
+                        {
+                            controlScript.stunTime += airTime + UFE.config.knockDownOptions.air._knockedOutTime;
+                            if (controlScript.myInfo.animationType != AnimationType.Volumetric)
+                            {
+                                if (moveSetScript.basicMoves.groundBounce.animMap[0].clip != null)
+                                {
+                                    controlScript.currentHitAnimation = moveSetScript.basicMoves.groundBounce.name;
+                                    moveSetScript.PlayBasicMove(moveSetScript.basicMoves.groundBounce);
+                                }
+                            }
+                            else
+                            {
+                                if (moveSetScript.basicMoves.groundBounce._voluMap[0]._move != null)
+                                {
+                                    controlScript.currentHitAnimation = moveSetScript.basicMoves.groundBounce.name;
+                                    moveSetScript.PlayBasicMove(moveSetScript.basicMoves.groundBounce);
+                                }
+                            }
+
+                            if (UFE.config.groundBounceOptions.bouncePrefab != null)
+                            {
+                                GameObject pTemp = UFE.SpawnGameObject(UFE.config.groundBounceOptions.bouncePrefab, transform.position, Quaternion.identity, Mathf.RoundToInt(UFE.config.groundBounceOptions.bounceKillTime * UFE.config.fps));
+                                pTemp.transform.rotation = UFE.config.groundBounceOptions.bouncePrefab.transform.rotation;
+                                if (UFE.config.groundBounceOptions.sticky) pTemp.transform.parent = transform;
+                            }
+                            if (UFE.config.groundBounceOptions.shakeCamOnBounce)
+                            {
+                                controlScript.shakeCameraDensity = UFE.config.groundBounceOptions._shakeDensity;
+                            }
+                            UFE.PlaySound(UFE.config.groundBounceOptions.bounceSound);
+                            isGroundBouncing = true;
+                        }
+                        return;
+                    }
+                    verticalTotalForce = 0;
+                    airTime = 0;
+                    moveSetScript.totalAirMoves = 0;
+                    currentAirJumps = 0;
+                    horizontalJumpForce = 0;
+
+                    BasicMoveInfo airAnimation = null;
+                    string downAnimation = "";
+
+                    isGroundBouncing = false;
+                    groundBounceTimes = 0;
+
+                    Fix64 animationSpeed = 0;
+                    Fix64 delayTime = 0;
+                    if (controlScript.currentMove != null && controlScript.currentMove.hitAnimationOverride) return;
+                    if (controlScript.currentSubState == SubStates.Stunned)
+                    {
+
+                        if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.airRecovery.name))
+                        {
+                            controlScript.stunTime = 0;
+                            controlScript.currentState = PossibleStates.Stand;
+
+                        }
+                        else
+                        {
+                            controlScript.stunTime = UFE.config.knockDownOptions.air._knockedOutTime + UFE.config.knockDownOptions.air._standUpTime;
+
+                            // Hit Clips
+                            
+                                if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitKnockBack.name)
+                                 && moveSetScript.basicMoves.getHitKnockBack.animMap[1].clip != null || moveSetScript.basicMoves.getHitKnockBack._voluMap[1]._move != null)
+                            {
+
+                                airAnimation = moveSetScript.basicMoves.getHitKnockBack;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
+
+                            }
+                            else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitHighKnockdown.name)
+                               && moveSetScript.basicMoves.getHitHighKnockdown.animMap[1].clip != null || moveSetScript.basicMoves.getHitHighKnockdown._voluMap[1]._move != null)
+                            {
+
+                                airAnimation = moveSetScript.basicMoves.getHitHighKnockdown;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
+                                controlScript.stunTime = UFE.config.knockDownOptions.high._knockedOutTime + UFE.config.knockDownOptions.high._standUpTime;
+
+                            }
+                            else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitMidKnockdown.name)
+                               && moveSetScript.basicMoves.getHitMidKnockdown.animMap[1].clip != null || moveSetScript.basicMoves.getHitMidKnockdown._voluMap[1]._move != null)
+                            {
+
+                                airAnimation = moveSetScript.basicMoves.getHitMidKnockdown;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
+                                controlScript.stunTime = UFE.config.knockDownOptions.highLow._knockedOutTime + UFE.config.knockDownOptions.highLow._standUpTime;
+
+                            }
+                            else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitSweep.name)
+                               && moveSetScript.basicMoves.getHitSweep.animMap[1].clip != null || moveSetScript.basicMoves.getHitSweep._voluMap[1]._move != null)
+                            {
+                                airAnimation = moveSetScript.basicMoves.getHitSweep;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
+                                controlScript.stunTime = UFE.config.knockDownOptions.sweep._knockedOutTime + UFE.config.knockDownOptions.sweep._standUpTime;
+
+                            }
+                            else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.getHitCrumple.name)
+                               && moveSetScript.basicMoves.getHitCrumple.animMap[1].clip != null || moveSetScript.basicMoves.getHitCrumple._voluMap[1]._move != null)
+                            {
+
+                                airAnimation = moveSetScript.basicMoves.getHitCrumple;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
+
+                                // Stage Clips
+                            }
+                            else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.standingWallBounceKnockdown.name)
+                               && moveSetScript.basicMoves.standingWallBounceKnockdown.animMap[1].clip != null || moveSetScript.basicMoves.standingWallBounceKnockdown._voluMap[1]._move != null) 
+                            {
+
+                                airAnimation = moveSetScript.basicMoves.standingWallBounceKnockdown;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
+                                controlScript.stunTime = UFE.config.knockDownOptions.wallbounce._knockedOutTime + UFE.config.knockDownOptions.wallbounce._standUpTime;
+
+                            }
+                            else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.airWallBounce.name)
+                               && moveSetScript.basicMoves.airWallBounce.animMap[1].clip != null || moveSetScript.basicMoves.airWallBounce._voluMap[1]._move != null)
+                            {
+
+                                airAnimation = moveSetScript.basicMoves.airWallBounce;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
+                                controlScript.stunTime = UFE.config.knockDownOptions.wallbounce._knockedOutTime + UFE.config.knockDownOptions.wallbounce._standUpTime;
+
+                                // Fall Clips
+                            }
+                            else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.fallingFromAirHit.name)
+                              && moveSetScript.basicMoves.fallingFromAirHit.animMap[1].clip != null || moveSetScript.basicMoves.fallingFromAirHit._voluMap[1]._move != null)
+                            {
+
+                                airAnimation = moveSetScript.basicMoves.fallingFromAirHit;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
+
+                            }
+                            else if (moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.fallingFromGroundBounce.name)
+                              && moveSetScript.basicMoves.fallingFromGroundBounce.animMap[1].clip != null || moveSetScript.basicMoves.fallingFromGroundBounce._voluMap[1]._move != null)
+                            {
+
+                                airAnimation = moveSetScript.basicMoves.fallingFromGroundBounce;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 2);
+
+                            }
+                            else
+                            {
+                                if (moveSetScript.basicMoves.fallDown.animMap[0].clip == null && moveSetScript.basicMoves.fallDown._voluMap[0]._move == null)
+                                    Debug.LogError("Fall Down From Air Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Fall Down From Air Hit");
+
+                                airAnimation = moveSetScript.basicMoves.fallDown;
+                                downAnimation = moveSetScript.GetAnimationString(airAnimation, 1);
+                            }
+
+                            controlScript.currentState = PossibleStates.Down;
+
+                        }
+
+                    }
+                    else if (controlScript.currentState != PossibleStates.Stand)
+                    {
+                        if (moveSetScript.basicMoves.landing.animMap[0].clip != null || moveSetScript.basicMoves.landing._voluMap[0]._move != null
+                            && (controlScript.currentMove == null ||
+                            (controlScript.currentMove != null && controlScript.currentMove.cancelMoveWheLanding)))
+                        {
+
+                            controlScript.isAirRecovering = false;
+                            airAnimation = moveSetScript.basicMoves.landing;
+                            moveDirection = 0;
+                            horizontalJumpForce = 0;
+                            isLanding = true;
+                            controlScript.KillCurrentMove();
+                            delayTime = (Fix64)controlScript.myInfo.physics.landingDelay / (Fix64)UFE.config.fps;
+                            UFE.DelaySynchronizedAction(ResetLanding, delayTime);
+
+                            if (airAnimation.autoSpeed)
+                            {
+                                animationSpeed = moveSetScript.GetAnimationLength(airAnimation.name) / delayTime;
+                            }
+                        }
+
+                        if (controlScript.currentState != PossibleStates.Crouch) controlScript.currentState = PossibleStates.Stand;
+
+                    }
+
+                    if (airAnimation != null)
+                    {
+                        if (downAnimation != "")
+                        {
+                            moveSetScript.PlayBasicMove(airAnimation, downAnimation);
+                        }
+                        else
+                        {
+                            moveSetScript.PlayBasicMove(airAnimation);
+                        }
+
+                        if (animationSpeed != 0)
+                        {
+                            moveSetScript.SetAnimationSpeed(airAnimation.name, animationSpeed);
+                        }
+                    }
+                }
+
+                if (controlScript.currentSubState != SubStates.Stunned
+                    && !controlScript.isBlocking && !controlScript.blockStunned
+                    && move == null
+                    && !isTakingOff
+                    && !isLanding
+                    && controlScript.currentState == PossibleStates.Stand)
+                {
+                    if (controlScript.currentSubState == SubStates.MovingForward)
+                    {
+                        if (moveSetScript.basicMoves.moveForward.animMap[0].clip == null && moveSetScript.basicMoves.moveForward._voluMap[0]._move == null)
+                            Debug.LogError("Move Forward animation not found! Make sure you have it set on Character -> Basic Moves -> Move Forward");
+                        if (!moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.moveForward.name))
+                        {
+                            moveSetScript.PlayBasicMove(moveSetScript.basicMoves.moveForward);
+                        }
+                    }
+                    else if (controlScript.currentSubState == SubStates.MovingBack)
+                    {
+                        if (moveSetScript.basicMoves.moveBack.animMap[0].clip == null && moveSetScript.basicMoves.moveBack._voluMap[0]._move == null)
+                            Debug.LogError("Move Back animation not found! Make sure you have it set on Character -> Basic Moves -> Move Back");
+                        if (!moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.moveBack.name))
+                        {
+                            moveSetScript.PlayBasicMove(moveSetScript.basicMoves.moveBack);
+                        }
+                    }
+                    else if (controlScript.currentSubState == SubStates.MovingSideways)
+                    {
+                        if (moveSetScript.basicMoves.moveSideways.animMap[0].clip == null && moveSetScript.basicMoves.moveSideways._voluMap[0]._move == null)
+                            Debug.LogError("Move Sidewyas animation not found! Make sure you have it set on Character -> Basic Moves -> Move Sideways");
+                        if (!moveSetScript.IsAnimationPlaying(moveSetScript.basicMoves.moveSideways.name))
+                        {
+                            moveSetScript.PlayBasicMove(moveSetScript.basicMoves.moveSideways);
+                        }
                     }
                 }
             }
-        }
-        else if (activeForces.y > 0 || !IsGrounded())
-        {
-			if (move != null && controlScript.currentState == PossibleStates.Stand)
-				controlScript.currentState = PossibleStates.NeutralJump;
-			if (move == null && activeForces.y / verticalTotalForce > 0 && activeForces.y / verticalTotalForce <= 1) {
-				if (isGroundBouncing) return;
+            else if (activeForces.y > 0 || !IsGrounded())
+            {
+                if (move != null && controlScript.currentState == PossibleStates.Stand)
+                    controlScript.currentState = PossibleStates.NeutralJump;
+                if (move == null && activeForces.y / verticalTotalForce > 0 && activeForces.y / verticalTotalForce <= 1)
+                {
+                    if (isGroundBouncing) return;
 
-				if (moveDirection == 0) {
-					controlScript.currentState = PossibleStates.NeutralJump;
-				}else{
-					if (moveDirection > 0 && controlScript.mirror == -1 ||
-					    moveDirection < 0 && controlScript.mirror == 1) {
-						controlScript.currentState = PossibleStates.ForwardJump;
-					}
-
-					if (moveDirection > 0 && controlScript.mirror == 1||
-					    moveDirection < 0 && controlScript.mirror == -1) {
-						controlScript.currentState = PossibleStates.BackJump;
-					}
-				}
-
-                BasicMoveInfo airAnimation = moveSetScript.basicMoves.jumpStraight;
-				if (controlScript.currentSubState == SubStates.Stunned) {
-                    if (isWallBouncing && moveSetScript.basicMoves.airWallBounce.animMap[0].clip != null) {
-                        airAnimation = moveSetScript.basicMoves.airWallBounce;
-
-                    } else if (moveSetScript.basicMoves.getHitKnockBack.animMap[0].clip != null && 
-					    FPMath.Abs(activeForces.x) > UFE.config.comboOptions._knockBackMinForce && 
-					    UFE.config.comboOptions._knockBackMinForce > 0){
-						airAnimation = moveSetScript.basicMoves.getHitKnockBack;
-                        airTime *= (Fix64)2;
-
-					} else {
-						if (moveSetScript.basicMoves.getHitAir.animMap[0].clip == null)
-							Debug.LogError("Get Hit Air animation not found! Make sure you have it set on Character -> Basic Moves -> Get Hit Air");
-
-                        airAnimation = moveSetScript.basicMoves.getHitAir;
+                    if (moveDirection == 0)
+                    {
+                        controlScript.currentState = PossibleStates.NeutralJump;
                     }
-                    if (overrideStunAnimation != null) airAnimation = overrideStunAnimation;
+                    else
+                    {
+                        if (moveDirection > 0 && controlScript.mirror == -1 ||
+                            moveDirection < 0 && controlScript.mirror == 1)
+                        {
+                            controlScript.currentState = PossibleStates.ForwardJump;
+                        }
 
-                } else if (controlScript.isAirRecovering 
-                    && (moveSetScript.basicMoves.airRecovery.animMap[0].clip != null)) {
-						airAnimation = moveSetScript.basicMoves.airRecovery;
+                        if (moveDirection > 0 && controlScript.mirror == 1 ||
+                            moveDirection < 0 && controlScript.mirror == -1)
+                        {
+                            controlScript.currentState = PossibleStates.BackJump;
+                        }
+                    }
 
-				} else {
-					if (moveSetScript.basicMoves.jumpForward.animMap[0].clip != null && controlScript.currentState == PossibleStates.ForwardJump) {
-						airAnimation = moveSetScript.basicMoves.jumpForward;
-					} else if (moveSetScript.basicMoves.jumpBack.animMap[0].clip != null && controlScript.currentState == PossibleStates.BackJump) {
-						airAnimation = moveSetScript.basicMoves.jumpBack;
-					} else {
-						if (moveSetScript.basicMoves.jumpStraight.animMap[0].clip == null)
-							Debug.LogError("Jump animation not found! Make sure you have it set on Character -> Basic Moves -> Jump Straight");
+                    BasicMoveInfo airAnimation = moveSetScript.basicMoves.jumpStraight;
+                    if (controlScript.currentSubState == SubStates.Stunned)
+                    {
+                        if (isWallBouncing && moveSetScript.basicMoves.airWallBounce.animMap[0].clip != null || moveSetScript.basicMoves.airWallBounce._voluMap[0]._move != null)
+                        {
+                            airAnimation = moveSetScript.basicMoves.airWallBounce;
 
-						airAnimation = moveSetScript.basicMoves.jumpStraight;
-					}
-				}
+                        }
+                        else if (moveSetScript.basicMoves.getHitKnockBack.animMap[0].clip != null || moveSetScript.basicMoves.getHitKnockBack._voluMap[0]._move != null &&
+                          FPMath.Abs(activeForces.x) > UFE.config.comboOptions._knockBackMinForce &&
+                          UFE.config.comboOptions._knockBackMinForce > 0)
+                        {
+                            airAnimation = moveSetScript.basicMoves.getHitKnockBack;
+                            airTime *= (Fix64)2;
 
-                if (!overrideAirAnimation && !moveSetScript.IsAnimationPlaying(airAnimation.name)) {
-                    moveSetScript.PlayBasicMove(airAnimation);
+                        }
+                        else
+                        {
+                            if (moveSetScript.basicMoves.getHitAir.animMap[0].clip == null && moveSetScript.basicMoves.getHitAir._voluMap[0]._move == null)
+                                Debug.LogError("Get Hit Air animation not found! Make sure you have it set on Character -> Basic Moves -> Get Hit Air");
 
-                    if (airAnimation.autoSpeed)
-                        moveSetScript.SetAnimationNormalizedSpeed(airAnimation.name, (moveSetScript.GetAnimationLength(airAnimation.name) / airTime));
-				}
-
-            } else if (move == null && activeForces.y / verticalTotalForce <= 0) {
-
-                BasicMoveInfo airAnimation = moveSetScript.basicMoves.fallStraight;
-                if (isGroundBouncing && moveSetScript.basicMoves.fallingFromGroundBounce.animMap[0].clip != null) {
-                    airAnimation = moveSetScript.basicMoves.fallingFromGroundBounce;
-
-                } else if (isWallBouncing && moveSetScript.basicMoves.airWallBounce.animMap[0].clip != null) {
-                    airAnimation = moveSetScript.basicMoves.airWallBounce;
-
-				} else {
-					if (controlScript.currentSubState == SubStates.Stunned){
-						if (moveSetScript.basicMoves.getHitKnockBack.animMap[0].clip != null &&
-                            FPMath.Abs(activeForces.x) > UFE.config.comboOptions._knockBackMinForce && 
-						    UFE.config.comboOptions._knockBackMinForce > 0){
-							airAnimation = moveSetScript.basicMoves.getHitKnockBack;
-
-                        } else {
                             airAnimation = moveSetScript.basicMoves.getHitAir;
-                            if (moveSetScript.basicMoves.fallingFromAirHit.animMap[0].clip != null) {
-                                airAnimation = moveSetScript.basicMoves.fallingFromAirHit;
-
-                            } else if (moveSetScript.basicMoves.getHitAir.animMap[0].clip == null) {
-                                Debug.LogError("Air Juggle animation not found! Make sure you have it set on Character -> Basic Moves -> Air Juggle");
-                            }
                         }
                         if (overrideStunAnimation != null) airAnimation = overrideStunAnimation;
 
-                    } else if (controlScript.isAirRecovering 
-                        && (moveSetScript.basicMoves.airRecovery.animMap[0].clip != null)) {
+                    }
+                    else if (controlScript.isAirRecovering
+                      && (moveSetScript.basicMoves.airRecovery.animMap[0].clip != null || moveSetScript.basicMoves.airRecovery._voluMap[0]._move != null))
+                    {
                         airAnimation = moveSetScript.basicMoves.airRecovery;
 
-					} else {
-						if (moveSetScript.basicMoves.fallForward.animMap[0].clip != null && controlScript.currentState == PossibleStates.ForwardJump) {
-							airAnimation = moveSetScript.basicMoves.fallForward;
-						} else if (moveSetScript.basicMoves.fallBack.animMap[0].clip != null && controlScript.currentState == PossibleStates.BackJump) {
-							airAnimation = moveSetScript.basicMoves.fallBack;
-						} else {
-							if (moveSetScript.basicMoves.fallStraight.animMap[0].clip == null)
-								Debug.LogError("Fall animation not found! Make sure you have it set on Character -> Basic Moves -> Fall Straight");
-							
-							airAnimation = moveSetScript.basicMoves.fallStraight;
-						}
-					}
-				}
-
-				if (!overrideAirAnimation && !moveSetScript.IsAnimationPlaying(airAnimation.name)){
-                    moveSetScript.PlayBasicMove(airAnimation);
-
-                    if (airAnimation.autoSpeed) {
-                        moveSetScript.SetAnimationNormalizedSpeed(airAnimation.name, (moveSetScript.GetAnimationLength(airAnimation.name) / airTime));
                     }
-				}
-			}
-		}
+                    else
+                    {
+                        if (moveSetScript.basicMoves.jumpForward.animMap[0].clip != null || moveSetScript.basicMoves.jumpForward._voluMap[0]._move != null && controlScript.currentState == PossibleStates.ForwardJump)
+                        {
+                            airAnimation = moveSetScript.basicMoves.jumpForward;
+                        }
+                        else if (moveSetScript.basicMoves.jumpBack.animMap[0].clip != null || moveSetScript.basicMoves.jumpBack._voluMap[0]._move != null  && controlScript.currentState == PossibleStates.BackJump)
+                        {
+                            airAnimation = moveSetScript.basicMoves.jumpBack;
+                        }
+                        else
+                        {
+                            if (moveSetScript.basicMoves.jumpStraight.animMap[0].clip == null && moveSetScript.basicMoves.jumpStraight._voluMap[0]._move == null)
+                                Debug.LogError("Jump animation not found! Make sure you have it set on Character -> Basic Moves -> Jump Straight");
 
-        if (activeForces.x == 0 && activeForces.y == 0)
-            moveDirection = 0;
+                            airAnimation = moveSetScript.basicMoves.jumpStraight;
+                        }
+                    }
+
+                    if (!overrideAirAnimation && !moveSetScript.IsAnimationPlaying(airAnimation.name))
+                    {
+                        moveSetScript.PlayBasicMove(airAnimation);
+
+                        if (airAnimation.autoSpeed)
+                            moveSetScript.SetAnimationNormalizedSpeed(airAnimation.name, (moveSetScript.GetAnimationLength(airAnimation.name) / airTime));
+                    }
+
+                }
+                else if (move == null && activeForces.y / verticalTotalForce <= 0)
+                {
+
+                    BasicMoveInfo airAnimation = moveSetScript.basicMoves.fallStraight;
+                    if (isGroundBouncing && moveSetScript.basicMoves.fallingFromGroundBounce.animMap[0].clip != null || moveSetScript.basicMoves.fallingFromGroundBounce._voluMap[0]._move != null)
+                    {
+                        airAnimation = moveSetScript.basicMoves.fallingFromGroundBounce;
+
+                    }
+                    else if (isWallBouncing && moveSetScript.basicMoves.airWallBounce.animMap[0].clip != null || moveSetScript.basicMoves.airWallBounce._voluMap[0]._move != null)
+                    {
+                        airAnimation = moveSetScript.basicMoves.airWallBounce;
+
+                    }
+                    else
+                    {
+                        if (controlScript.currentSubState == SubStates.Stunned)
+                        {
+                            if (moveSetScript.basicMoves.getHitKnockBack.animMap[0].clip != null  || moveSetScript.basicMoves.getHitKnockBack._voluMap[0]._move != null &&
+                                FPMath.Abs(activeForces.x) > UFE.config.comboOptions._knockBackMinForce &&
+                                UFE.config.comboOptions._knockBackMinForce > 0)
+                            {
+                                airAnimation = moveSetScript.basicMoves.getHitKnockBack;
+
+                            }
+                            else
+                            {
+                                airAnimation = moveSetScript.basicMoves.getHitAir;
+                                if (moveSetScript.basicMoves.fallingFromAirHit.animMap[0].clip != null || moveSetScript.basicMoves.fallingFromAirHit._voluMap[0]._move != null)
+                                {
+                                    airAnimation = moveSetScript.basicMoves.fallingFromAirHit;
+
+                                }
+                                else if (moveSetScript.basicMoves.getHitAir.animMap[0].clip == null && moveSetScript.basicMoves.getHitAir._voluMap[0]._move == null)
+                                {
+                                    Debug.LogError("Air Juggle animation not found! Make sure you have it set on Character -> Basic Moves -> Air Juggle");
+                                }
+                            }
+                            if (overrideStunAnimation != null) airAnimation = overrideStunAnimation;
+
+                        }
+                        else if (controlScript.isAirRecovering
+                          && (moveSetScript.basicMoves.airRecovery.animMap[0].clip != null || moveSetScript.basicMoves.airRecovery._voluMap[0]._move != null))
+                        {
+                            airAnimation = moveSetScript.basicMoves.airRecovery;
+
+                        }
+                        else
+                        {
+                            if (moveSetScript.basicMoves.fallForward.animMap[0].clip != null || moveSetScript.basicMoves.fallForward._voluMap[0]._move != null && controlScript.currentState == PossibleStates.ForwardJump)
+                            {
+                                airAnimation = moveSetScript.basicMoves.fallForward;
+                            }
+                            else if (moveSetScript.basicMoves.fallBack.animMap[0].clip != null || moveSetScript.basicMoves.fallBack._voluMap[0]._move != null && controlScript.currentState == PossibleStates.BackJump)
+                            {
+                                airAnimation = moveSetScript.basicMoves.fallBack;
+                            }
+                            else
+                            {
+                                if (moveSetScript.basicMoves.fallStraight.animMap[0].clip == null && moveSetScript.basicMoves.fallStraight._voluMap[0]._move == null)
+                                    Debug.LogError("Fall animation not found! Make sure you have it set on Character -> Basic Moves -> Fall Straight");
+
+                                airAnimation = moveSetScript.basicMoves.fallStraight;
+                            }
+                        }
+                    }
+
+                    if (!overrideAirAnimation && !moveSetScript.IsAnimationPlaying(airAnimation.name))
+                    {
+                        moveSetScript.PlayBasicMove(airAnimation);
+
+                        if (airAnimation.autoSpeed)
+                        {
+                            moveSetScript.SetAnimationNormalizedSpeed(airAnimation.name, (moveSetScript.GetAnimationLength(airAnimation.name) / airTime));
+                        }
+                    }
+                }
+            }
+
+            if (activeForces.x == 0 && activeForces.y == 0)
+                moveDirection = 0;
+        }
     }
+
 
 	public bool IsGrounded() {
         if (worldTransform.position.y <= UFE.config.selectedStage.position.y) return true;

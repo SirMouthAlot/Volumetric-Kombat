@@ -1488,120 +1488,297 @@ public class ControlsScript : MonoBehaviour {
         SubKnockdownOptions knockdownOption = null;
         if (!isDead && currentMove == null && myPhysicsScript.IsGrounded()) {
             // Knocked Down
-			if (currentState == PossibleStates.Down){
-                if (myMoveSetScript.basicMoves.standUpFromAirHit.animMap[0].clip != null &&
-                    (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitAir, 1)
-                    || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.fallingFromAirHit, 1)
-                    || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.fallingFromAirHit, 2)
-                    || standUpOverride == StandUpOptions.AirJuggleClip)) {
-                    if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+            if (currentState == PossibleStates.Down)
+            {
+                if (myInfo.animationType != AnimationType.Volumetric)
+                {
+                    if (myMoveSetScript.basicMoves.standUpFromAirHit.animMap[0].clip != null &&
+                        (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitAir, 1)
+                        || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.fallingFromAirHit, 1)
+                        || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.fallingFromAirHit, 2)
+                        || standUpOverride == StandUpOptions.AirJuggleClip))
                     {
-                        newBasicMove = myMoveSetScript.basicMoves.standUpFromAirHit;
-                        standUpTime = UFE.config.knockDownOptions.air._standUpTime;
-                        knockdownOption = UFE.config.knockDownOptions.air;
+                        if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromAirHit;
+                            standUpTime = UFE.config.knockDownOptions.air._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.air;
+                        }
                     }
-                } else if (myMoveSetScript.basicMoves.standUpFromKnockBack.animMap[0].clip != null && 
-                    (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitKnockBack, 1)
-                    || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitKnockBack, 2)
-                    || standUpOverride == StandUpOptions.KnockBackClip)) {
-                    if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                    else if (myMoveSetScript.basicMoves.standUpFromKnockBack.animMap[0].clip != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitKnockBack, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitKnockBack, 2)
+                      || standUpOverride == StandUpOptions.KnockBackClip))
                     {
-                        newBasicMove = myMoveSetScript.basicMoves.standUpFromKnockBack;
-                        standUpTime = UFE.config.knockDownOptions.air._standUpTime;
-                        knockdownOption = UFE.config.knockDownOptions.air;
+                        if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromKnockBack;
+                            standUpTime = UFE.config.knockDownOptions.air._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.air;
+                        }
                     }
-                } else if (myMoveSetScript.basicMoves.standUpFromStandingHighHit.animMap[0].clip != null && 
-                    (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitHighKnockdown, 1)
-                    || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitHighKnockdown, 2)
-                    || standUpOverride == StandUpOptions.HighKnockdownClip)){
-					if (stunTime <= UFE.config.knockDownOptions.high._standUpTime)
+                    else if (myMoveSetScript.basicMoves.standUpFromStandingHighHit.animMap[0].clip != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitHighKnockdown, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitHighKnockdown, 2)
+                      || standUpOverride == StandUpOptions.HighKnockdownClip))
                     {
-                        newBasicMove = myMoveSetScript.basicMoves.standUpFromStandingHighHit;
-                        standUpTime = UFE.config.knockDownOptions.high._standUpTime;
-                        knockdownOption = UFE.config.knockDownOptions.high;
-					}
-                } else if (myMoveSetScript.basicMoves.standUpFromStandingMidHit.animMap[0].clip != null && 
-                    (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitMidKnockdown, 1)
-                    || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitMidKnockdown, 2)
-                    || standUpOverride == StandUpOptions.LowKnockdownClip)){
-					if (stunTime <= UFE.config.knockDownOptions.highLow._standUpTime)
-                    {
-                        newBasicMove = myMoveSetScript.basicMoves.standUpFromStandingMidHit;
-                        standUpTime = UFE.config.knockDownOptions.highLow._standUpTime;
-                        knockdownOption = UFE.config.knockDownOptions.highLow;
-					}
-                } else if (myMoveSetScript.basicMoves.standUpFromSweep.animMap[0].clip != null && 
-                    (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitSweep, 1)
-                    || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitSweep, 2)
-                    || standUpOverride == StandUpOptions.SweepClip)){
-					if (stunTime <= UFE.config.knockDownOptions.sweep._standUpTime)
-                    {
-                        newBasicMove = myMoveSetScript.basicMoves.standUpFromSweep;
-                        standUpTime = UFE.config.knockDownOptions.sweep._standUpTime;
-                        knockdownOption = UFE.config.knockDownOptions.sweep;
+                        if (stunTime <= UFE.config.knockDownOptions.high._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromStandingHighHit;
+                            standUpTime = UFE.config.knockDownOptions.high._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.high;
+                        }
                     }
-                } else if (myMoveSetScript.basicMoves.standUpFromAirWallBounce.animMap[0].clip != null && 
-                    (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.airWallBounce, 1)
-                    || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.airWallBounce, 2)
-                    || standUpOverride == StandUpOptions.AirWallBounceClip)) {
-                    if (stunTime <= UFE.config.knockDownOptions.wallbounce._standUpTime)
+                    else if (myMoveSetScript.basicMoves.standUpFromStandingMidHit.animMap[0].clip != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitMidKnockdown, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitMidKnockdown, 2)
+                      || standUpOverride == StandUpOptions.LowKnockdownClip))
                     {
-                        newBasicMove = myMoveSetScript.basicMoves.standUpFromAirWallBounce;
-                        standUpTime = UFE.config.knockDownOptions.wallbounce._standUpTime;
-                        knockdownOption = UFE.config.knockDownOptions.wallbounce;
+                        if (stunTime <= UFE.config.knockDownOptions.highLow._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromStandingMidHit;
+                            standUpTime = UFE.config.knockDownOptions.highLow._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.highLow;
+                        }
                     }
-                } else if (myMoveSetScript.basicMoves.standUpFromGroundBounce.animMap[0].clip != null && 
-                    (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.fallingFromGroundBounce, 1)
-                    || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.groundBounce, 1)
-                    || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.groundBounce, 2)
-                    || standUpOverride == StandUpOptions.GroundBounceClip)) {
-                    if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                    else if (myMoveSetScript.basicMoves.standUpFromSweep.animMap[0].clip != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitSweep, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitSweep, 2)
+                      || standUpOverride == StandUpOptions.SweepClip))
                     {
-                        newBasicMove = myMoveSetScript.basicMoves.standUpFromGroundBounce;
-                        standUpTime = UFE.config.knockDownOptions.air._standUpTime;
-                        knockdownOption = UFE.config.knockDownOptions.air;
+                        if (stunTime <= UFE.config.knockDownOptions.sweep._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromSweep;
+                            standUpTime = UFE.config.knockDownOptions.sweep._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.sweep;
+                        }
                     }
-				} else {
-					if (myMoveSetScript.basicMoves.standUp.animMap[0].clip == null)
-						Debug.LogError("Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
-					
-					if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                    else if (myMoveSetScript.basicMoves.standUpFromAirWallBounce.animMap[0].clip != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.airWallBounce, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.airWallBounce, 2)
+                      || standUpOverride == StandUpOptions.AirWallBounceClip))
                     {
-                        newBasicMove = myMoveSetScript.basicMoves.standUp;
-                        standUpTime = UFE.config.knockDownOptions.air._standUpTime;
-                        knockdownOption = UFE.config.knockDownOptions.air;
-					}
-				}
-            } else if (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitCrumple, 1)
-                || standUpOverride == StandUpOptions.CrumpleClip){
-				if (stunTime <= UFE.config.knockDownOptions.crumple._standUpTime){
-                    if (myMoveSetScript.basicMoves.standUpFromCrumple.animMap[0].clip != null)
+                        if (stunTime <= UFE.config.knockDownOptions.wallbounce._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromAirWallBounce;
+                            standUpTime = UFE.config.knockDownOptions.wallbounce._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.wallbounce;
+                        }
+                    }
+                    else if (myMoveSetScript.basicMoves.standUpFromGroundBounce.animMap[0].clip != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.fallingFromGroundBounce, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.groundBounce, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.groundBounce, 2)
+                      || standUpOverride == StandUpOptions.GroundBounceClip))
                     {
-                        newBasicMove = myMoveSetScript.basicMoves.standUpFromCrumple;
-                    } else {
+                        if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromGroundBounce;
+                            standUpTime = UFE.config.knockDownOptions.air._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.air;
+                        }
+                    }
+                    else
+                    {
                         if (myMoveSetScript.basicMoves.standUp.animMap[0].clip == null)
                             Debug.LogError("Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
 
-                        newBasicMove = myMoveSetScript.basicMoves.standUp;
-                    }
-                    standUpTime = UFE.config.knockDownOptions.crumple._standUpTime;
-                    knockdownOption = UFE.config.knockDownOptions.crumple;
-				}
-            } else if (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.standingWallBounceKnockdown, 1)
-                || standUpOverride == StandUpOptions.StandingWallBounceClip) {
-                if (stunTime <= UFE.config.knockDownOptions.wallbounce._standUpTime) {
-                    if (myMoveSetScript.basicMoves.standUpFromStandingWallBounce.animMap[0].clip != null)
-                    {
-                        newBasicMove = myMoveSetScript.basicMoves.standUpFromStandingWallBounce;
-                    } else {
-                        if (myMoveSetScript.basicMoves.standUp.animMap[0].clip == null)
-                            Debug.LogError("Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
+                        if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUp;
+                            standUpTime = UFE.config.knockDownOptions.air._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.air;
+                        }
 
-                        newBasicMove = myMoveSetScript.basicMoves.standUp;
+
+
+                        else if (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitCrumple, 1)
+                          || standUpOverride == StandUpOptions.CrumpleClip)
+                        {
+                            if (stunTime <= UFE.config.knockDownOptions.crumple._standUpTime)
+                            {
+                                if (myMoveSetScript.basicMoves.standUpFromCrumple.animMap[0].clip != null)
+                                {
+                                    newBasicMove = myMoveSetScript.basicMoves.standUpFromCrumple;
+                                }
+                                else
+                                {
+                                    if (myMoveSetScript.basicMoves.standUp.animMap[0].clip == null)
+                                        Debug.LogError("Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
+
+                                    newBasicMove = myMoveSetScript.basicMoves.standUp;
+                                }
+                                standUpTime = UFE.config.knockDownOptions.crumple._standUpTime;
+                                knockdownOption = UFE.config.knockDownOptions.crumple;
+                            }
+                        }
+                        else if (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.standingWallBounceKnockdown, 1)
+                          || standUpOverride == StandUpOptions.StandingWallBounceClip)
+                        {
+                            if (stunTime <= UFE.config.knockDownOptions.wallbounce._standUpTime)
+                            {
+                                if (myMoveSetScript.basicMoves.standUpFromStandingWallBounce.animMap[0].clip != null)
+                                {
+                                    newBasicMove = myMoveSetScript.basicMoves.standUpFromStandingWallBounce;
+                                }
+                                else
+                                {
+                                    if (myMoveSetScript.basicMoves.standUp.animMap[0].clip == null)
+                                        Debug.LogError("Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
+
+                                    newBasicMove = myMoveSetScript.basicMoves.standUp;
+                                }
+                                standUpTime = UFE.config.knockDownOptions.wallbounce._standUpTime;
+                                knockdownOption = UFE.config.knockDownOptions.wallbounce;
+                            }
+                        }
                     }
-                    standUpTime = UFE.config.knockDownOptions.wallbounce._standUpTime;
-                    knockdownOption = UFE.config.knockDownOptions.wallbounce;
                 }
+                else
+                {
+                    if (myMoveSetScript.basicMoves.standUpFromAirHit._voluMap[0]._move != null &&
+                        (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitAir, 1)
+                        || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.fallingFromAirHit, 1)
+                        || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.fallingFromAirHit, 2)
+                        || standUpOverride == StandUpOptions.AirJuggleClip))
+                    {
+                        if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromAirHit;
+                            standUpTime = UFE.config.knockDownOptions.air._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.air;
+                        }
+                    }
+                    else if (myMoveSetScript.basicMoves.standUpFromKnockBack._voluMap[0]._move != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitKnockBack, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitKnockBack, 2)
+                      || standUpOverride == StandUpOptions.KnockBackClip))
+                    {
+                        if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromKnockBack;
+                            standUpTime = UFE.config.knockDownOptions.air._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.air;
+                        }
+                    }
+                    else if (myMoveSetScript.basicMoves.standUpFromStandingHighHit._voluMap[0]._move != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitHighKnockdown, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitHighKnockdown, 2)
+                      || standUpOverride == StandUpOptions.HighKnockdownClip))
+                    {
+                        if (stunTime <= UFE.config.knockDownOptions.high._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromStandingHighHit;
+                            standUpTime = UFE.config.knockDownOptions.high._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.high;
+                        }
+                    }
+                    else if (myMoveSetScript.basicMoves.standUpFromStandingMidHit._voluMap[0]._move != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitMidKnockdown, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitMidKnockdown, 2)
+                      || standUpOverride == StandUpOptions.LowKnockdownClip))
+                    {
+                        if (stunTime <= UFE.config.knockDownOptions.highLow._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromStandingMidHit;
+                            standUpTime = UFE.config.knockDownOptions.highLow._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.highLow;
+                        }
+                    }
+                    else if (myMoveSetScript.basicMoves.standUpFromSweep._voluMap[0]._move != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitSweep, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitSweep, 2)
+                      || standUpOverride == StandUpOptions.SweepClip))
+                    {
+                        if (stunTime <= UFE.config.knockDownOptions.sweep._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromSweep;
+                            standUpTime = UFE.config.knockDownOptions.sweep._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.sweep;
+                        }
+                    }
+                    else if (myMoveSetScript.basicMoves.standUpFromAirWallBounce._voluMap[0]._move != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.airWallBounce, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.airWallBounce, 2)
+                      || standUpOverride == StandUpOptions.AirWallBounceClip))
+                    {
+                        if (stunTime <= UFE.config.knockDownOptions.wallbounce._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromAirWallBounce;
+                            standUpTime = UFE.config.knockDownOptions.wallbounce._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.wallbounce;
+                        }
+                    }
+                    else if (myMoveSetScript.basicMoves.standUpFromGroundBounce._voluMap[0]._move != null &&
+                      (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.fallingFromGroundBounce, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.groundBounce, 1)
+                      || currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.groundBounce, 2)
+                      || standUpOverride == StandUpOptions.GroundBounceClip))
+                    {
+                        if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUpFromGroundBounce;
+                            standUpTime = UFE.config.knockDownOptions.air._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.air;
+                        }
+                    }
+                    else
+                    {
+                        if (myMoveSetScript.basicMoves.standUp._voluMap[0]._move == null)
+                            Debug.LogError("Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
+
+                        if (stunTime <= UFE.config.knockDownOptions.air._standUpTime)
+                        {
+                            newBasicMove = myMoveSetScript.basicMoves.standUp;
+                            standUpTime = UFE.config.knockDownOptions.air._standUpTime;
+                            knockdownOption = UFE.config.knockDownOptions.air;
+                        }
+
+
+
+                        else if (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.getHitCrumple, 1)
+                          || standUpOverride == StandUpOptions.CrumpleClip)
+                        {
+                            if (stunTime <= UFE.config.knockDownOptions.crumple._standUpTime)
+                            {
+                                if (myMoveSetScript.basicMoves.standUpFromCrumple._voluMap[0]._move != null)
+                                {
+                                    newBasicMove = myMoveSetScript.basicMoves.standUpFromCrumple;
+                                }
+                                else
+                                {
+                                    if (myMoveSetScript.basicMoves.standUp._voluMap[0]._move == null)
+                                        Debug.LogError("Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
+
+                                    newBasicMove = myMoveSetScript.basicMoves.standUp;
+                                }
+                                standUpTime = UFE.config.knockDownOptions.crumple._standUpTime;
+                                knockdownOption = UFE.config.knockDownOptions.crumple;
+                            }
+                        }
+                        else if (currentHitAnimation == myMoveSetScript.GetAnimationString(myMoveSetScript.basicMoves.standingWallBounceKnockdown, 1)
+                          || standUpOverride == StandUpOptions.StandingWallBounceClip)
+                        {
+                            if (stunTime <= UFE.config.knockDownOptions.wallbounce._standUpTime)
+                            {
+                                if (myMoveSetScript.basicMoves.standUpFromStandingWallBounce._voluMap[0]._move != null)
+                                {
+                                    newBasicMove = myMoveSetScript.basicMoves.standUpFromStandingWallBounce;
+                                }
+                                else
+                                {
+                                    if (myMoveSetScript.basicMoves.standUp._voluMap[0]._move == null)
+                                        Debug.LogError("Stand Up animation not found! Make sure you have it set on Character -> Basic Moves -> Stand Up");
+
+                                    newBasicMove = myMoveSetScript.basicMoves.standUp;
+                                }
+                                standUpTime = UFE.config.knockDownOptions.wallbounce._standUpTime;
+                                knockdownOption = UFE.config.knockDownOptions.wallbounce;
+                            }
+                        }
+                    }
+                }
+                
             }
 		}
 
@@ -1694,7 +1871,12 @@ public class ControlsScript : MonoBehaviour {
             }
             else
             {
-                myHitBoxesScript.customHitBoxes = move.animMap.customHitBoxDefinition;
+                if(myInfo.animationType != AnimationType.Volumetric){
+                    myHitBoxesScript.customHitBoxes = move.animMap.customHitBoxDefinition;
+                }else
+                {
+                    myHitBoxesScript.customHitBoxes = move.voluMap.customHitBoxDefinition;
+                }
             }
 
             if (mirror == -1)
@@ -1747,11 +1929,12 @@ public class ControlsScript : MonoBehaviour {
         UFE.FireMove(currentMove, this);
 	}
 
-	public void ReadMove(MoveInfo move){
-		if (move == null) return;
+    public void ReadMove(MoveInfo move)
+    {
+        if (move == null) return;
 
         potentialParry = 0;
-		potentialBlock = false;
+        potentialBlock = false;
         CheckBlocking(false);
 
         // Test character rotation within frame rotation window
@@ -1760,20 +1943,28 @@ public class ControlsScript : MonoBehaviour {
 
 
         // Assign Current Frame Data Description
-        if (move.currentFrame <= move.startUpFrames) {
-			move.currentFrameData = CurrentFrameData.StartupFrames;
-		}else if (move.currentFrame > move.startUpFrames && move.currentFrame <= move.startUpFrames + move.activeFrames) {
-			move.currentFrameData = CurrentFrameData.ActiveFrames;
-		}else{
-			move.currentFrameData = CurrentFrameData.RecoveryFrames;
-		}
+        if (move.currentFrame <= move.startUpFrames)
+        {
+            move.currentFrameData = CurrentFrameData.StartupFrames;
+        }
+        else if (move.currentFrame > move.startUpFrames && move.currentFrame <= move.startUpFrames + move.activeFrames)
+        {
+            move.currentFrameData = CurrentFrameData.ActiveFrames;
+        }
+        else
+        {
+            move.currentFrameData = CurrentFrameData.RecoveryFrames;
+        }
 
 
         // Check Speed Key Frames
-        if (!move.fixedSpeed) {
-            foreach (AnimSpeedKeyFrame speedKeyFrame in move.animSpeedKeyFrame) {
+        if (!move.fixedSpeed)
+        {
+            foreach (AnimSpeedKeyFrame speedKeyFrame in move.animSpeedKeyFrame)
+            {
                 if (move.currentFrame >= speedKeyFrame.castingFrame
-                    && !myPhysicsScript.freeze) {
+                    && !myPhysicsScript.freeze)
+                {
                     myMoveSetScript.SetAnimationSpeed(move.name, speedKeyFrame._speed * move._animationSpeed);
                 }
             }
@@ -1782,35 +1973,54 @@ public class ControlsScript : MonoBehaviour {
 
         // Check Projectiles
         int projCount = 0;
-		foreach (Projectile projectile in move.projectiles){
-			if(
-				!projectile.casted && 
-				projectile.projectilePrefab != null &&
-				move.currentFrame >= projectile.castingFrame
-			){
+        foreach (Projectile projectile in move.projectiles)
+        {
+            if (
+                !projectile.casted &&
+                projectile.projectilePrefab != null &&
+                move.currentFrame >= projectile.castingFrame
+            )
+            {
                 projCount++;
 
                 projectile.casted = true;
-				projectile.gaugeGainOnHit = move.gauges.Length > 0 ? move.gauges[0]._gaugeGainOnHit : 0;
-				projectile.gaugeGainOnBlock = move.gauges.Length > 0 ? move.gauges[0]._gaugeGainOnBlock : 0;
-				projectile.opGaugeGainOnHit = move.gauges.Length > 0 ? move.gauges[0]._opGaugeGainOnHit : 0;
-				projectile.opGaugeGainOnBlock = move.gauges.Length > 0 ? move.gauges[0]._opGaugeGainOnBlock : 0;
-				projectile.opGaugeGainOnParry = move.gauges.Length > 0 ? move.gauges[0]._opGaugeGainOnParry : 0;
+                projectile.gaugeGainOnHit = move.gauges.Length > 0 ? move.gauges[0]._gaugeGainOnHit : 0;
+                projectile.gaugeGainOnBlock = move.gauges.Length > 0 ? move.gauges[0]._gaugeGainOnBlock : 0;
+                projectile.opGaugeGainOnHit = move.gauges.Length > 0 ? move.gauges[0]._opGaugeGainOnHit : 0;
+                projectile.opGaugeGainOnBlock = move.gauges.Length > 0 ? move.gauges[0]._opGaugeGainOnBlock : 0;
+                projectile.opGaugeGainOnParry = move.gauges.Length > 0 ? move.gauges[0]._opGaugeGainOnParry : 0;
 
                 FPVector newPos = FPVector.zero;
-                if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+                if (myInfo.animationType != AnimationType.Volumetric)
                 {
-                    CustomHitBox hitboxDef = move.animMap.customHitBoxDefinition.customHitBoxes[projectile.hitBoxDefinitionIndex];
-                    newPos = hitboxDef.activeFrames[move.currentFrame].position;
-                    if (mirror == 1) newPos.x *= -1;
-                    newPos += worldTransform.position;
+                    if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+                    {
+                        CustomHitBox hitboxDef = move.animMap.customHitBoxDefinition.customHitBoxes[projectile.hitBoxDefinitionIndex];
+                        newPos = hitboxDef.activeFrames[move.currentFrame].position;
+                        if (mirror == 1) newPos.x *= -1;
+                        newPos += worldTransform.position;
+                    }
+                    else
+                    {
+                        newPos = myHitBoxesScript.GetPosition(projectile.bodyPart);
+                    }
                 }
                 else
                 {
-                    newPos = myHitBoxesScript.GetPosition(projectile.bodyPart);
+                    if (move.voluMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+                    {
+                        CustomHitBox hitboxDef = move.voluMap.customHitBoxDefinition.customHitBoxes[projectile.hitBoxDefinitionIndex];
+                        newPos = hitboxDef.activeFrames[move.currentFrame].position;
+                        if (mirror == 1) newPos.x *= -1;
+                        newPos += worldTransform.position;
+                    }
+                    else
+                    {
+                        newPos = myHitBoxesScript.GetPosition(projectile.bodyPart);
+                    }
                 }
 
-				if (projectile.fixedZAxis) newPos.z = 0;
+                if (projectile.fixedZAxis) newPos.z = 0;
                 long durationFrames = (int)FPMath.Round(projectile._duration * UFE.config.fps);
 
                 string uniqueId = projectile.projectilePrefab.name + playerNum.ToString() + UFE.currentFrame + projCount;
@@ -1836,36 +2046,40 @@ public class ControlsScript : MonoBehaviour {
 
                 //UFE.instantiatedObjects[UFE.instantiatedObjects.Count - 1].projectileScript = projectileMoveScript;
             }
-		}
+        }
 
 
         // Check Particle Effects
         int partCount = 0;
-        foreach (MoveParticleEffect particleEffect in move.particleEffects){
-			if (
-				!particleEffect.casted
-                && particleEffect.particleEffect.prefab != null 
-                && move.currentFrame >=  particleEffect.castingFrame
-			)
+        foreach (MoveParticleEffect particleEffect in move.particleEffects)
+        {
+            if (
+                !particleEffect.casted
+                && particleEffect.particleEffect.prefab != null
+                && move.currentFrame >= particleEffect.castingFrame
+            )
             {
                 partCount++;
                 particleEffect.casted = true;
                 UFE.FireParticleEffects(currentMove, this, particleEffect);
-                
-                long frames = particleEffect.particleEffect.destroyOnMoveOver? (move.totalFrames - move.currentFrame) : Mathf.RoundToInt(particleEffect.particleEffect.duration * UFE.config.fps);
+
+                long frames = particleEffect.particleEffect.destroyOnMoveOver ? (move.totalFrames - move.currentFrame) : Mathf.RoundToInt(particleEffect.particleEffect.duration * UFE.config.fps);
                 Quaternion newRotation = particleEffect.particleEffect.initialRotation != Vector3.zero ? Quaternion.Euler(particleEffect.particleEffect.initialRotation) : Quaternion.identity;
                 string uniqueId = particleEffect.particleEffect.prefab.name + playerNum.ToString() + UFE.currentFrame + partCount;
                 GameObject pTemp = UFE.SpawnGameObject(particleEffect.particleEffect.prefab, Vector3.zero, newRotation, frames, false, uniqueId);
                 if (!particleEffect.particleEffect.overrideRotation)
                     pTemp.transform.rotation = particleEffect.particleEffect.prefab.transform.rotation;
 
-                if (particleEffect.particleEffect.stick) {
+                if (particleEffect.particleEffect.stick)
+                {
                     Transform targetTransform = myHitBoxesScript.GetTransform(particleEffect.particleEffect.bodyPart);
                     pTemp.transform.SetParent(targetTransform);
                     pTemp.transform.position = targetTransform.position;
                     if (particleEffect.particleEffect.followRotation) pTemp.AddComponent<StickyGameObject>();
 
-                } else {
+                }
+                else
+                {
                     pTemp.transform.SetParent(UFE.gameEngine.transform);
                     pTemp.transform.position = myHitBoxesScript.GetPosition(particleEffect.particleEffect.bodyPart).ToVector();
                 }
@@ -1877,13 +2091,15 @@ public class ControlsScript : MonoBehaviour {
                 newPosition.y = particleEffect.particleEffect.positionOffSet.y;
                 newPosition.z = particleEffect.particleEffect.positionOffSet.z;
                 pTemp.transform.localPosition += newPosition;
-			}
-		}
+            }
+        }
 
-		
+
         // Check Gauge Updates
-        foreach (GaugeInfo gaugeInfo in move.gauges) {
-            if (!gaugeInfo.casted && move.currentFrame >= gaugeInfo.castingFrame) {
+        foreach (GaugeInfo gaugeInfo in move.gauges)
+        {
+            if (!gaugeInfo.casted && move.currentFrame >= gaugeInfo.castingFrame)
+            {
                 AddGauge(gaugeInfo._gaugeGainOnMiss, (int)gaugeInfo.targetGauge);
 
                 if (gaugeInfo.startDrainingGauge)
@@ -1906,98 +2122,120 @@ public class ControlsScript : MonoBehaviour {
         }
 
 
-		// Check Applied Forces
-		foreach (AppliedForce addedForce in move.appliedForces){
-			if (!addedForce.casted && move.currentFrame >= addedForce.castingFrame){
-				myPhysicsScript.ResetForces(addedForce.resetPreviousHorizontal, addedForce.resetPreviousVertical);
-				myPhysicsScript.AddForce(addedForce._force, GetDirection(), true);
-				addedForce.casted = true;
-			}
-		}
-
-
-        // Check Body Part Visibility Changes
-        foreach (BodyPartVisibilityChange visibilityChange in move.bodyPartVisibilityChanges) {
-            if (!visibilityChange.casted && move.currentFrame >= visibilityChange.castingFrame) {
-				foreach (HitBox hitBox in myHitBoxesScript.hitBoxes) {
-					if (visibilityChange.bodyPart == hitBox.bodyPart && 
-                        ((mirror == - 1 && visibilityChange.left) || (mirror == 1 && visibilityChange.right))) {
-
-                        UFE.FireBodyVisibilityChange(currentMove, this, visibilityChange, hitBox);
-						hitBox.position.gameObject.SetActive(visibilityChange.visible);
-						visibilityChange.casted = true;
-					}
-				}
+        // Check Applied Forces
+        foreach (AppliedForce addedForce in move.appliedForces)
+        {
+            if (!addedForce.casted && move.currentFrame >= addedForce.castingFrame)
+            {
+                myPhysicsScript.ResetForces(addedForce.resetPreviousHorizontal, addedForce.resetPreviousVertical);
+                myPhysicsScript.AddForce(addedForce._force, GetDirection(), true);
+                addedForce.casted = true;
             }
         }
 
 
-		// Check SlowMo Effects
-		foreach (SlowMoEffect slowMoEffect in move.slowMoEffects){
-			if (!slowMoEffect.casted && move.currentFrame >= slowMoEffect.castingFrame){
-				UFE.timeScale = (slowMoEffect._percentage / 100) * UFE.config._gameSpeed;
-				UFE.DelaySynchronizedAction(UFE.fluxCapacitor.ReturnTimeScale, slowMoEffect._duration);
-				slowMoEffect.casted = true;
-			}
-		}
+        // Check Body Part Visibility Changes
+        foreach (BodyPartVisibilityChange visibilityChange in move.bodyPartVisibilityChanges)
+        {
+            if (!visibilityChange.casted && move.currentFrame >= visibilityChange.castingFrame)
+            {
+                foreach (HitBox hitBox in myHitBoxesScript.hitBoxes)
+                {
+                    if (visibilityChange.bodyPart == hitBox.bodyPart &&
+                        ((mirror == -1 && visibilityChange.left) || (mirror == 1 && visibilityChange.right)))
+                    {
 
-		
-		// Check Sound Effects
-		foreach (SoundEffect soundEffect in move.soundEffects){
-			if (!soundEffect.casted && move.currentFrame >= soundEffect.castingFrame){
-				UFE.PlaySound(soundEffect.sounds);
-				soundEffect.casted = true;
-			}
-		}
+                        UFE.FireBodyVisibilityChange(currentMove, this, visibilityChange, hitBox);
+                        hitBox.position.gameObject.SetActive(visibilityChange.visible);
+                        visibilityChange.casted = true;
+                    }
+                }
+            }
+        }
 
-		
-		// Check In Game Alert
-		foreach (InGameAlert inGameAlert in move.inGameAlert){
-			if (!inGameAlert.casted && move.currentFrame >= inGameAlert.castingFrame){
-				UFE.FireAlert(inGameAlert.alert, this);
-				inGameAlert.casted = true;
-			}
-		}
+
+        // Check SlowMo Effects
+        foreach (SlowMoEffect slowMoEffect in move.slowMoEffects)
+        {
+            if (!slowMoEffect.casted && move.currentFrame >= slowMoEffect.castingFrame)
+            {
+                UFE.timeScale = (slowMoEffect._percentage / 100) * UFE.config._gameSpeed;
+                UFE.DelaySynchronizedAction(UFE.fluxCapacitor.ReturnTimeScale, slowMoEffect._duration);
+                slowMoEffect.casted = true;
+            }
+        }
+
+
+        // Check Sound Effects
+        foreach (SoundEffect soundEffect in move.soundEffects)
+        {
+            if (!soundEffect.casted && move.currentFrame >= soundEffect.castingFrame)
+            {
+                UFE.PlaySound(soundEffect.sounds);
+                soundEffect.casted = true;
+            }
+        }
+
+
+        // Check In Game Alert
+        foreach (InGameAlert inGameAlert in move.inGameAlert)
+        {
+            if (!inGameAlert.casted && move.currentFrame >= inGameAlert.castingFrame)
+            {
+                UFE.FireAlert(inGameAlert.alert, this);
+                inGameAlert.casted = true;
+            }
+        }
 
 
         // Check for Sort Order Overrides
-        foreach (MoveSortOrder sortOrder in move.sortOrder) {
-            if (mySpriteRenderer != null && move.currentFrame == sortOrder.castingFrame) {
+        foreach (MoveSortOrder sortOrder in move.sortOrder)
+        {
+            if (mySpriteRenderer != null && move.currentFrame == sortOrder.castingFrame)
+            {
                 mySpriteRenderer.sortingOrder = sortOrder.value;
             }
         }
 
-		
-		// Change Stances
-		foreach (StanceChange stanceChange in move.stanceChanges){
-			if (!stanceChange.casted && move.currentFrame >= stanceChange.castingFrame){
-				myMoveSetScript.ChangeMoveStances(stanceChange.newStance);
-				stanceChange.casted = true;
-			}
+
+        // Change Stances
+        foreach (StanceChange stanceChange in move.stanceChanges)
+        {
+            if (!stanceChange.casted && move.currentFrame >= stanceChange.castingFrame)
+            {
+                myMoveSetScript.ChangeMoveStances(stanceChange.newStance);
+                stanceChange.casted = true;
+            }
         }
 
 
         // Check Opponent Override
-		foreach (OpponentOverride opponentOverride in move.opponentOverride){
-			if (!opponentOverride.casted && move.currentFrame >= opponentOverride.castingFrame){
-				if (opponentOverride.stun){
-					opControlsScript.stunTime = opponentOverride._stunTime/UFE.config.fps;
-					if (opControlsScript.stunTime > 0) opControlsScript.currentSubState = SubStates.Stunned;
-				}
-				
-				opControlsScript.KillCurrentMove();
-				foreach(CharacterSpecificMoves csMove in opponentOverride.characterSpecificMoves){
-					if (opInfo.characterName == csMove.characterName) {
-						opControlsScript.CastMove(csMove.move, true);
-						if (opponentOverride.stun) opControlsScript.currentMove.standUpOptions = opponentOverride.standUpOptions;
-						opControlsScript.currentMove.hitAnimationOverride = opponentOverride.overrideHitAnimations;
-					}
-				}
-				if (opControlsScript.currentMove == null && opponentOverride.move != null){
-					opControlsScript.CastMove(opponentOverride.move, true);
-					if (opponentOverride.stun) opControlsScript.currentMove.standUpOptions = opponentOverride.standUpOptions;
-					opControlsScript.currentMove.hitAnimationOverride = opponentOverride.overrideHitAnimations;
-				}
+        foreach (OpponentOverride opponentOverride in move.opponentOverride)
+        {
+            if (!opponentOverride.casted && move.currentFrame >= opponentOverride.castingFrame)
+            {
+                if (opponentOverride.stun)
+                {
+                    opControlsScript.stunTime = opponentOverride._stunTime / UFE.config.fps;
+                    if (opControlsScript.stunTime > 0) opControlsScript.currentSubState = SubStates.Stunned;
+                }
+
+                opControlsScript.KillCurrentMove();
+                foreach (CharacterSpecificMoves csMove in opponentOverride.characterSpecificMoves)
+                {
+                    if (opInfo.characterName == csMove.characterName)
+                    {
+                        opControlsScript.CastMove(csMove.move, true);
+                        if (opponentOverride.stun) opControlsScript.currentMove.standUpOptions = opponentOverride.standUpOptions;
+                        opControlsScript.currentMove.hitAnimationOverride = opponentOverride.overrideHitAnimations;
+                    }
+                }
+                if (opControlsScript.currentMove == null && opponentOverride.move != null)
+                {
+                    opControlsScript.CastMove(opponentOverride.move, true);
+                    if (opponentOverride.stun) opControlsScript.currentMove.standUpOptions = opponentOverride.standUpOptions;
+                    opControlsScript.currentMove.hitAnimationOverride = opponentOverride.overrideHitAnimations;
+                }
 
                 if (opponentOverride._position != FPVector.zero)
                 {
@@ -2019,19 +2257,22 @@ public class ControlsScript : MonoBehaviour {
                     opControlsScript.activePullIn.forceGrounded = false;
                 }
 
-                if (opponentOverride.resetAppliedForces){
-					opControlsScript.Physics.ResetForces(true, true);
-					myPhysicsScript.ResetForces(true, true);
-				}
-				
-				opponentOverride.casted = true;
-			}
-		}
+                if (opponentOverride.resetAppliedForces)
+                {
+                    opControlsScript.Physics.ResetForces(true, true);
+                    myPhysicsScript.ResetForces(true, true);
+                }
+
+                opponentOverride.casted = true;
+            }
+        }
 
 #if !UFE_LITE && !UFE_BASIC
         // Character Assist
-        foreach (CharacterAssist charAssist in move.characterAssist){
-			if (!charAssist.casted && move.currentFrame >= charAssist.castingFrame){
+        foreach (CharacterAssist charAssist in move.characterAssist)
+        {
+            if (!charAssist.casted && move.currentFrame >= charAssist.castingFrame)
+            {
 
                 FPVector offSet = charAssist._spawnPosition;
                 offSet.x *= -mirror;
@@ -2043,21 +2284,24 @@ public class ControlsScript : MonoBehaviour {
 #endif
 
                 charAssist.casted = true;
-			}
+            }
         }
 #endif
 
         // Check Camera Movements (cinematics)
-        foreach (CameraMovement cameraMovement in move.cameraMovements){
-			if (cameraMovement.over) continue;
-			if (cameraMovement.casted && !cameraMovement.over && cameraMovement.time >= cameraMovement._duration && UFE.freeCamera){
-				cameraMovement.over = true;
-				ReleaseCam();
-			}
-			if (move.currentFrame >= cameraMovement.castingFrame){
-				cameraMovement.time += UFE.fixedDeltaTime;
-				if (cameraMovement.casted) continue;
-				cameraMovement.casted = true;
+        foreach (CameraMovement cameraMovement in move.cameraMovements)
+        {
+            if (cameraMovement.over) continue;
+            if (cameraMovement.casted && !cameraMovement.over && cameraMovement.time >= cameraMovement._duration && UFE.freeCamera)
+            {
+                cameraMovement.over = true;
+                ReleaseCam();
+            }
+            if (move.currentFrame >= cameraMovement.castingFrame)
+            {
+                cameraMovement.time += UFE.fixedDeltaTime;
+                if (cameraMovement.casted) continue;
+                cameraMovement.casted = true;
 
                 UFE.freezePhysics = cameraMovement.freezePhysics;
                 cameraScript.cinematicFreeze = cameraMovement.freezePhysics;
@@ -2077,11 +2321,13 @@ public class ControlsScript : MonoBehaviour {
                 }
                 else
                 {
-                    foreach (ControlsScript assist in owner.assists) {
+                    foreach (ControlsScript assist in owner.assists)
+                    {
                         assist.PausePlayAnimation(true, cameraMovement._opAnimationSpeed * .01);
                         assist.Physics.freeze = cameraMovement.freezePhysics;
                     }
-                    foreach (ControlsScript assist in opControlsScript.assists) {
+                    foreach (ControlsScript assist in opControlsScript.assists)
+                    {
                         assist.PausePlayAnimation(true, cameraMovement._opAnimationSpeed * .01);
                         assist.Physics.freeze = cameraMovement.freezePhysics;
                     }
@@ -2090,46 +2336,52 @@ public class ControlsScript : MonoBehaviour {
                 opControlsScript.PausePlayAnimation(true, cameraMovement._opAnimationSpeed * .01);
                 opControlsScript.Physics.freeze = cameraMovement.freezePhysics;
 
-                if (isAssist) {
+                if (isAssist)
+                {
                     owner.PausePlayAnimation(true, cameraMovement._opAnimationSpeed * .01);
                     owner.Physics.freeze = cameraMovement.freezePhysics;
                 }
 
 
-                if (cameraMovement.cinematicType == CinematicType.CameraEditor){
-					cameraMovement.position.x *= -mirror;
-					Vector3 targetPosition = transform.TransformPoint(cameraMovement.position);
-					Vector3 targetRotation = cameraMovement.rotation;
-					targetRotation.y *= -mirror;
-					targetRotation.z *= -mirror;
-					cameraScript.MoveCameraToLocation(targetPosition,
-					                                  targetRotation,
-					                                  cameraMovement.fieldOfView,
-					                                  cameraMovement.camSpeed, gameObject);
-					
-				}else if (cameraMovement.cinematicType == CinematicType.Prefab){
-					cameraScript.SetCameraOwner(gameObject);
+                if (cameraMovement.cinematicType == CinematicType.CameraEditor)
+                {
+                    cameraMovement.position.x *= -mirror;
+                    Vector3 targetPosition = transform.TransformPoint(cameraMovement.position);
+                    Vector3 targetRotation = cameraMovement.rotation;
+                    targetRotation.y *= -mirror;
+                    targetRotation.z *= -mirror;
+                    cameraScript.MoveCameraToLocation(targetPosition,
+                                                      targetRotation,
+                                                      cameraMovement.fieldOfView,
+                                                      cameraMovement.camSpeed, gameObject);
+
+                }
+                else if (cameraMovement.cinematicType == CinematicType.Prefab)
+                {
+                    cameraScript.SetCameraOwner(gameObject);
                     emulatedCam = UFE.SpawnGameObject(cameraMovement.prefab, transform.position, Quaternion.identity, false, cameraMovement._duration);
-					
-				}else if (cameraMovement.cinematicType == CinematicType.AnimationFile){
-					emulatedCam = new GameObject();
-					emulatedCam.name = "Camera Parent";
-					emulatedCam.transform.parent = transform;
-					emulatedCam.transform.localPosition = cameraMovement.gameObjectPosition;
-					emulatedCam.AddComponent(typeof(Animation));
-					emulatedCam.GetComponent<Animation>().AddClip(cameraMovement.animationClip, "cam");
-					emulatedCam.GetComponent<Animation>()["cam"].speed = cameraMovement.camAnimationSpeed;
-					emulatedCam.GetComponent<Animation>().Play("cam");
-					
-					Camera.main.transform.parent = emulatedCam.transform;
-					cameraScript.MoveCameraToLocation(cameraMovement.position,
-					                                  cameraMovement.rotation,
-					                                  cameraMovement.fieldOfView,
-					                                  cameraMovement.blendSpeed, gameObject);
-					
-				}
-			}
-		}
+
+                }
+                else if (cameraMovement.cinematicType == CinematicType.AnimationFile)
+                {
+                    emulatedCam = new GameObject();
+                    emulatedCam.name = "Camera Parent";
+                    emulatedCam.transform.parent = transform;
+                    emulatedCam.transform.localPosition = cameraMovement.gameObjectPosition;
+                    emulatedCam.AddComponent(typeof(Animation));
+                    emulatedCam.GetComponent<Animation>().AddClip(cameraMovement.animationClip, "cam");
+                    emulatedCam.GetComponent<Animation>()["cam"].speed = cameraMovement.camAnimationSpeed;
+                    emulatedCam.GetComponent<Animation>().Play("cam");
+
+                    Camera.main.transform.parent = emulatedCam.transform;
+                    cameraScript.MoveCameraToLocation(cameraMovement.position,
+                                                      cameraMovement.rotation,
+                                                      cameraMovement.fieldOfView,
+                                                      cameraMovement.blendSpeed, gameObject);
+
+                }
+            }
+        }
 
 
 #if !UFE_LITE && !UFE_BASIC
@@ -2217,7 +2469,7 @@ public class ControlsScript : MonoBehaviour {
                     {
                         if (myTeam[i] == this)
                         {
-                            if (i == myTeam.Count - 1) 
+                            if (i == myTeam.Count - 1)
                                 target = 0;
                             else
                                 target = i + 1;
@@ -2247,27 +2499,37 @@ public class ControlsScript : MonoBehaviour {
 
 
         // Check Invincible Body Parts
-        if (move.invincibleBodyParts.Length > 0) {
-			foreach (InvincibleBodyParts invBodyPart in move.invincibleBodyParts){
-				if (move.currentFrame >= invBodyPart.activeFramesBegin &&
-				    move.currentFrame < invBodyPart.activeFramesEnds) {
-					if (invBodyPart.completelyInvincible){
-						myHitBoxesScript.HideHitBoxes(true);
-					}else{
-						myHitBoxesScript.HideHitBoxes(invBodyPart.hitBoxes, true);
-					}
-					ignoreCollisionMass = invBodyPart.ignoreBodyColliders;
-				}
-				if (move.currentFrame >= invBodyPart.activeFramesEnds) {
-					if (invBodyPart.completelyInvincible){
-						myHitBoxesScript.HideHitBoxes(false);
-					}else{
-						myHitBoxesScript.HideHitBoxes(invBodyPart.hitBoxes, false);
-					}
-					ignoreCollisionMass = false;
-				}
-			}
-		}
+        if (move.invincibleBodyParts.Length > 0)
+        {
+            foreach (InvincibleBodyParts invBodyPart in move.invincibleBodyParts)
+            {
+                if (move.currentFrame >= invBodyPart.activeFramesBegin &&
+                    move.currentFrame < invBodyPart.activeFramesEnds)
+                {
+                    if (invBodyPart.completelyInvincible)
+                    {
+                        myHitBoxesScript.HideHitBoxes(true);
+                    }
+                    else
+                    {
+                        myHitBoxesScript.HideHitBoxes(invBodyPart.hitBoxes, true);
+                    }
+                    ignoreCollisionMass = invBodyPart.ignoreBodyColliders;
+                }
+                if (move.currentFrame >= invBodyPart.activeFramesEnds)
+                {
+                    if (invBodyPart.completelyInvincible)
+                    {
+                        myHitBoxesScript.HideHitBoxes(false);
+                    }
+                    else
+                    {
+                        myHitBoxesScript.HideHitBoxes(invBodyPart.hitBoxes, false);
+                    }
+                    ignoreCollisionMass = false;
+                }
+            }
+        }
 
 
         // Check Blockable Area
@@ -2276,117 +2538,260 @@ public class ControlsScript : MonoBehaviour {
             if (move.currentFrame >= move.blockableArea.activeFramesBegin &&
                 move.currentFrame < move.blockableArea.activeFramesEnds)
             {
-                if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.AutoMap && move.blockableArea.bodyPart != BodyPart.none)
+                if (myInfo.animationType != AnimationType.Volumetric)
                 {
-                    myHitBoxesScript.blockableArea = move.blockableArea;
-                    myHitBoxesScript.blockableArea.position = myHitBoxesScript.GetPosition(myHitBoxesScript.blockableArea.bodyPart);
+                    if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.AutoMap && move.blockableArea.bodyPart != BodyPart.none)
+                    {
+                        myHitBoxesScript.blockableArea = move.blockableArea;
+                        myHitBoxesScript.blockableArea.position = myHitBoxesScript.GetPosition(myHitBoxesScript.blockableArea.bodyPart);
+                    }
+                    else if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+                    {
+                        CustomHitBox hitboxDef = move.animMap.customHitBoxDefinition.customHitBoxes[move.blockableArea.hitBoxDefinitionIndex];
+
+                        myHitBoxesScript.blockableArea = move.blockableArea;
+                        myHitBoxesScript.blockableArea.shape = hitboxDef.shape;
+                        myHitBoxesScript.blockableArea._radius = hitboxDef.activeFrames[move.currentFrame].radius;
+
+                        myHitBoxesScript.blockableArea._rect = new FPRect(0, 0, hitboxDef.activeFrames[move.currentFrame].cubeWidth, hitboxDef.activeFrames[move.currentFrame].cubeHeight);
+                        myHitBoxesScript.blockableArea.rect = move.blockableArea._rect.ToRect();
+
+                        FPVector newPosition = hitboxDef.activeFrames[move.currentFrame].position;
+                        if (mirror == 1) newPosition.x *= -1;
+                        myHitBoxesScript.blockableArea.position = newPosition + worldTransform.position;
+                    }
+
+                    if (!opControlsScript.isBlocking
+                        && !opControlsScript.blockStunned
+                        && opControlsScript.currentSubState != SubStates.Stunned
+                        && CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, myHitBoxesScript.blockableArea, opControlsScript.mirror > 0, mirror > 0).Length > 0)
+                    {
+                        opControlsScript.CheckBlocking(true);
+                    }
+
+                    else if (move.currentFrame >= move.blockableArea.activeFramesEnds)
+                    {
+                        if (UFE.config.blockOptions.blockType == BlockType.HoldBack ||
+                            UFE.config.blockOptions.blockType == BlockType.AutoBlock) opControlsScript.CheckBlocking(false);
+                    }
+
+
+
+                    // Check Frame Links
+                    foreach (FrameLink frameLink in move.frameLinks)
+                    {
+                        if (move.currentFrame >= frameLink.activeFramesBegins &&
+                            move.currentFrame <= frameLink.activeFramesEnds)
+                        {
+                            if (frameLink.linkType == LinkType.NoConditions ||
+                                (frameLink.linkType == LinkType.HitConfirm &&
+                                ((currentMove.hitConfirmOnStrike && frameLink.onStrike) ||
+                                (currentMove.hitConfirmOnBlock && frameLink.onBlock) ||
+                                (currentMove.hitConfirmOnParry && frameLink.onParry))))
+                            {
+                                frameLink.cancelable = true;
+                            }
+                        }
+                        else
+                        {
+                            frameLink.cancelable = false;
+                        }
+                    }
+
+
+                    // Check Hits
+                    if (!UFE.freezePhysics)
+                    {
+
+                        if (UFE.config.selectedMatchType != MatchType.Singles)
+                        {
+                            foreach (ControlsScript cScript in UFE.GetAllControlsScriptsByPlayer(opControlsScript.playerNum))
+                            {
+                                CheckHits(move, cScript);
+                            }
+                        }
+                        else
+                        {
+                            foreach (ControlsScript assist in opControlsScript.assists) CheckHits(move, assist);
+                            CheckHits(move, opControlsScript);
+                        }
+                    }
+
+
+                    // Force Map Update
+                    //myHitBoxesScript.UpdateMap(move.currentFrame);
+
+                    // Kill Move
+                    if (move.currentFrame >= move.totalFrames - 1)
+                    {
+                        if (move.name == "Intro")
+                        {
+                            introPlayed = true;
+                            if (opControlsScript.introPlayed) UFE.CastNewRound(2);
+                        }
+                        if (move.armorOptions.hitsTaken > 0) comboHits = 0;
+                        KillCurrentMove();
+
+                        // Assist - Despawn after Exit Move
+                        if (exitMove != null && move.name == exitMove.name)
+                        {
+                            exitMove = null;
+                            ResetData(true);
+                            SetActive(false);
+
+                            worldTransform.position = new FPVector(-999, -999, 0);
+                            transform.position = worldTransform.position.ToVector();
+                        }
+                    }
+
+                    // Next Tick
+                    if (myMoveSetScript.animationPaused)
+                    {
+                        move.currentTick += UFE.fixedDeltaTime * UFE.config.fps * myMoveSetScript.GetAnimationSpeed();
+                    }
+                    else
+                    {
+                        move.currentTick += UFE.fixedDeltaTime * UFE.config.fps;
+                    }
+
+
+                    // Next Frame
+                    move.currentFrame = (int)move.currentTick;
+                    //move.currentFrame = (int)FPMath.Floor(move.currentTick) + 2;
+
+                    // Get current animation values
+                    //move.currentTick = MoveSet.GetCurrentClipTick();
+                    //move.currentFrame = MoveSet.GetCurrentClipFrame();
                 }
-                else if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+                else
                 {
-                    CustomHitBox hitboxDef = move.animMap.customHitBoxDefinition.customHitBoxes[move.blockableArea.hitBoxDefinitionIndex];
+                    if (move.voluMap.hitBoxDefinitionType == HitBoxDefinitionType.AutoMap && move.blockableArea.bodyPart != BodyPart.none)
+                    {
+                        myHitBoxesScript.blockableArea = move.blockableArea;
+                        myHitBoxesScript.blockableArea.position = myHitBoxesScript.GetPosition(myHitBoxesScript.blockableArea.bodyPart);
+                    }
+                    else if (move.voluMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+                    {
+                        CustomHitBox hitboxDef = move.voluMap.customHitBoxDefinition.customHitBoxes[move.blockableArea.hitBoxDefinitionIndex];
 
-                    myHitBoxesScript.blockableArea = move.blockableArea;
-                    myHitBoxesScript.blockableArea.shape = hitboxDef.shape;
-                    myHitBoxesScript.blockableArea._radius = hitboxDef.activeFrames[move.currentFrame].radius;
+                        myHitBoxesScript.blockableArea = move.blockableArea;
+                        myHitBoxesScript.blockableArea.shape = hitboxDef.shape;
+                        myHitBoxesScript.blockableArea._radius = hitboxDef.activeFrames[move.currentFrame].radius;
 
-                    myHitBoxesScript.blockableArea._rect = new FPRect(0, 0, hitboxDef.activeFrames[move.currentFrame].cubeWidth, hitboxDef.activeFrames[move.currentFrame].cubeHeight);
-                    myHitBoxesScript.blockableArea.rect = move.blockableArea._rect.ToRect();
+                        myHitBoxesScript.blockableArea._rect = new FPRect(0, 0, hitboxDef.activeFrames[move.currentFrame].cubeWidth, hitboxDef.activeFrames[move.currentFrame].cubeHeight);
+                        myHitBoxesScript.blockableArea.rect = move.blockableArea._rect.ToRect();
 
-                    FPVector newPosition = hitboxDef.activeFrames[move.currentFrame].position;
-                    if (mirror == 1) newPosition.x *= -1;
-                    myHitBoxesScript.blockableArea.position = newPosition + worldTransform.position;
+                        FPVector newPosition = hitboxDef.activeFrames[move.currentFrame].position;
+                        if (mirror == 1) newPosition.x *= -1;
+                        myHitBoxesScript.blockableArea.position = newPosition + worldTransform.position;
+                    }
+
+                    if (!opControlsScript.isBlocking
+                        && !opControlsScript.blockStunned
+                        && opControlsScript.currentSubState != SubStates.Stunned
+                        && CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, myHitBoxesScript.blockableArea, opControlsScript.mirror > 0, mirror > 0).Length > 0)
+                    {
+                        opControlsScript.CheckBlocking(true);
+                    }
+
+                    else if (move.currentFrame >= move.blockableArea.activeFramesEnds)
+                    {
+                        if (UFE.config.blockOptions.blockType == BlockType.HoldBack ||
+                            UFE.config.blockOptions.blockType == BlockType.AutoBlock) opControlsScript.CheckBlocking(false);
+                    }
                 }
 
-                if (!opControlsScript.isBlocking
-                    && !opControlsScript.blockStunned
-                    && opControlsScript.currentSubState != SubStates.Stunned
-                    && CollisionManager.TestCollision(opControlsScript.HitBoxes.hitBoxes, myHitBoxesScript.blockableArea, opControlsScript.mirror > 0, mirror > 0).Length > 0)
+
+                // Check Frame Links
+                foreach (FrameLink frameLink in move.frameLinks)
                 {
-                    opControlsScript.CheckBlocking(true);
+                    if (move.currentFrame >= frameLink.activeFramesBegins &&
+                        move.currentFrame <= frameLink.activeFramesEnds)
+                    {
+                        if (frameLink.linkType == LinkType.NoConditions ||
+                            (frameLink.linkType == LinkType.HitConfirm &&
+                            ((currentMove.hitConfirmOnStrike && frameLink.onStrike) ||
+                            (currentMove.hitConfirmOnBlock && frameLink.onBlock) ||
+                            (currentMove.hitConfirmOnParry && frameLink.onParry))))
+                        {
+                            frameLink.cancelable = true;
+                        }
+                    }
+                    else
+                    {
+                        frameLink.cancelable = false;
+                    }
                 }
-            }
-            else if (move.currentFrame >= move.blockableArea.activeFramesEnds)
-            {
-                if (UFE.config.blockOptions.blockType == BlockType.HoldBack ||
-                    UFE.config.blockOptions.blockType == BlockType.AutoBlock) opControlsScript.CheckBlocking(false);
+
+
+                // Check Hits
+                if (!UFE.freezePhysics)
+                {
+
+                    if (UFE.config.selectedMatchType != MatchType.Singles)
+                    {
+                        foreach (ControlsScript cScript in UFE.GetAllControlsScriptsByPlayer(opControlsScript.playerNum))
+                        {
+                            CheckHits(move, cScript);
+                        }
+                    }
+                    else
+                    {
+                        foreach (ControlsScript assist in opControlsScript.assists) CheckHits(move, assist);
+                        CheckHits(move, opControlsScript);
+                    }
+                }
+
+
+                // Force Map Update
+                //myHitBoxesScript.UpdateMap(move.currentFrame);
+
+                // Kill Move
+                if (move.currentFrame >= move.totalFrames - 1)
+                {
+                    if (move.name == "Intro")
+                    {
+                        introPlayed = true;
+                        if (opControlsScript.introPlayed) UFE.CastNewRound(2);
+                    }
+                    if (move.armorOptions.hitsTaken > 0) comboHits = 0;
+                    KillCurrentMove();
+
+                    // Assist - Despawn after Exit Move
+                    if (exitMove != null && move.name == exitMove.name)
+                    {
+                        exitMove = null;
+                        ResetData(true);
+                        SetActive(false);
+
+                        worldTransform.position = new FPVector(-999, -999, 0);
+                        transform.position = worldTransform.position.ToVector();
+                    }
+                }
+
+                // Next Tick
+                if (myMoveSetScript.animationPaused)
+                {
+                    move.currentTick += UFE.fixedDeltaTime * UFE.config.fps * myMoveSetScript.GetAnimationSpeed();
+                }
+                else
+                {
+                    move.currentTick += UFE.fixedDeltaTime * UFE.config.fps;
+                }
+
+
+                // Next Frame
+                move.currentFrame = (int)move.currentTick;
+                //move.currentFrame = (int)FPMath.Floor(move.currentTick) + 2;
+
+                // Get current animation values
+                //move.currentTick = MoveSet.GetCurrentClipTick();
+                //move.currentFrame = MoveSet.GetCurrentClipFrame();
             }
         }
-
-
-        // Check Frame Links
-        foreach (FrameLink frameLink in move.frameLinks){
-            if (move.currentFrame >= frameLink.activeFramesBegins &&
-                move.currentFrame <= frameLink.activeFramesEnds) {
-                if (frameLink.linkType == LinkType.NoConditions ||
-                    (frameLink.linkType == LinkType.HitConfirm &&
-                    ((currentMove.hitConfirmOnStrike && frameLink.onStrike) ||
-                    (currentMove.hitConfirmOnBlock && frameLink.onBlock) ||
-                    (currentMove.hitConfirmOnParry && frameLink.onParry)))) {
-                        frameLink.cancelable = true;
-                }
-            } else {
-                frameLink.cancelable = false;
-            }
-		}
-
-
-        // Check Hits
-        if (!UFE.freezePhysics) {
-
-            if (UFE.config.selectedMatchType != MatchType.Singles)
-            {
-                foreach (ControlsScript cScript in UFE.GetAllControlsScriptsByPlayer(opControlsScript.playerNum))
-                {
-                    CheckHits(move, cScript);
-                }
-            }
-            else
-            {
-                foreach (ControlsScript assist in opControlsScript.assists) CheckHits(move, assist);
-                CheckHits(move, opControlsScript);
-            }
-        }
-
-
-        // Force Map Update
-        //myHitBoxesScript.UpdateMap(move.currentFrame);
-
-        // Kill Move
-        if (move.currentFrame >= move.totalFrames - 1) {
-            if (move.name == "Intro") {
-                introPlayed = true;
-                if (opControlsScript.introPlayed) UFE.CastNewRound(2);
-            }
-            if (move.armorOptions.hitsTaken > 0) comboHits = 0;
-			KillCurrentMove();
-            
-            // Assist - Despawn after Exit Move
-            if (exitMove != null && move.name == exitMove.name) {
-                exitMove = null;
-                ResetData(true);
-                SetActive(false);
-
-                worldTransform.position = new FPVector(-999, -999, 0);
-                transform.position = worldTransform.position.ToVector();
-            }
-        }
-
-        // Next Tick
-        if (myMoveSetScript.animationPaused){
-            move.currentTick += UFE.fixedDeltaTime * UFE.config.fps * myMoveSetScript.GetAnimationSpeed();
-        }else{
-            move.currentTick += UFE.fixedDeltaTime * UFE.config.fps;
-        }
-
-
-        // Next Frame
-        move.currentFrame = (int)move.currentTick;
-        //move.currentFrame = (int)FPMath.Floor(move.currentTick) + 2;
-
-        // Get current animation values
-        //move.currentTick = MoveSet.GetCurrentClipTick();
-        //move.currentFrame = MoveSet.GetCurrentClipFrame();
     }
+        
+    
 
     public void CheckHits(MoveInfo move, ControlsScript opControlsScript) {
         if (!GetActive() || !opControlsScript.GetActive()) return;
@@ -2411,37 +2816,77 @@ public class ControlsScript : MonoBehaviour {
 
                     foreach (HurtBox hurtBox in activeHurtBoxes)
                     {
-                        if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+                        if (myInfo.animationType != AnimationType.Volumetric)
                         {
-                            CustomHitBox hitboxDef = move.animMap.customHitBoxDefinition.customHitBoxes[hurtBox.hitBoxDefinitionIndex];
+                            if (move.animMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
+                            {
+                                CustomHitBox hitboxDef = move.animMap.customHitBoxDefinition.customHitBoxes[hurtBox.hitBoxDefinitionIndex];
 
-                            hurtBox.shape = hitboxDef.shape;
-                            hurtBox._radius = hitboxDef.activeFrames[move.currentFrame].radius;
-                            hurtBox._rect = new FPRect(0, 0, hitboxDef.activeFrames[move.currentFrame].cubeWidth, hitboxDef.activeFrames[move.currentFrame].cubeHeight);
-                            FPVector newPosition = hitboxDef.activeFrames[move.currentFrame].position;
-                            if (mirror == 1) newPosition.x *= -1;
-                            hurtBox.position = newPosition + worldTransform.position;
+                                hurtBox.shape = hitboxDef.shape;
+                                hurtBox._radius = hitboxDef.activeFrames[move.currentFrame].radius;
+                                hurtBox._rect = new FPRect(0, 0, hitboxDef.activeFrames[move.currentFrame].cubeWidth, hitboxDef.activeFrames[move.currentFrame].cubeHeight);
+                                FPVector newPosition = hitboxDef.activeFrames[move.currentFrame].position;
+                                if (mirror == 1) newPosition.x *= -1;
+                                hurtBox.position = newPosition + worldTransform.position;
+                            }
+                            else
+                            {
+                                if (UFE.config.gameplayType == GameplayType._2DFighter)
+                                {
+                                    hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart);
+                                    if (hurtBox.shape == HitBoxShape.circle)
+                                    {
+                                        if (mirror == 1) hurtBox._offSet.x *= -1;
+                                        hurtBox.position += hurtBox._offSet;
+                                    }
+                                }
+#if !UFE_LITE && !UFE_BASIC
+                                else
+                                {
+                                    hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart, true);
+                                    hurtBox.position += hurtBox._offSet;
+                                    hurtBox.position = (FPQuaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0) * hurtBox.position) + worldTransform.position;
+                                }
+#endif
+
+                                hurtBox.rendererBounds = myHitBoxesScript.GetBounds();
+                            }
                         }
                         else
                         {
-                            if (UFE.config.gameplayType == GameplayType._2DFighter)
+                            if (move.voluMap.hitBoxDefinitionType == HitBoxDefinitionType.Custom)
                             {
-                                hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart);
-                                if (hurtBox.shape == HitBoxShape.circle) {
-                                    if (mirror == 1) hurtBox._offSet.x *= -1;
-                                    hurtBox.position += hurtBox._offSet;
-                                }
+                                CustomHitBox hitboxDef = move.voluMap.customHitBoxDefinition.customHitBoxes[hurtBox.hitBoxDefinitionIndex];
+
+                                hurtBox.shape = hitboxDef.shape;
+                                hurtBox._radius = hitboxDef.activeFrames[move.currentFrame].radius;
+                                hurtBox._rect = new FPRect(0, 0, hitboxDef.activeFrames[move.currentFrame].cubeWidth, hitboxDef.activeFrames[move.currentFrame].cubeHeight);
+                                FPVector newPosition = hitboxDef.activeFrames[move.currentFrame].position;
+                                if (mirror == 1) newPosition.x *= -1;
+                                hurtBox.position = newPosition + worldTransform.position;
                             }
-#if !UFE_LITE && !UFE_BASIC
                             else
                             {
-                                hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart, true);
-                                hurtBox.position += hurtBox._offSet;
-                                hurtBox.position = (FPQuaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0) * hurtBox.position) + worldTransform.position;
-                            }
+                                if (UFE.config.gameplayType == GameplayType._2DFighter)
+                                {
+                                    hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart);
+                                    if (hurtBox.shape == HitBoxShape.circle)
+                                    {
+                                        if (mirror == 1) hurtBox._offSet.x *= -1;
+                                        hurtBox.position += hurtBox._offSet;
+                                    }
+                                }
+#if !UFE_LITE && !UFE_BASIC
+                                else
+                                {
+                                    hurtBox.position = myHitBoxesScript.GetPosition(hurtBox.bodyPart, true);
+                                    hurtBox.position += hurtBox._offSet;
+                                    hurtBox.position = (FPQuaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0) * hurtBox.position) + worldTransform.position;
+                                }
 #endif
 
-                            hurtBox.rendererBounds = myHitBoxesScript.GetBounds();
+                                hurtBox.rendererBounds = myHitBoxesScript.GetBounds();
+                            }
                         }
                     }
 
@@ -2740,22 +3185,53 @@ public class ControlsScript : MonoBehaviour {
 					potentialBlock = false;
 					return;
 				}
-				if (currentState == PossibleStates.Crouch) {
-					if (myMoveSetScript.basicMoves.blockingCrouchingPose.animMap[0].clip == null)
-						Debug.LogError("Blocking Crouching Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Crouching Pose");
-					myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingCrouchingPose, false);
-					isBlocking = true;
-				}else if (currentState == PossibleStates.Stand) {
-					if (myMoveSetScript.basicMoves.blockingHighPose.animMap[0].clip == null)
-						Debug.LogError("Blocking High Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking High Pose");
-					myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingHighPose, false);
-					isBlocking = true;
-				}else if (!myPhysicsScript.IsGrounded() && UFE.config.blockOptions.allowAirBlock) {
-					if (myMoveSetScript.basicMoves.blockingAirPose.animMap[0].clip == null)
-						Debug.LogError("Blocking Air Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Air Pose");
-					myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingAirPose, false);
-					isBlocking = true;
-				}
+                if (currentState == PossibleStates.Crouch)
+                {
+                    if (myInfo.animationType != AnimationType.Volumetric)
+                    {
+
+                        if (myMoveSetScript.basicMoves.blockingCrouchingPose.animMap[0].clip == null)
+                            Debug.LogError("Blocking Crouching Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Crouching Pose");
+                        myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingCrouchingPose, false);
+                        isBlocking = true;
+                    }
+                    else if (currentState == PossibleStates.Stand)
+                    {
+                        if (myMoveSetScript.basicMoves.blockingHighPose.animMap[0].clip == null)
+                            Debug.LogError("Blocking High Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking High Pose");
+                        myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingHighPose, false);
+                        isBlocking = true;
+                    }
+                    else if (!myPhysicsScript.IsGrounded() && UFE.config.blockOptions.allowAirBlock)
+                    {
+                        if (myMoveSetScript.basicMoves.blockingAirPose.animMap[0].clip == null)
+                            Debug.LogError("Blocking Air Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Air Pose");
+                        myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingAirPose, false);
+                        isBlocking = true;
+                    }
+                }
+                else
+                {
+                    if (myMoveSetScript.basicMoves.blockingCrouchingPose._voluMap[0]._move == null) { 
+                        Debug.LogError("Blocking Crouching Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Crouching Pose");
+                    myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingCrouchingPose, false);
+                    isBlocking = true;
+                }
+                    else if (currentState == PossibleStates.Stand)
+                {
+                    if (myMoveSetScript.basicMoves.blockingHighPose._voluMap[0]._move == null)
+                        Debug.LogError("Blocking High Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking High Pose");
+                    myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingHighPose, false);
+                    isBlocking = true;
+                }
+                else if (!myPhysicsScript.IsGrounded() && UFE.config.blockOptions.allowAirBlock)
+                {
+                    if (myMoveSetScript.basicMoves.blockingAirPose._voluMap[0]._move == null)
+                        Debug.LogError("Blocking Air Pose animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Air Pose");
+                    myMoveSetScript.PlayBasicMove(myMoveSetScript.basicMoves.blockingAirPose, false);
+                    isBlocking = true;
+                }
+              }
 			}
 		}else if (!blockStunned){
 			isBlocking = false;
@@ -2796,49 +3272,61 @@ public class ControlsScript : MonoBehaviour {
 		return true;
 	}
 
-	public void GetHitParry(Hit hit, int remainingFrames, FPVector[] location, ControlsScript attacker){
-		UFE.FireAlert(UFE.config.selectedLanguage.parry, this);
+    public void GetHitParry(Hit hit, int remainingFrames, FPVector[] location, ControlsScript attacker)
+    {
+        UFE.FireAlert(UFE.config.selectedLanguage.parry, this);
 
-		BasicMoveInfo currentHitInfo = myMoveSetScript.basicMoves.parryHigh;
-		blockStunned = true;
-		currentSubState = SubStates.Blocking;
+        BasicMoveInfo currentHitInfo = myMoveSetScript.basicMoves.parryHigh;
+        blockStunned = true;
+        currentSubState = SubStates.Blocking;
 
-		myHitBoxesScript.isHit = true;
+        myHitBoxesScript.isHit = true;
 
-        if (!UFE.config.blockOptions.easyParry) {
+        if (!UFE.config.blockOptions.easyParry)
+        {
             potentialParry = 0;
         }
 
-		if (UFE.config.blockOptions.resetButtonSequence){
-			myMoveSetScript.ClearLastButtonSequence();
-		}
+        if (UFE.config.blockOptions.resetButtonSequence)
+        {
+            myMoveSetScript.ClearLastButtonSequence();
+        }
 
-		if (UFE.config.blockOptions.parryStunType == ParryStunType.Fixed){
-			stunTime = (Fix64)UFE.config.blockOptions.parryStunFrames/UFE.config.fps;
-		}else{
-			int stunFrames = 0;
-			if (hit.hitStunType == HitStunType.FrameAdvantage) {
-				stunFrames = hit.frameAdvantageOnBlock + remainingFrames;
-				stunFrames *= (UFE.config.blockOptions.parryStunFrames/100);
-				if (stunFrames < 1) stunFrames = 1;
-				stunTime = (Fix64)stunFrames/UFE.config.fps;
-			}else if (hit.hitStunType == HitStunType.Frames) {
-				stunFrames = (int) hit._hitStunOnBlock;
-				stunFrames = (int)FPMath.Round((stunFrames * UFE.config.blockOptions.parryStunFrames)/(Fix64)100);
-				if (stunFrames < 1) stunFrames = 1;
-				stunTime = (Fix64)stunFrames/UFE.config.fps;
-			}else{
-				stunTime = hit._hitStunOnBlock * ((Fix64)UFE.config.blockOptions.parryStunFrames/ 100);
-			}
-		}
+        if (UFE.config.blockOptions.parryStunType == ParryStunType.Fixed)
+        {
+            stunTime = (Fix64)UFE.config.blockOptions.parryStunFrames / UFE.config.fps;
+        }
+        else
+        {
+            int stunFrames = 0;
+            if (hit.hitStunType == HitStunType.FrameAdvantage)
+            {
+                stunFrames = hit.frameAdvantageOnBlock + remainingFrames;
+                stunFrames *= (UFE.config.blockOptions.parryStunFrames / 100);
+                if (stunFrames < 1) stunFrames = 1;
+                stunTime = (Fix64)stunFrames / UFE.config.fps;
+            }
+            else if (hit.hitStunType == HitStunType.Frames)
+            {
+                stunFrames = (int)hit._hitStunOnBlock;
+                stunFrames = (int)FPMath.Round((stunFrames * UFE.config.blockOptions.parryStunFrames) / (Fix64)100);
+                if (stunFrames < 1) stunFrames = 1;
+                stunTime = (Fix64)stunFrames / UFE.config.fps;
+            }
+            else
+            {
+                stunTime = hit._hitStunOnBlock * ((Fix64)UFE.config.blockOptions.parryStunFrames / 100);
+            }
+        }
 
         UFE.FireParry(myHitBoxesScript.GetStrokeHitBox(), attacker.currentMove, this);
 
-		// Create hit parry effect
-		GameObject particle = UFE.config.blockOptions.parryHitEffects.hitParticle;
+        // Create hit parry effect
+        GameObject particle = UFE.config.blockOptions.parryHitEffects.hitParticle;
         Fix64 killTime = UFE.config.blockOptions.parryHitEffects.killTime;
-		AudioClip soundEffect = UFE.config.blockOptions.parryHitEffects.hitSound;
-		if (location.Length > 0 && particle != null){
+        AudioClip soundEffect = UFE.config.blockOptions.parryHitEffects.hitSound;
+        if (location.Length > 0 && particle != null)
+        {
             HitEffectSpawnPoint spawnPoint = UFE.config.blockOptions.parryHitEffects.spawnPoint;
             if (hit.overrideEffectSpawnPoint) spawnPoint = hit.spawnPoint;
 
@@ -2846,94 +3334,220 @@ public class ControlsScript : MonoBehaviour {
             GameObject pTemp = UFE.SpawnGameObject(particle, GetParticleSpawnPoint(spawnPoint, location), Quaternion.identity, frames);
             pTemp.transform.rotation = particle.transform.rotation;
 
-            if (UFE.config.blockOptions.parryHitEffects.mirrorOn2PSide && mirror > 0) {
+            if (UFE.config.blockOptions.parryHitEffects.mirrorOn2PSide && mirror > 0)
+            {
                 pTemp.transform.localEulerAngles = new Vector3(pTemp.transform.localEulerAngles.x, pTemp.transform.localEulerAngles.y + 180, pTemp.transform.localEulerAngles.z);
             }
 
-			//pTemp.transform.localScale = new Vector3(-mirror, 1, 1);
+            //pTemp.transform.localScale = new Vector3(-mirror, 1, 1);
             pTemp.transform.parent = UFE.gameEngine.transform;
-		}
-		UFE.PlaySound(soundEffect);
-		
-		// Shake Options
-		shakeCamera = UFE.config.blockOptions.parryHitEffects.shakeCameraOnHit;
-		shakeCharacter = UFE.config.blockOptions.parryHitEffects.shakeCharacterOnHit;
-		shakeDensity = UFE.config.blockOptions.parryHitEffects._shakeDensity;
+        }
+        UFE.PlaySound(soundEffect);
+
+        // Shake Options
+        shakeCamera = UFE.config.blockOptions.parryHitEffects.shakeCameraOnHit;
+        shakeCharacter = UFE.config.blockOptions.parryHitEffects.shakeCharacterOnHit;
+        shakeDensity = UFE.config.blockOptions.parryHitEffects._shakeDensity;
         shakeCameraDensity = UFE.config.blockOptions.parryHitEffects._shakeCameraDensity;
 
 
-		
-		// Get correct animation according to stance
-        if (currentState == PossibleStates.Crouch) {
-            currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryCrouching, hit);
-			currentHitInfo = myMoveSetScript.basicMoves.parryCrouching;
-			if (!myMoveSetScript.AnimationExists(currentHitAnimation))
-                Debug.LogError("Parry Crouching animation not found! Make sure you have it set on Character -> Basic Moves -> Parry Animations -> Crouching");
-		}else if (currentState == PossibleStates.Stand){
-            HitBox strokeHit = myHitBoxesScript.GetStrokeHitBox();
-            if (strokeHit.type == HitBoxType.low && myMoveSetScript.basicMoves.parryLow.animMap[0].clip != null) {
-                currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryLow, hit);
-                currentHitInfo = myMoveSetScript.basicMoves.parryLow;
 
-            } else {
-                currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryHigh, hit);
-                currentHitInfo = myMoveSetScript.basicMoves.parryHigh;
+        // Get correct animation according to stance
+        if (currentState == PossibleStates.Crouch)
+        {
+            if (myInfo.animationType != AnimationType.Volumetric)
+            {
+                currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryCrouching, hit);
+                currentHitInfo = myMoveSetScript.basicMoves.parryCrouching;
                 if (!myMoveSetScript.AnimationExists(currentHitAnimation))
-                    Debug.LogError("Parry High animation not found! Make sure you have it set on Character -> Basic Moves -> Parry Animations -> Standing");
+                    Debug.LogError("Parry Crouching animation not found! Make sure you have it set on Character -> Basic Moves -> Parry Animations -> Crouching");
 
+                else if (currentState == PossibleStates.Stand)
+                {
+                    HitBox strokeHit = myHitBoxesScript.GetStrokeHitBox();
+                    if (strokeHit.type == HitBoxType.low && myMoveSetScript.basicMoves.parryLow.animMap[0].clip != null)
+                    {
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryLow, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.parryLow;
+
+                    }
+                    else
+                    {
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryHigh, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.parryHigh;
+                        if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                            Debug.LogError("Parry High animation not found! Make sure you have it set on Character -> Basic Moves -> Parry Animations -> Standing");
+
+                    }
+                }
+                else if (!myPhysicsScript.IsGrounded())
+                {
+                    currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryAir, hit);
+                    currentHitInfo = myMoveSetScript.basicMoves.parryAir;
+                    if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                        Debug.LogError("Parry Air animation not found! Make sure you have it set on Character -> Basic Moves -> Parry Animations -> Air");
+                }
+
+                myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation);
+                if (currentHitInfo.autoSpeed)
+                {
+                    myMoveSetScript.SetAnimationSpeed(currentHitAnimation, (myMoveSetScript.GetAnimationLength(currentHitAnimation) / stunTime));
+                }
+
+                // Highlight effect when parry
+                if (UFE.config.blockOptions.highlightWhenParry)
+                {
+                    HighlightOn(gameObject, true);
+                    UFE.DelaySynchronizedAction(this.HighlightOff, 0.2);
+                }
+
+                // Freeze screen depending on how strong the hit was
+                HitPause(GetHitAnimationSpeed(hit.hitStrength) * .01);
+                UFE.DelaySynchronizedAction(this.HitUnpause, GetHitFreezingTime(hit.hitStrength));
+
+                // Reset hit to allow for another hit while the character is still stunned
+                Fix64 spaceBetweenHits = 1;
+                if (hit.spaceBetweenHits == Sizes.VerySmall)
+                {
+                    spaceBetweenHits = 1.05;
+                }
+                else if (hit.spaceBetweenHits == Sizes.Small)
+                {
+                    spaceBetweenHits = 1.15;
+                }
+                else if (hit.spaceBetweenHits == Sizes.Medium)
+                {
+                    spaceBetweenHits = 1.3;
+                }
+                else if (hit.spaceBetweenHits == Sizes.High)
+                {
+                    spaceBetweenHits = 1.7;
+                }
+                else if (hit.spaceBetweenHits == Sizes.VeryHigh)
+                {
+                    spaceBetweenHits = 2;
+                }
+
+                if (UFE.config.blockOptions.parryHitEffects.autoHitStop)
+                {
+                    UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, GetHitFreezingTime(hit.hitStrength) * spaceBetweenHits);
+                }
+                else
+                {
+                    UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, UFE.config.blockOptions.parryHitEffects._hitStop * spaceBetweenHits);
+                }
+
+                // Add force to the move
+                myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, hit.resetPreviousVerticalPush, hit.resetPreviousSidewaysPush);
+
+                if (!UFE.config.blockOptions.ignoreAppliedForceParry)
+                    if (hit.applyDifferentBlockForce)
+                    {
+                        myPhysicsScript.AddForce(hit._pushForceBlock, opControlsScript.GetDirection(), true);
+                    }
+                    else
+                    {
+                        myPhysicsScript.AddForce(hit._pushForce, opControlsScript.GetDirection(), true);
+                    }
             }
-        } else if (!myPhysicsScript.IsGrounded()) {
-            currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryAir, hit);
-			currentHitInfo = myMoveSetScript.basicMoves.parryAir;
-			if (!myMoveSetScript.AnimationExists(currentHitAnimation))
-                Debug.LogError("Parry Air animation not found! Make sure you have it set on Character -> Basic Moves -> Parry Animations -> Air");
-		}
+            else
+            {
+                currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryCrouching, hit);
+                currentHitInfo = myMoveSetScript.basicMoves.parryCrouching;
+                if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                    Debug.LogError("Parry Crouching animation not found! Make sure you have it set on Character -> Basic Moves -> Parry Animations -> Crouching");
 
-		myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation);
-        if (currentHitInfo.autoSpeed) {
-            myMoveSetScript.SetAnimationSpeed(currentHitAnimation, (myMoveSetScript.GetAnimationLength(currentHitAnimation) / stunTime));
-        }
-		
-		// Highlight effect when parry
-		if (UFE.config.blockOptions.highlightWhenParry){
-			HighlightOn(gameObject, true);
-			UFE.DelaySynchronizedAction(this.HighlightOff, 0.2);
-		}
-		
-		// Freeze screen depending on how strong the hit was
-		HitPause(GetHitAnimationSpeed(hit.hitStrength) * .01);
-		UFE.DelaySynchronizedAction(this.HitUnpause, GetHitFreezingTime(hit.hitStrength));
+                else if (currentState == PossibleStates.Stand)
+                {
+                    HitBox strokeHit = myHitBoxesScript.GetStrokeHitBox();
+                    if (strokeHit.type == HitBoxType.low && myMoveSetScript.basicMoves.parryLow._voluMap[0]._move != null)
+                    {
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryLow, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.parryLow;
 
-        // Reset hit to allow for another hit while the character is still stunned
-        Fix64 spaceBetweenHits = 1;
-		if (hit.spaceBetweenHits == Sizes.VerySmall){
-			spaceBetweenHits = 1.05;
-		}else if (hit.spaceBetweenHits == Sizes.Small){
-			spaceBetweenHits = 1.15;
-		}else if (hit.spaceBetweenHits == Sizes.Medium){
-			spaceBetweenHits = 1.3;
-		}else if (hit.spaceBetweenHits == Sizes.High){
-			spaceBetweenHits = 1.7;
-		}else if (hit.spaceBetweenHits == Sizes.VeryHigh){
-			spaceBetweenHits = 2;
-		}
+                    }
+                    else
+                    {
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryHigh, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.parryHigh;
+                        if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                            Debug.LogError("Parry High animation not found! Make sure you have it set on Character -> Basic Moves -> Parry Animations -> Standing");
 
-        if (UFE.config.blockOptions.parryHitEffects.autoHitStop) {
-            UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, GetHitFreezingTime(hit.hitStrength) * spaceBetweenHits);
-        } else {
-            UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, UFE.config.blockOptions.parryHitEffects._hitStop * spaceBetweenHits);
-        }
-		
-		// Add force to the move
-		myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, hit.resetPreviousVerticalPush, hit.resetPreviousSidewaysPush);
+                    }
+                }
+                else if (!myPhysicsScript.IsGrounded())
+                {
+                    currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.parryAir, hit);
+                    currentHitInfo = myMoveSetScript.basicMoves.parryAir;
+                    if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                        Debug.LogError("Parry Air animation not found! Make sure you have it set on Character -> Basic Moves -> Parry Animations -> Air");
+                }
 
-		if (!UFE.config.blockOptions.ignoreAppliedForceParry)
-            if (hit.applyDifferentBlockForce) {
-                myPhysicsScript.AddForce(hit._pushForceBlock, opControlsScript.GetDirection(), true);
-            } else {
-                myPhysicsScript.AddForce(hit._pushForce, opControlsScript.GetDirection(), true);
+                myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation);
+                if (currentHitInfo.autoSpeed)
+                {
+                    myMoveSetScript.SetAnimationSpeed(currentHitAnimation, (myMoveSetScript.GetAnimationLength(currentHitAnimation) / stunTime));
+                }
+
+                // Highlight effect when parry
+                if (UFE.config.blockOptions.highlightWhenParry)
+                {
+                    HighlightOn(gameObject, true);
+                    UFE.DelaySynchronizedAction(this.HighlightOff, 0.2);
+                }
+
+                // Freeze screen depending on how strong the hit was
+                HitPause(GetHitAnimationSpeed(hit.hitStrength) * .01);
+                UFE.DelaySynchronizedAction(this.HitUnpause, GetHitFreezingTime(hit.hitStrength));
+
+                // Reset hit to allow for another hit while the character is still stunned
+                Fix64 spaceBetweenHits = 1;
+                if (hit.spaceBetweenHits == Sizes.VerySmall)
+                {
+                    spaceBetweenHits = 1.05;
+                }
+                else if (hit.spaceBetweenHits == Sizes.Small)
+                {
+                    spaceBetweenHits = 1.15;
+                }
+                else if (hit.spaceBetweenHits == Sizes.Medium)
+                {
+                    spaceBetweenHits = 1.3;
+                }
+                else if (hit.spaceBetweenHits == Sizes.High)
+                {
+                    spaceBetweenHits = 1.7;
+                }
+                else if (hit.spaceBetweenHits == Sizes.VeryHigh)
+                {
+                    spaceBetweenHits = 2;
+                }
+
+                if (UFE.config.blockOptions.parryHitEffects.autoHitStop)
+                {
+                    UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, GetHitFreezingTime(hit.hitStrength) * spaceBetweenHits);
+                }
+                else
+                {
+                    UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, UFE.config.blockOptions.parryHitEffects._hitStop * spaceBetweenHits);
+                }
+
+                // Add force to the move
+                myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, hit.resetPreviousVerticalPush, hit.resetPreviousSidewaysPush);
+
+                if (!UFE.config.blockOptions.ignoreAppliedForceParry)
+                    if (hit.applyDifferentBlockForce)
+                    {
+                        myPhysicsScript.AddForce(hit._pushForceBlock, opControlsScript.GetDirection(), true);
+                    }
+                    else
+                    {
+                        myPhysicsScript.AddForce(hit._pushForce, opControlsScript.GetDirection(), true);
+                    }
             }
-	}
+            
+        }
+    }
 
 	public void GetHitBlocking(Hit hit, int remainingFrames, FPVector[] location, bool ignoreDirection, ControlsScript attacker){
 		// Lose life
@@ -3000,74 +3614,199 @@ public class ControlsScript : MonoBehaviour {
         shakeCameraDensity = hitEffects._shakeCameraDensity;
 
 
-        if (currentState == PossibleStates.Crouch){
-			currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingCrouchingHit, hit);
-			currentHitInfo = myMoveSetScript.basicMoves.blockingCrouchingHit;
+        if (currentState == PossibleStates.Crouch)
+        {
+            if (myInfo.animationType != AnimationType.Volumetric)
+            {
+                currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingCrouchingHit, hit);
+                currentHitInfo = myMoveSetScript.basicMoves.blockingCrouchingHit;
 
-			if (!myMoveSetScript.AnimationExists(currentHitAnimation))
-                Debug.LogError("Blocking Crouching Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Animations");
-		}else if (currentState == PossibleStates.Stand){
-			HitBox strokeHit = myHitBoxesScript.GetStrokeHitBox();
-			if (strokeHit.type == HitBoxType.low && myMoveSetScript.basicMoves.blockingLowHit.animMap[0].clip != null){
-				currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingLowHit, hit);
-				currentHitInfo = myMoveSetScript.basicMoves.blockingLowHit;
+                if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                    Debug.LogError("Blocking Crouching Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Animations");
 
-			}else{
-				currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingHighHit, hit);
-				currentHitInfo = myMoveSetScript.basicMoves.blockingHighHit;
-				if (!myMoveSetScript.AnimationExists(currentHitAnimation))
-                    Debug.LogError("Blocking High Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Animations");
+                else if (currentState == PossibleStates.Stand)
+                {
+                    HitBox strokeHit = myHitBoxesScript.GetStrokeHitBox();
+                    if (strokeHit.type == HitBoxType.low && myMoveSetScript.basicMoves.blockingLowHit.animMap[0].clip != null)
+                    {
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingLowHit, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.blockingLowHit;
 
-			}
+                    }
+                    else
+                    {
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingHighHit, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.blockingHighHit;
+                        if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                            Debug.LogError("Blocking High Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Animations");
 
-		}else if (!myPhysicsScript.IsGrounded()){
-			currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingAirHit, hit);
-			currentHitInfo = myMoveSetScript.basicMoves.blockingAirHit;
-			if (!myMoveSetScript.AnimationExists(currentHitAnimation))
-				Debug.LogError("Blocking Air Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Animations");
-		}
+                    }
+
+                }
+                else if (!myPhysicsScript.IsGrounded())
+                {
+                    currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingAirHit, hit);
+                    currentHitInfo = myMoveSetScript.basicMoves.blockingAirHit;
+                    if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                        Debug.LogError("Blocking Air Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Animations");
+                }
 
 
-        myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation);
-        hitAnimationSpeed = myMoveSetScript.GetAnimationLength(currentHitAnimation) / stunTime;
+                myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation);
+                hitAnimationSpeed = myMoveSetScript.GetAnimationLength(currentHitAnimation) / stunTime;
 
-        if (currentHitInfo.autoSpeed) {
-            myMoveSetScript.SetAnimationSpeed(currentHitAnimation, hitAnimationSpeed);
-        }
+                if (currentHitInfo.autoSpeed)
+                {
+                    myMoveSetScript.SetAnimationSpeed(currentHitAnimation, hitAnimationSpeed);
+                }
 
-        // Freeze screen depending on how strong the hit was
-        HitPause(GetHitAnimationSpeed(hit.hitStrength) * .01);
-        UFE.DelaySynchronizedAction(this.HitUnpause, freezingTime);
+                // Freeze screen depending on how strong the hit was
+                HitPause(GetHitAnimationSpeed(hit.hitStrength) * .01);
+                UFE.DelaySynchronizedAction(this.HitUnpause, freezingTime);
 
-        // Reset hit to allow for another hit while the character is still stunned
-        Fix64 spaceBetweenHits = 1;
-		if (hit.spaceBetweenHits == Sizes.VerySmall){
-			spaceBetweenHits = 1.05;
-		}else if (hit.spaceBetweenHits == Sizes.Small){
-			spaceBetweenHits = 1.15;
-		}else if (hit.spaceBetweenHits == Sizes.Medium){
-			spaceBetweenHits = 1.3;
-		}else if (hit.spaceBetweenHits == Sizes.High){
-			spaceBetweenHits = 1.7;
-		}else if (hit.spaceBetweenHits == Sizes.VeryHigh){
-			spaceBetweenHits = 2;
-		}
+                // Reset hit to allow for another hit while the character is still stunned
+                Fix64 spaceBetweenHits = 1;
+                if (hit.spaceBetweenHits == Sizes.VerySmall)
+                {
+                    spaceBetweenHits = 1.05;
+                }
+                else if (hit.spaceBetweenHits == Sizes.Small)
+                {
+                    spaceBetweenHits = 1.15;
+                }
+                else if (hit.spaceBetweenHits == Sizes.Medium)
+                {
+                    spaceBetweenHits = 1.3;
+                }
+                else if (hit.spaceBetweenHits == Sizes.High)
+                {
+                    spaceBetweenHits = 1.7;
+                }
+                else if (hit.spaceBetweenHits == Sizes.VeryHigh)
+                {
+                    spaceBetweenHits = 2;
+                }
 
-        if (hitEffects.autoHitStop) {
-            UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, freezingTime * spaceBetweenHits);
-        } else {
-            UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, hitEffects._hitStop * spaceBetweenHits);
-        }
-		
-		// Add force to the move
-		myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, hit.resetPreviousVerticalPush, hit.resetPreviousSidewaysPush);
+                if (hitEffects.autoHitStop)
+                {
+                    UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, freezingTime * spaceBetweenHits);
+                }
+                else
+                {
+                    UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, hitEffects._hitStop * spaceBetweenHits);
+                }
 
-        if (!UFE.config.blockOptions.ignoreAppliedForceBlock)
-            if (hit.applyDifferentBlockForce) {
-                myPhysicsScript.AddForce(hit._pushForceBlock, ignoreDirection ? -GetDirection() : opControlsScript.GetDirection());
-            } else {
-                myPhysicsScript.AddForce(hit._pushForce, ignoreDirection ? -GetDirection() : opControlsScript.GetDirection());
+                // Add force to the move
+                myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, hit.resetPreviousVerticalPush, hit.resetPreviousSidewaysPush);
+
+                if (!UFE.config.blockOptions.ignoreAppliedForceBlock)
+                {
+                    if (hit.applyDifferentBlockForce)
+                    {
+                        myPhysicsScript.AddForce(hit._pushForceBlock, ignoreDirection ? -GetDirection() : opControlsScript.GetDirection());
+                    }
+                    else
+                    {
+                        myPhysicsScript.AddForce(hit._pushForce, ignoreDirection ? -GetDirection() : opControlsScript.GetDirection());
+                    }
+                }
             }
+            else
+            {
+                currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingCrouchingHit, hit);
+                currentHitInfo = myMoveSetScript.basicMoves.blockingCrouchingHit;
+
+                if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                    Debug.LogError("Blocking Crouching Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Animations");
+
+                else if (currentState == PossibleStates.Stand)
+                {
+                    HitBox strokeHit = myHitBoxesScript.GetStrokeHitBox();
+                    if (strokeHit.type == HitBoxType.low && myMoveSetScript.basicMoves.blockingLowHit._voluMap[0]._move != null)
+                    {
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingLowHit, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.blockingLowHit;
+
+                    }
+                    else
+                    {
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingHighHit, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.blockingHighHit;
+                        if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                            Debug.LogError("Blocking High Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Animations");
+
+                    }
+
+                }
+                else if (!myPhysicsScript.IsGrounded())
+                {
+                    currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.blockingAirHit, hit);
+                    currentHitInfo = myMoveSetScript.basicMoves.blockingAirHit;
+                    if (!myMoveSetScript.AnimationExists(currentHitAnimation))
+                        Debug.LogError("Blocking Air Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Blocking Animations");
+                }
+
+
+                myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation);
+                hitAnimationSpeed = myMoveSetScript.GetAnimationLength(currentHitAnimation) / stunTime;
+
+                if (currentHitInfo.autoSpeed)
+                {
+                    myMoveSetScript.SetAnimationSpeed(currentHitAnimation, hitAnimationSpeed);
+                }
+
+                // Freeze screen depending on how strong the hit was
+                HitPause(GetHitAnimationSpeed(hit.hitStrength) * .01);
+                UFE.DelaySynchronizedAction(this.HitUnpause, freezingTime);
+
+                // Reset hit to allow for another hit while the character is still stunned
+                Fix64 spaceBetweenHits = 1;
+                if (hit.spaceBetweenHits == Sizes.VerySmall)
+                {
+                    spaceBetweenHits = 1.05;
+                }
+                else if (hit.spaceBetweenHits == Sizes.Small)
+                {
+                    spaceBetweenHits = 1.15;
+                }
+                else if (hit.spaceBetweenHits == Sizes.Medium)
+                {
+                    spaceBetweenHits = 1.3;
+                }
+                else if (hit.spaceBetweenHits == Sizes.High)
+                {
+                    spaceBetweenHits = 1.7;
+                }
+                else if (hit.spaceBetweenHits == Sizes.VeryHigh)
+                {
+                    spaceBetweenHits = 2;
+                }
+
+                if (hitEffects.autoHitStop)
+                {
+                    UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, freezingTime * spaceBetweenHits);
+                }
+                else
+                {
+                    UFE.DelaySynchronizedAction(myHitBoxesScript.ResetHit, hitEffects._hitStop * spaceBetweenHits);
+                }
+
+                // Add force to the move
+                myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, hit.resetPreviousVerticalPush, hit.resetPreviousSidewaysPush);
+
+                if (!UFE.config.blockOptions.ignoreAppliedForceBlock)
+                {
+                    if (hit.applyDifferentBlockForce)
+                    {
+                        myPhysicsScript.AddForce(hit._pushForceBlock, ignoreDirection ? -GetDirection() : opControlsScript.GetDirection());
+                    }
+                    else
+                    {
+                        myPhysicsScript.AddForce(hit._pushForce, ignoreDirection ? -GetDirection() : opControlsScript.GetDirection());
+                    }
+                }
+            }
+        }
 	}
 
     public void TestRotationOnHit(ControlsScript attacker, Hit hit, bool overrideConditions = false)
@@ -3157,88 +3896,232 @@ public class ControlsScript : MonoBehaviour {
         if (hit.resetCrumples) consecutiveCrumple = 0;
 
         // Obtain animation depending on HitType
-		if (myPhysicsScript.IsGrounded()) {
-            if (hit.hitStrength == HitStrengh.Crumple && hit.hitType != HitType.Launcher) {
-				if (myMoveSetScript.basicMoves.getHitCrumple.animMap[0].clip == null)
-					Debug.LogError("("+ myInfo.characterName +") Crumple animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
-				currentHitAnimation = myMoveSetScript.basicMoves.getHitCrumple.name;
-				currentHitInfo = myMoveSetScript.basicMoves.getHitCrumple;
-                consecutiveCrumple ++;
+        if (myInfo.animationType != AnimationType.Volumetric)
+        {
+            if (myPhysicsScript.IsGrounded())
+            {
+                if (hit.hitStrength == HitStrengh.Crumple && hit.hitType != HitType.Launcher)
+                {
+                    if (myMoveSetScript.basicMoves.getHitCrumple.animMap[0].clip == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Crumple animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitCrumple.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitCrumple;
+                    consecutiveCrumple++;
 
-			}else if (hit.hitType == HitType.Launcher){
-				if (myMoveSetScript.basicMoves.getHitAir.animMap[0].clip == null)
-                    Debug.LogError("(" + myInfo.characterName + ") Air Juggle animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
-				currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
-				currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
-
-				airHit = true;
-			}else if (hit.hitType == HitType.KnockBack){
-                if (myMoveSetScript.basicMoves.getHitKnockBack.animMap[0].clip == null) {
+                }
+                else if (hit.hitType == HitType.Launcher)
+                {
                     if (myMoveSetScript.basicMoves.getHitAir.animMap[0].clip == null)
-                        Debug.LogError("(" + myInfo.characterName + ") Air Juggle & Knock Back animations not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                        Debug.LogError("(" + myInfo.characterName + ") Air Juggle animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
                     currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
                     currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
-                } else {
+
+                    airHit = true;
+                }
+                else if (hit.hitType == HitType.KnockBack)
+                {
+                    if (myMoveSetScript.basicMoves.getHitKnockBack.animMap[0].clip == null)
+                    {
+                        if (myMoveSetScript.basicMoves.getHitAir.animMap[0].clip == null)
+                            Debug.LogError("(" + myInfo.characterName + ") Air Juggle & Knock Back animations not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                        currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
+                    }
+                    else
+                    {
+                        currentHitAnimation = myMoveSetScript.basicMoves.getHitKnockBack.name;
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitKnockBack;
+                    }
+
+                    airHit = true;
+                }
+                else if (hit.hitType == HitType.HighKnockdown)
+                {
+                    if (myMoveSetScript.basicMoves.getHitHighKnockdown.animMap[0].clip == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Standing High Hit [Knockdown] animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitHighKnockdown.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitHighKnockdown;
+
+                    isKnockDown = true;
+                }
+                else if (hit.hitType == HitType.MidKnockdown)
+                {
+                    if (myMoveSetScript.basicMoves.getHitMidKnockdown.animMap[0].clip == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Standing Mid Hit [Knockdown] animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitMidKnockdown.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitMidKnockdown;
+
+                    isKnockDown = true;
+                }
+                else if (hit.hitType == HitType.Sweep)
+                {
+                    if (myMoveSetScript.basicMoves.getHitSweep.animMap[0].clip == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Sweep [Knockdown] animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitSweep.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitSweep;
+
+                    isKnockDown = true;
+                }
+                else if (currentState == PossibleStates.Crouch && !hit.forceStand)
+                {
+                    if (myMoveSetScript.basicMoves.getHitCrouching.animMap[0].clip == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Crouching Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.getHitCrouching, hit);
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitCrouching;
+
+                }
+                else
+                {
+                    HitBox strokeHit = myHitBoxesScript.GetStrokeHitBox();
+                    if (strokeHit.type == HitBoxType.low && myMoveSetScript.basicMoves.getHitLow.animMap[0].clip != null)
+                    {
+                        if (myMoveSetScript.basicMoves.getHitHigh.animMap[0].clip == null)
+                            Debug.LogError("(" + myInfo.characterName + ") Standing Low Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.getHitLow, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitLow;
+
+                    }
+                    else
+                    {
+                        if (myMoveSetScript.basicMoves.getHitHigh.animMap[0].clip == null)
+                            Debug.LogError("(" + myInfo.characterName + ") Standing High Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.getHitHigh, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitHigh;
+
+                    }
+                }
+            }
+            else
+            {
+                if (hit.hitStrength == HitStrengh.Crumple && myMoveSetScript.basicMoves.getHitKnockBack.animMap[0].clip != null)
+                {
                     currentHitAnimation = myMoveSetScript.basicMoves.getHitKnockBack.name;
                     currentHitInfo = myMoveSetScript.basicMoves.getHitKnockBack;
                 }
+                else
+                {
+                    if (myMoveSetScript.basicMoves.getHitAir.animMap[0].clip == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Air Juggle animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
+                }
+                airHit = true;
+            }
+        }
+        else
+        {
+            if (myPhysicsScript.IsGrounded())
+            {
+                if (hit.hitStrength == HitStrengh.Crumple && hit.hitType != HitType.Launcher)
+                {
+                    if (myMoveSetScript.basicMoves.getHitCrumple._voluMap[0]._move == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Crumple animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitCrumple.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitCrumple;
+                    consecutiveCrumple++;
 
-				airHit = true;
-			}else if (hit.hitType == HitType.HighKnockdown){
-				if (myMoveSetScript.basicMoves.getHitHighKnockdown.animMap[0].clip == null)
-                    Debug.LogError("(" + myInfo.characterName + ") Standing High Hit [Knockdown] animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
-				currentHitAnimation = myMoveSetScript.basicMoves.getHitHighKnockdown.name;
-				currentHitInfo = myMoveSetScript.basicMoves.getHitHighKnockdown;
+                }
+                else if (hit.hitType == HitType.Launcher)
+                {
+                    if (myMoveSetScript.basicMoves.getHitAir._voluMap[0]._move == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Air Juggle animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
 
-				isKnockDown = true;
-			}else if (hit.hitType == HitType.MidKnockdown){
-				if (myMoveSetScript.basicMoves.getHitMidKnockdown.animMap[0].clip == null)
-                    Debug.LogError("(" + myInfo.characterName + ") Standing Mid Hit [Knockdown] animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
-				currentHitAnimation = myMoveSetScript.basicMoves.getHitMidKnockdown.name;
-				currentHitInfo = myMoveSetScript.basicMoves.getHitMidKnockdown;
+                    airHit = true;
+                }
+                else if (hit.hitType == HitType.KnockBack)
+                {
+                    if (myMoveSetScript.basicMoves.getHitKnockBack._voluMap[0]._move == null)
+                    {
+                        if (myMoveSetScript.basicMoves.getHitAir._voluMap[0]._move == null)
+                            Debug.LogError("(" + myInfo.characterName + ") Air Juggle & Knock Back animations not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                        currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
+                    }
+                    else
+                    {
+                        currentHitAnimation = myMoveSetScript.basicMoves.getHitKnockBack.name;
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitKnockBack;
+                    }
 
-				isKnockDown = true;
-			}else if (hit.hitType == HitType.Sweep){
-				if (myMoveSetScript.basicMoves.getHitSweep.animMap[0].clip == null)
-                    Debug.LogError("(" + myInfo.characterName + ") Sweep [Knockdown] animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
-				currentHitAnimation = myMoveSetScript.basicMoves.getHitSweep.name;
-				currentHitInfo = myMoveSetScript.basicMoves.getHitSweep;
+                    airHit = true;
+                }
+                else if (hit.hitType == HitType.HighKnockdown)
+                {
+                    if (myMoveSetScript.basicMoves.getHitHighKnockdown._voluMap[0]._move == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Standing High Hit [Knockdown] animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitHighKnockdown.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitHighKnockdown;
 
-				isKnockDown = true;
-			}else if (currentState == PossibleStates.Crouch && !hit.forceStand){
-				if (myMoveSetScript.basicMoves.getHitCrouching.animMap[0].clip == null)
-                    Debug.LogError("(" + myInfo.characterName + ") Crouching Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
-				currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.getHitCrouching, hit);
-				currentHitInfo = myMoveSetScript.basicMoves.getHitCrouching;
+                    isKnockDown = true;
+                }
+                else if (hit.hitType == HitType.MidKnockdown)
+                {
+                    if (myMoveSetScript.basicMoves.getHitMidKnockdown._voluMap[0]._move == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Standing Mid Hit [Knockdown] animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitMidKnockdown.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitMidKnockdown;
 
-			}else{
-				HitBox strokeHit = myHitBoxesScript.GetStrokeHitBox();
-                if (strokeHit.type == HitBoxType.low && myMoveSetScript.basicMoves.getHitLow.animMap[0].clip != null) {
-                    if (myMoveSetScript.basicMoves.getHitHigh.animMap[0].clip == null)
-                        Debug.LogError("(" + myInfo.characterName + ") Standing Low Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
-					currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.getHitLow, hit);
-					currentHitInfo = myMoveSetScript.basicMoves.getHitLow;
+                    isKnockDown = true;
+                }
+                else if (hit.hitType == HitType.Sweep)
+                {
+                    if (myMoveSetScript.basicMoves.getHitSweep._voluMap[0]._move == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Sweep [Knockdown] animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitSweep.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitSweep;
 
-				}else{
-					if (myMoveSetScript.basicMoves.getHitHigh.animMap[0].clip == null)
-                        Debug.LogError("(" + myInfo.characterName + ") Standing High Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
-					currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.getHitHigh, hit);
-					currentHitInfo = myMoveSetScript.basicMoves.getHitHigh;
+                    isKnockDown = true;
+                }
+                else if (currentState == PossibleStates.Crouch && !hit.forceStand)
+                {
+                    if (myMoveSetScript.basicMoves.getHitCrouching._voluMap[0]._move == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Crouching Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.getHitCrouching, hit);
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitCrouching;
 
-				}
-			}
-		}else{
-			if (hit.hitStrength == HitStrengh.Crumple && myMoveSetScript.basicMoves.getHitKnockBack.animMap[0].clip != null){
-				currentHitAnimation = myMoveSetScript.basicMoves.getHitKnockBack.name;
-				currentHitInfo = myMoveSetScript.basicMoves.getHitKnockBack;
-			}else{
-				if (myMoveSetScript.basicMoves.getHitAir.animMap[0].clip == null)
-                    Debug.LogError("(" + myInfo.characterName + ") Air Juggle animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
-				currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
-				currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
-			}
-			airHit = true;
-		}
+                }
+                else
+                {
+                    HitBox strokeHit = myHitBoxesScript.GetStrokeHitBox();
+                    if (strokeHit.type == HitBoxType.low && myMoveSetScript.basicMoves.getHitLow._voluMap[0]._move != null)
+                    {
+                        if (myMoveSetScript.basicMoves.getHitHigh._voluMap[0]._move == null)
+                            Debug.LogError("(" + myInfo.characterName + ") Standing Low Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.getHitLow, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitLow;
+
+                    }
+                    else
+                    {
+                        if (myMoveSetScript.basicMoves.getHitHigh._voluMap[0]._move == null)
+                            Debug.LogError("(" + myInfo.characterName + ") Standing High Hit animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                        currentHitAnimation = GetHitAnimation(myMoveSetScript.basicMoves.getHitHigh, hit);
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitHigh;
+
+                    }
+                }
+            }
+            else
+            {
+                if (hit.hitStrength == HitStrengh.Crumple && myMoveSetScript.basicMoves.getHitKnockBack._voluMap[0]._move != null)
+                {
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitKnockBack.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitKnockBack;
+                }
+                else
+                {
+                    if (myMoveSetScript.basicMoves.getHitAir._voluMap[0]._move == null)
+                        Debug.LogError("(" + myInfo.characterName + ") Air Juggle animation not found! Make sure you have it set on Character -> Basic Moves -> Hit Reactions");
+                    currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
+                    currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
+                }
+                airHit = true;
+            }
+        }
+
+        
         
         // Override Hit Animation
         myPhysicsScript.overrideStunAnimation = null;
@@ -3511,45 +4394,93 @@ public class ControlsScript : MonoBehaviour {
 
             if ((airHit || (!myPhysicsScript.IsGrounded() && airRecoveryType == AirRecoveryType.DontRecover)) && pushForce.y > 0)
             {
-				if (myMoveSetScript.basicMoves.getHitAir.animMap[0].clip == null)
-					Debug.LogError("Get Hit Air animation not found! Make sure you have it set on Character -> Basic Moves -> Get Hit Air");
-
-				myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, hit.resetPreviousVerticalPush, hit.resetPreviousSidewaysPush);
-                myPhysicsScript.AddForce(pushForce, ignoreDirection || target == null? -GetDirection() : attacker.GetDirection());
-
-                if (myMoveSetScript.basicMoves.getHitKnockBack.animMap[0].clip != null && 
-                    pushForce.x > UFE.config.comboOptions._knockBackMinForce)
+                if (myInfo.animationType != AnimationType.Volumetric)
                 {
-                    currentHitAnimation = myMoveSetScript.basicMoves.getHitKnockBack.name;
-                    currentHitInfo = myMoveSetScript.basicMoves.getHitKnockBack;
-				}
-                else
-                {
-					currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
-					currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
-				}
+                    if (myMoveSetScript.basicMoves.getHitAir.animMap[0].clip == null)
+                        Debug.LogError("Get Hit Air animation not found! Make sure you have it set on Character -> Basic Moves -> Get Hit Air");
 
-                if (hit.overrideHitAnimationBlend)
-                {
-                    myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation, hit._newHitBlendingIn, hit.resetHitAnimations);
-                }
-                else
-                {
-                    myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation, hit.resetHitAnimations);
-                }
+                    myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, hit.resetPreviousVerticalPush, hit.resetPreviousSidewaysPush);
+                    myPhysicsScript.AddForce(pushForce, ignoreDirection || target == null ? -GetDirection() : attacker.GetDirection());
 
-                if (currentHitInfo.autoSpeed)
-                {
-                    // if the hit was in the air, calculate the time it will take for the character to hit the ground
-                    Fix64 airTime = myPhysicsScript.GetPossibleAirTime(pushForce.y);
-
-                    if (myMoveSetScript.basicMoves.fallingFromAirHit.animMap[0].clip == null) airTime *= 2;
-
-                    if (stunTime > airTime || airRecoveryType == AirRecoveryType.DontRecover) { 
-                        stunTime = airTime;
+                    if (myMoveSetScript.basicMoves.getHitKnockBack.animMap[0].clip != null &&
+                        pushForce.x > UFE.config.comboOptions._knockBackMinForce)
+                    {
+                        currentHitAnimation = myMoveSetScript.basicMoves.getHitKnockBack.name;
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitKnockBack;
+                    }
+                    else
+                    {
+                        currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
                     }
 
-                    myMoveSetScript.SetAnimationNormalizedSpeed(currentHitAnimation, (myMoveSetScript.GetAnimationLength(currentHitAnimation) / stunTime));
+                    if (hit.overrideHitAnimationBlend)
+                    {
+                        myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation, hit._newHitBlendingIn, hit.resetHitAnimations);
+                    }
+                    else
+                    {
+                        myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation, hit.resetHitAnimations);
+                    }
+
+                    if (currentHitInfo.autoSpeed)
+                    {
+                        // if the hit was in the air, calculate the time it will take for the character to hit the ground
+                        Fix64 airTime = myPhysicsScript.GetPossibleAirTime(pushForce.y);
+
+                        if (myMoveSetScript.basicMoves.fallingFromAirHit.animMap[0].clip == null) airTime *= 2;
+
+                        if (stunTime > airTime || airRecoveryType == AirRecoveryType.DontRecover)
+                        {
+                            stunTime = airTime;
+                        }
+
+                        myMoveSetScript.SetAnimationNormalizedSpeed(currentHitAnimation, (myMoveSetScript.GetAnimationLength(currentHitAnimation) / stunTime));
+                    }
+                }
+                else
+                {
+                    if (myMoveSetScript.basicMoves.getHitAir._voluMap[0]._move == null)
+                        Debug.LogError("Get Hit Air animation not found! Make sure you have it set on Character -> Basic Moves -> Get Hit Air");
+
+                    myPhysicsScript.ResetForces(hit.resetPreviousHorizontalPush, hit.resetPreviousVerticalPush, hit.resetPreviousSidewaysPush);
+                    myPhysicsScript.AddForce(pushForce, ignoreDirection || target == null ? -GetDirection() : attacker.GetDirection());
+
+                    if (myMoveSetScript.basicMoves.getHitKnockBack._voluMap[0]._move != null &&
+                        pushForce.x > UFE.config.comboOptions._knockBackMinForce)
+                    {
+                        currentHitAnimation = myMoveSetScript.basicMoves.getHitKnockBack.name;
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitKnockBack;
+                    }
+                    else
+                    {
+                        currentHitAnimation = myMoveSetScript.basicMoves.getHitAir.name;
+                        currentHitInfo = myMoveSetScript.basicMoves.getHitAir;
+                    }
+
+                    if (hit.overrideHitAnimationBlend)
+                    {
+                        myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation, hit._newHitBlendingIn, hit.resetHitAnimations);
+                    }
+                    else
+                    {
+                        myMoveSetScript.PlayBasicMove(currentHitInfo, currentHitAnimation, hit.resetHitAnimations);
+                    }
+
+                    if (currentHitInfo.autoSpeed)
+                    {
+                        // if the hit was in the air, calculate the time it will take for the character to hit the ground
+                        Fix64 airTime = myPhysicsScript.GetPossibleAirTime(pushForce.y);
+
+                        if (myMoveSetScript.basicMoves.fallingFromAirHit._voluMap[0]._move == null) airTime *= 2;
+
+                        if (stunTime > airTime || airRecoveryType == AirRecoveryType.DontRecover)
+                        {
+                            stunTime = airTime;
+                        }
+
+                        myMoveSetScript.SetAnimationNormalizedSpeed(currentHitAnimation, (myMoveSetScript.GetAnimationLength(currentHitAnimation) / stunTime));
+                    }
                 }
 			}
             else
@@ -3628,16 +4559,33 @@ public class ControlsScript : MonoBehaviour {
 	}
 
 	private string GetHitAnimation(BasicMoveInfo hitMove, Hit hit){
-		if (hit.hitStrength == HitStrengh.Weak) return hitMove.name;
-		if (hitMove.animMap[1].clip != null && hit.hitStrength == HitStrengh.Medium) return myMoveSetScript.GetAnimationString(hitMove, 2);
-		if (hitMove.animMap[2].clip != null && hit.hitStrength == HitStrengh.Heavy) return myMoveSetScript.GetAnimationString(hitMove, 3);
-		if (hitMove.animMap[3].clip != null && hit.hitStrength == HitStrengh.Custom1) return myMoveSetScript.GetAnimationString(hitMove, 4);
-		if (hitMove.animMap[4].clip != null && hit.hitStrength == HitStrengh.Custom2) return myMoveSetScript.GetAnimationString(hitMove, 5);
-		if (hitMove.animMap[5].clip != null && hit.hitStrength == HitStrengh.Custom3) return myMoveSetScript.GetAnimationString(hitMove, 6);
-		if (hitMove.animMap.Length > 6 && hitMove.animMap[6].clip != null && hit.hitStrength == HitStrengh.Custom4) return myMoveSetScript.GetAnimationString(hitMove, 7);
-		if (hitMove.animMap.Length > 7 && hitMove.animMap[7].clip != null && hit.hitStrength == HitStrengh.Custom5) return myMoveSetScript.GetAnimationString(hitMove, 8);
-		if (hitMove.animMap.Length > 8 && hitMove.animMap[8].clip != null && hit.hitStrength == HitStrengh.Custom6) return myMoveSetScript.GetAnimationString(hitMove, 9);
-		return hitMove.name;
+        if (myInfo.animationType != AnimationType.Volumetric)
+        {
+            if (hit.hitStrength == HitStrengh.Weak) return hitMove.name;
+            if (hitMove.animMap[1].clip != null && hit.hitStrength == HitStrengh.Medium)  return myMoveSetScript.GetAnimationString(hitMove, 2);
+            if (hitMove.animMap[2].clip != null && hit.hitStrength == HitStrengh.Heavy)   return myMoveSetScript.GetAnimationString(hitMove, 3);
+            if (hitMove.animMap[3].clip != null && hit.hitStrength == HitStrengh.Custom1) return myMoveSetScript.GetAnimationString(hitMove, 4);
+            if (hitMove.animMap[4].clip != null && hit.hitStrength == HitStrengh.Custom2) return myMoveSetScript.GetAnimationString(hitMove, 5);
+            if (hitMove.animMap[5].clip != null && hit.hitStrength == HitStrengh.Custom3) return myMoveSetScript.GetAnimationString(hitMove, 6);
+            if (hitMove.animMap.Length > 6 && hitMove.animMap[6].clip != null && hit.hitStrength == HitStrengh.Custom4) return myMoveSetScript.GetAnimationString(hitMove, 7);
+            if (hitMove.animMap.Length > 7 && hitMove.animMap[7].clip != null && hit.hitStrength == HitStrengh.Custom5) return myMoveSetScript.GetAnimationString(hitMove, 8);
+            if (hitMove.animMap.Length > 8 && hitMove.animMap[8].clip != null && hit.hitStrength == HitStrengh.Custom6) return myMoveSetScript.GetAnimationString(hitMove, 9);
+            return hitMove.name;
+        }
+        else
+        {
+            if (hit.hitStrength == HitStrengh.Weak) return hitMove.name;
+            if (hitMove._voluMap[1]._move != null && hit.hitStrength == HitStrengh.Medium)  return myMoveSetScript.GetAnimationString(hitMove, 2);
+            if (hitMove._voluMap[2]._move != null && hit.hitStrength == HitStrengh.Heavy)   return myMoveSetScript.GetAnimationString(hitMove, 3);
+            if (hitMove._voluMap[3]._move != null && hit.hitStrength == HitStrengh.Custom1) return myMoveSetScript.GetAnimationString(hitMove, 4);
+            if (hitMove._voluMap[4]._move != null && hit.hitStrength == HitStrengh.Custom2) return myMoveSetScript.GetAnimationString(hitMove, 5);
+            if (hitMove._voluMap[5]._move != null && hit.hitStrength == HitStrengh.Custom3) return myMoveSetScript.GetAnimationString(hitMove, 6);
+            if (hitMove._voluMap.Length > 6 && hitMove._voluMap[6]._move != null && hit.hitStrength == HitStrengh.Custom4) return myMoveSetScript.GetAnimationString(hitMove, 7);
+            if (hitMove._voluMap.Length > 7 && hitMove._voluMap[7]._move != null && hit.hitStrength == HitStrengh.Custom5) return myMoveSetScript.GetAnimationString(hitMove, 8);
+            if (hitMove._voluMap.Length > 8 && hitMove._voluMap[8]._move != null && hit.hitStrength == HitStrengh.Custom6) return myMoveSetScript.GetAnimationString(hitMove, 9);
+            return hitMove.name;
+        }
+
 	}
 
 	public void ToggleHeadLook(bool flag){

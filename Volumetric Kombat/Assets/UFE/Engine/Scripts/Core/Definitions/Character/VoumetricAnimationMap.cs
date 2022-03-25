@@ -8,11 +8,11 @@ using SoarSDK;
 public class VolumetricAnimationMap
 {
   
-    //public AnimationMap[] animationMaps = new AnimationMap[0];
+    public AnimationMap[] animationMaps = new AnimationMap[0];
 
     public VolumetricRender playbackComponent;
 
-    public List<string> _volumetricMoves = new List<string>();
+    //public List<string> _volumetricMoves = new List<string>();
 
     public string _move;
 

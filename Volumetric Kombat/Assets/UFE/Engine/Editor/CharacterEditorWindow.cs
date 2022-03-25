@@ -1914,7 +1914,7 @@ public class CharacterEditorWindow : EditorWindow {
         EditorGUILayout.BeginHorizontal();
 
         animMap._move = EditorGUILayout.TextField(label + " Clip" + required + ":", animMap._move, GUILayout.ExpandWidth(true));
-        animMap._volumetricMoves.Add(animMap._move);
+        
         if (characterInfo.gameplayType == GameplayType._2DFighter)
         {
             Rect lastRect = GUILayoutUtility.GetLastRect();

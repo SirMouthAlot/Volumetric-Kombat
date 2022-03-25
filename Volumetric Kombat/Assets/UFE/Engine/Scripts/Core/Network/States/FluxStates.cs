@@ -336,6 +336,7 @@ public struct FluxStates : UFEInterface {
         public struct AnimationDataState : UFEInterface {
             public LegacyAnimationData legacyAnimationData;
             public MecanimAnimationData mecanimAnimationData;
+            public VolumetricAnimationData volumetricAnimationData;
             //public MC3AnimationData mecanimAnimationData;
 
             // Legacy
