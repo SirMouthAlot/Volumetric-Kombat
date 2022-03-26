@@ -261,8 +261,9 @@ public class MecanimControl : MonoBehaviour {
         if (GetAnimationData(newName) != null) Debug.LogWarning("An animation with the name '"+ newName +"' already exists.");
         MecanimAnimationData animData = new MecanimAnimationData();
         animData.clip = (AnimationClip) Instantiate(clip);
-		//if (wrapMode == WrapMode.Default) wrapMode = defaultWrapMode;
-		animData.clip.wrapMode = wrapMode;
+        animData.voluClip = animData.clip.name;
+        //if (wrapMode == WrapMode.Default) wrapMode = defaultWrapMode;
+        animData.clip.wrapMode = wrapMode;
 		animData.clip.name = newName;
 		animData.clipName = newName;
         animData.speed = speed;
