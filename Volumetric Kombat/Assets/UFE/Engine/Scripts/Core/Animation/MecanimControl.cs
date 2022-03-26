@@ -458,8 +458,9 @@ public class MecanimControl : MonoBehaviour {
             else
             {
                 //@ Change
-                Debug.Log("Volumetric Play: " + currentAnimationData.voluClip);
-                volAnimator.LoadNewClip(currentAnimationData.clip.name, (0));
+                string _tempString = currentAnimationData.voluClip.Remove(currentAnimationData.voluClip.Length - 7);
+                Debug.Log("Volumetric Play: " + _tempString);
+                volAnimator.LoadNewClip(_tempString, (0));
                 volAnimator.StartPlayback(0);
             }
 

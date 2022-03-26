@@ -281,7 +281,7 @@ MonoBehaviour:
     selectedChallengeMode: 0
     skipLoadingScreen: 0
   cameraOptions:
-    initialDistance: {x: 1, y: 3.73, z: -4.5}
+    initialDistance: {x: 1, y: 3.25, z: -3.29}
     initialRotation: {x: 0, y: 0, z: 0}
     enableLookAt: 0
     dollyAngle: 0

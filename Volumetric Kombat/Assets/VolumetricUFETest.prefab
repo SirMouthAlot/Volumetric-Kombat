@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4004065591608140263}
   - component: {fileID: 2284896490401354059}
   - component: {fileID: 7616006014811612403}
-  - component: {fileID: 3606902853740038585}
+  - component: {fileID: 7985654467044467718}
   m_Layer: 0
   m_Name: VolumetricUFETest
   m_TagString: Untagged
@@ -31,13 +31,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4302698281038765788}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 1.8103995, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5844517871973055514
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: -1602337218, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: BobbyAREight_01643667857_master
+  fileName: Idle_68506821_master
   autoLoop: 1
   autoPlay: 1
   depthTextureScaleFactor: 0.5
@@ -274,7 +274,7 @@ MonoBehaviour:
   AutoLoop: 0
   DepthTextureScaleFactor: 0.5
   _playState: 3
---- !u!114 &3606902853740038585
+--- !u!114 &7985654467044467718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

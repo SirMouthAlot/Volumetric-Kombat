@@ -117,12 +117,13 @@ MonoBehaviour:
       idle:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 54a5c67902a0a0343a47ae9844897fc6, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -291,6 +292,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       moveForward:
@@ -470,6 +472,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       moveBack:
@@ -649,6 +652,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       moveSideways:
@@ -827,12 +831,13 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       crouching:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
+          clip: {fileID: 7400000, guid: 54a5c67902a0a0343a47ae9844897fc6, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1006,6 +1011,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       takeOff:
@@ -1184,12 +1190,13 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       jumpStraight:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
+          clip: {fileID: 7400000, guid: 54a5c67902a0a0343a47ae9844897fc6, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1362,6 +1369,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       jumpBack:
@@ -1540,6 +1548,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       jumpForward:
@@ -1718,12 +1727,13 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       fallStraight:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
+          clip: {fileID: 7400000, guid: 54a5c67902a0a0343a47ae9844897fc6, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1896,6 +1906,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       fallBack:
@@ -2074,6 +2085,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       fallForward:
@@ -2252,6 +2264,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       landing:
@@ -2430,6 +2443,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       blockingCrouchingPose:
@@ -2608,6 +2622,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       blockingCrouchingHit:
@@ -2786,6 +2801,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       blockingHighPose:
@@ -2964,6 +2980,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       blockingHighHit:
@@ -3142,6 +3159,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       blockingLowHit:
@@ -3320,6 +3338,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       blockingAirPose:
@@ -3498,6 +3517,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       blockingAirHit:
@@ -3676,6 +3696,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       parryCrouching:
@@ -3854,6 +3875,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       parryHigh:
@@ -4032,6 +4054,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       parryLow:
@@ -4210,6 +4233,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       parryAir:
@@ -4388,6 +4412,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       groundBounce:
@@ -4566,6 +4591,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standingWallBounce:
@@ -4744,6 +4770,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standingWallBounceKnockdown:
@@ -4922,6 +4949,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       airWallBounce:
@@ -5100,6 +5128,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       fallingFromGroundBounce:
@@ -5278,6 +5307,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       fallingFromAirHit:
@@ -5456,12 +5486,13 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       fallDown:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
+          clip: {fileID: 7400000, guid: 54a5c67902a0a0343a47ae9844897fc6, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5635,6 +5666,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       airRecovery:
@@ -5813,12 +5845,13 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       getHitCrouching:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
+          clip: {fileID: 7400000, guid: 54a5c67902a0a0343a47ae9844897fc6, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5992,12 +6025,13 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       getHitHigh:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
+          clip: {fileID: 7400000, guid: 54a5c67902a0a0343a47ae9844897fc6, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -6171,6 +6205,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       getHitLow:
@@ -6349,6 +6384,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       getHitHighKnockdown:
@@ -6527,6 +6563,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       getHitMidKnockdown:
@@ -6705,6 +6742,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       getHitAir:
@@ -6883,6 +6921,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       getHitCrumple:
@@ -7061,6 +7100,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       getHitKnockBack:
@@ -7239,6 +7279,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       getHitSweep:
@@ -7417,12 +7458,13 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUp:
         animMap:
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
+          clip: {fileID: 7400000, guid: 54a5c67902a0a0343a47ae9844897fc6, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -7596,6 +7638,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUpFromAirHit:
@@ -7774,6 +7817,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUpFromKnockBack:
@@ -7952,6 +7996,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUpFromStandingHighHit:
@@ -8130,6 +8175,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUpFromStandingMidHit:
@@ -8308,6 +8354,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUpFromCrumple:
@@ -8486,6 +8533,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUpFromSweep:
@@ -8664,6 +8712,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUpFromStandingWallBounce:
@@ -8842,6 +8891,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUpFromAirWallBounce:
@@ -9020,6 +9070,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       standUpFromGroundBounce:
@@ -9198,6 +9249,7 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
+        voluName: 
         editorToggle: 0
         soundEffectsToggle: 0
       moveEnabled: 1

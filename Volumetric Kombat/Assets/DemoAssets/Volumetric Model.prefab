@@ -190,6 +190,8 @@ GameObject:
   - component: {fileID: 7409405992830241488}
   - component: {fileID: 5121757925772763274}
   - component: {fileID: 5243300760852669038}
+  - component: {fileID: 3347708339355098500}
+  - component: {fileID: 595403527919257432}
   m_Layer: 0
   m_Name: ModelMesh
   m_TagString: Untagged
@@ -284,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: -1602337218, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: BobbyAREight_01643667857_master
+  fileName: GameDevCharacter\Idle\Idle_68506821_master.m3u8
   autoLoop: 1
   autoPlay: 1
   depthTextureScaleFactor: 0.5
@@ -305,3 +307,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createPreview: 0
+  pausePreview: 0
+  currentTimestamp: 0
+  playableDirector: {fileID: 0}
+--- !u!114 &3347708339355098500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964373587931536725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -66675733, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoLoop: 0
+  DepthTextureScaleFactor: 0.5
+  _playState: 3
+--- !u!114 &595403527919257432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4964373587931536725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -428674540, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
