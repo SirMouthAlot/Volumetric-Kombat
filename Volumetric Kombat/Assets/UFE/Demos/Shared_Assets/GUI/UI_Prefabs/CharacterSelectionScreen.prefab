@@ -1692,6 +1692,7 @@ GameObject:
   - component: {fileID: 22400040}
   - component: {fileID: 22200040}
   - component: {fileID: 11400058}
+  - component: {fileID: 4431756690644162151}
   m_Layer: 5
   m_Name: Name_Player2
   m_TagString: Untagged
@@ -1739,7 +1740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.10950938, b: 0, a: 1}
+  m_Color: {r: 0.26768017, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1747,12 +1748,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 11c62540efb1f7849b9dcecdaf4b56b7, type: 3}
-    m_FontSize: 80
+    m_Font: {fileID: 12800000, guid: c40d4f7e9e67659458e1c00adc532a89, type: 3}
+    m_FontSize: 106
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 8
-    m_MaxSize: 80
+    m_MaxSize: 106
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1760,6 +1761,21 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Robot Kyle
+--- !u!114 &4431756690644162151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &100042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,6 +1787,7 @@ GameObject:
   - component: {fileID: 22400042}
   - component: {fileID: 22200042}
   - component: {fileID: 11400060}
+  - component: {fileID: 1550599056800729662}
   m_Layer: 5
   m_Name: Name_Player1
   m_TagString: Untagged
@@ -1818,7 +1835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.10950938, b: 0, a: 1}
+  m_Color: {r: 0.26768017, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1826,12 +1843,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 11c62540efb1f7849b9dcecdaf4b56b7, type: 3}
-    m_FontSize: 80
+    m_Font: {fileID: 12800000, guid: c40d4f7e9e67659458e1c00adc532a89, type: 3}
+    m_FontSize: 106
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 5
-    m_MaxSize: 80
+    m_MaxSize: 106
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1839,6 +1856,21 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Mike
+--- !u!114 &1550599056800729662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 1, b: 1, a: 1}
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &100044
 GameObject:
   m_ObjectHideFlags: 0
