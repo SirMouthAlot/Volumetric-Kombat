@@ -281,8 +281,8 @@ MonoBehaviour:
     selectedChallengeMode: 0
     skipLoadingScreen: 0
   cameraOptions:
-    initialDistance: {x: 0.34, y: 5.03, z: -6.24}
-    initialRotation: {x: 1.05, y: 0, z: 0}
+    initialDistance: {x: 1, y: 3.73, z: -4.5}
+    initialRotation: {x: 0, y: 0, z: 0}
     enableLookAt: 0
     dollyAngle: 0
     distance3d: 0
@@ -859,7 +859,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 3
+    engineRelatedButton: 2
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W

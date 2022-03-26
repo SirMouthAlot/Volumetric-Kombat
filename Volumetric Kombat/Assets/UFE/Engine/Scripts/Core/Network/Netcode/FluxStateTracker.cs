@@ -1088,7 +1088,7 @@ public class FluxStateTracker
 
             if (controlsScript.myInfo.animationType == AnimationType.Volumetric)
             {
-                Debug.Log("Stuff for networked game, volumetrics doesn't work for networking if you want to implement FluxStateTracker.cs Line : 1090"); //This code was causing a stackoverflow. No idea why.
+                //Debug.Log("Stuff for networked game, volumetrics doesn't work for networking if you want to implement FluxStateTracker.cs Line : 1090"); //This code was causing a stackoverflow. No idea why.
                 //Networking stuff
 
 

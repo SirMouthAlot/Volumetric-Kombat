@@ -35,6 +35,7 @@ namespace UFE3D
 
 
         [HideInInspector] public string name;
+        [HideInInspector] public string voluName;
         [HideInInspector] public bool editorToggle;
         [HideInInspector] public bool soundEffectsToggle;
 

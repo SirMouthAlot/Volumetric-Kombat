@@ -27,7 +27,7 @@ MonoBehaviour:
   lifePoints: 1000
   maxGaugePoints: 1000
   characterPrefabStorage: 0
-  characterPrefab: {fileID: 2547974142097812571, guid: f12e5ba21ddd84344812cdc82af838f6,
+  characterPrefab: {fileID: 4302698281038765788, guid: 1f42b593b78396940bd2564ccc48e46d,
     type: 3}
   prefabResourcePath: 
   alternativeCostumes: []
@@ -35,7 +35,7 @@ MonoBehaviour:
     x:
       _serializedValue: 0
     y:
-      _serializedValue: 0
+      _serializedValue: 7775606784
     z:
       _serializedValue: 0
   initialRotation:
@@ -117,7 +117,7 @@ MonoBehaviour:
       idle:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -291,12 +291,12 @@ MonoBehaviour:
           bodyPart: 0
         reference: 0
         name: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       moveForward:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: f8c1e39ddda692243890d04e7de55270, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -475,7 +475,7 @@ MonoBehaviour:
       moveBack:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -832,7 +832,7 @@ MonoBehaviour:
       crouching:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1189,7 +1189,7 @@ MonoBehaviour:
       jumpStraight:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -1723,7 +1723,7 @@ MonoBehaviour:
       fallStraight:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5461,7 +5461,7 @@ MonoBehaviour:
       fallDown:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5818,7 +5818,7 @@ MonoBehaviour:
       getHitCrouching:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -5997,7 +5997,7 @@ MonoBehaviour:
       getHitHigh:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -7422,7 +7422,7 @@ MonoBehaviour:
       standUp:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
+          clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0

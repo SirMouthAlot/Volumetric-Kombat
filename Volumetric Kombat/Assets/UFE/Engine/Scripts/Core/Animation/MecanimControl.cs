@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using FPLibrary;
+using UFE3D;
+using SoarSDK;
 //using UnityEngine.Experimental.Director;
 
 [System.Serializable]
 public class MecanimAnimationData {
 	public AnimationClip clip;
+    public string voluClip;
 	public string clipName;
 	public WrapMode wrapMode;
     public bool applyRootMotion;
@@ -28,7 +31,7 @@ public class MecanimAnimationData {
     #endregion
 }
 
-[RequireComponent (typeof (Animator))]
+//[RequireComponent (typeof (Animator))]
 public class MecanimControl : MonoBehaviour {
 
 	public MecanimAnimationData defaultAnimation = new MecanimAnimationData();
@@ -40,6 +43,10 @@ public class MecanimControl : MonoBehaviour {
     public bool overrideAnimatorUpdate = false;
     public Fix64 defaultTransitionDuration = 0.15;
 	public WrapMode defaultWrapMode = WrapMode.Loop;
+
+    public ControlsScript controlScript;
+
+    public VolumetricRender volAnimator;
 
 
     public Animator animator;
@@ -70,6 +77,13 @@ public class MecanimControl : MonoBehaviour {
 
 	// UNITY METHODS
 	void Awake () {
+
+        controlScript = gameObject.GetComponentInParent<ControlsScript>();
+
+        if (controlScript.myInfo.animationType == AnimationType.Volumetric)
+        {
+            volAnimator = gameObject.GetComponent<VolumetricRender>();
+        }
         animator = gameObject.GetComponent<Animator>();
         animator.logWarnings = false;
         animator.updateMode = AnimatorUpdateMode.AnimatePhysics;
@@ -102,7 +116,15 @@ public class MecanimControl : MonoBehaviour {
             overrideController["State1"] = currentAnimationData.clip;
 
 			animator.runtimeAnimatorController = overrideController;
-			animator.Play("State1", 0, 0);
+            if (controlScript.myInfo.animationType != AnimationType.Volumetric)
+            {
+                animator.Play("State1", 0, 0);
+            }
+            else
+            {
+                volAnimator.LoadNewClip(currentAnimationData.clip.name, 0);
+                volAnimator.StartPlayback(0);
+            }
 
 			if (overrideRootMotion) animator.applyRootMotion = currentAnimationData.applyRootMotion;
 			SetSpeed(currentAnimationData.speed);
@@ -234,9 +256,11 @@ public class MecanimControl : MonoBehaviour {
     }
 
     public void AddClip(AnimationClip clip, string newName, Fix64 speed, WrapMode wrapMode, Fix64 length) {
-		if (GetAnimationData(newName) != null) Debug.LogWarning("An animation with the name '"+ newName +"' already exists.");
-		MecanimAnimationData animData = new MecanimAnimationData();
-		animData.clip = (AnimationClip) Instantiate(clip);
+
+        //VoluAnimationData(clip);
+        if (GetAnimationData(newName) != null) Debug.LogWarning("An animation with the name '"+ newName +"' already exists.");
+        MecanimAnimationData animData = new MecanimAnimationData();
+        animData.clip = (AnimationClip) Instantiate(clip);
 		//if (wrapMode == WrapMode.Default) wrapMode = defaultWrapMode;
 		animData.clip.wrapMode = wrapMode;
 		animData.clip.name = newName;
@@ -270,6 +294,19 @@ public class MecanimControl : MonoBehaviour {
 		if (clip == defaultAnimation.clip) return defaultAnimation;
 		return null;
 	}
+
+
+    public MecanimAnimationData VoluAnimationData(AnimationClip _voluClip)
+    {
+        foreach (MecanimAnimationData animData in animations)
+        {
+            if (animData.voluClip == _voluClip.name)
+            {
+                return animData;
+            }
+        }
+        return null;
+    }
 
     public void CopyAnimationData(MecanimAnimationData from, ref MecanimAnimationData to) {
         if (from == null || from.clip == null) return;
@@ -347,10 +384,18 @@ public class MecanimControl : MonoBehaviour {
     {
         //overrideController.runtimeAnimatorController = controller;
         //animator.runtimeAnimatorController = overrideController;
-        animator.Play(currentState, 0, (float)currentAnimationData.normalizedTime);
-        animator.applyRootMotion = currentAnimationData.applyRootMotion;
-        animator.Update(0);
-        SetSpeed(currentSpeed);
+        if (controlScript.myInfo.animationType != AnimationType.Volumetric)
+        {
+            animator.Play(currentState, 0, (float)currentAnimationData.normalizedTime);
+            animator.applyRootMotion = currentAnimationData.applyRootMotion;
+            animator.Update(0);
+            SetSpeed(currentSpeed);
+        }
+        else
+        {
+            //volAnimator.LoadNewClip(currentState.name, 0);
+            //volAnimator.StartPlayback(0);
+        }
     }
 
     public void OffSetNormalizedFrame()
@@ -404,9 +449,19 @@ public class MecanimControl : MonoBehaviour {
             
 			currentAnimationData.stateName = "Default";
             SetCurrentClipPosition(currentNormalizedTime);
+            if (controlScript.myInfo.animationType != AnimationType.Volumetric)
+            {
+                animator.Play("Default", 0, (float)normalizedTime);
+                animator.CrossFade(currentState, (float)(blendingTime / animSpeed), 0, (float)normalizedTime);
+            }
+            else
+            {
+                //@ Change
+                Debug.Log("Volumetric Play: " + currentAnimationData.voluClip);
+                volAnimator.LoadNewClip(currentAnimationData.clip.name, (0));
+                volAnimator.StartPlayback(0);
+            }
 
-            animator.Play("Default", 0, (float)normalizedTime);
-            animator.CrossFade(currentState, (float)(blendingTime / animSpeed), 0, (float)normalizedTime);
         }
 
         // Update Previous Mirror
@@ -538,6 +593,7 @@ public class MecanimControl : MonoBehaviour {
         currentAnimationData.normalizedTime = normalizedTime;
 
         animator.Play(currentAnimationData.stateName, 0, (float)normalizedTime);
+        
         animator.Update(0);
 
         if (pause) Pause();
