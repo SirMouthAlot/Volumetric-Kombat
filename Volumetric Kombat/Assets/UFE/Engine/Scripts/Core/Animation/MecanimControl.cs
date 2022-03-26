@@ -82,7 +82,7 @@ public class MecanimControl : MonoBehaviour {
 
         if (controlScript.myInfo.animationType == AnimationType.Volumetric)
         {
-            volAnimator = gameObject.GetComponent<VolumetricRender>();
+            volAnimator = gameObject.GetComponentInChildren<VolumetricRender>();
         }
         animator = gameObject.GetComponent<Animator>();
         animator.logWarnings = false;
