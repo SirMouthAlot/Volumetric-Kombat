@@ -279,7 +279,7 @@ MonoBehaviour:
         continuousSound: 0
         particleEffect:
           editorToggle: 0
-          prefab: {fileID: 100004, guid: 0cbf0aa248ee0d343ac193497cbd5f31, type: 3}
+          prefab: {fileID: 0}
           duration: 1
           stick: 0
           destroyOnMoveOver: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       moveForward:
         animMap:
@@ -1192,7 +1192,7 @@ MonoBehaviour:
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       jumpStraight:
         animMap:
@@ -1334,7 +1334,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 8
+        wrapMode: 1
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -1356,8 +1356,8 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 1
-          prefab: {fileID: 112666, guid: 3fd40a270c5473142bd7faab396e2b41, type: 3}
+          editorToggle: 0
+          prefab: {fileID: 0}
           duration: 1
           stick: 0
           destroyOnMoveOver: 0
@@ -1371,7 +1371,7 @@ MonoBehaviour:
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       jumpBack:
         animMap:
@@ -1871,7 +1871,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 8
+        wrapMode: 1
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -1893,7 +1893,7 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 1
+          editorToggle: 0
           prefab: {fileID: 112666, guid: 3fd40a270c5473142bd7faab396e2b41, type: 3}
           duration: 1
           stick: 0
@@ -1908,7 +1908,7 @@ MonoBehaviour:
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       fallBack:
         animMap:
@@ -3482,10 +3482,10 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 8
         moveInfo: {fileID: 0}
         useMoveFile: 0
-        autoSpeed: 1
+        autoSpeed: 0
         _restingClipInterval:
           _serializedValue: 25769803776
         overrideBlendingIn: 0
