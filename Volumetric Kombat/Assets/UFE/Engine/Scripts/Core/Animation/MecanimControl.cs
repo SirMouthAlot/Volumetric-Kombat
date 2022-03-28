@@ -460,8 +460,17 @@ public class MecanimControl : MonoBehaviour {
                 //@ Change
                 string _tempString = currentAnimationData.voluClip.Remove(currentAnimationData.voluClip.Length - 7);
                 Debug.Log("Volumetric Play: " + _tempString);
+
+                //if (currentAnimationData.clip.isLooping)
+                //{
+                //    volAnimator.autoLoop = true;
+                //}
+                //else
+                //{
+                //    volAnimator.autoLoop = false;
+                //}
                 volAnimator.LoadNewClip(_tempString, (0));
-                volAnimator.StartPlayback(0);
+                //volAnimator.StartPlayback(0);
             }
 
         }

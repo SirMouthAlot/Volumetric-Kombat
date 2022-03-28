@@ -241,9 +241,8 @@ public class VolumetricControl : MonoBehaviour
 
         currentAnimationData = animData;
 
-      
-            animator.LoadNewClip(_clip, 0);
-            animator.StartPlayback(0);
+        animator.LoadNewClip(_clip, 0);
+            //animator.StartPlayback(0);
         
         
 
