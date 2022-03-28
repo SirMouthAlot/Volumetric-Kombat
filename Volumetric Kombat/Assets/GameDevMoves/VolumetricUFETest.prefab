@@ -16,7 +16,9 @@ GameObject:
   - component: {fileID: 4004065591608140263}
   - component: {fileID: 2284896490401354059}
   - component: {fileID: 7616006014811612403}
-  - component: {fileID: 7985654467044467718}
+  - component: {fileID: 7204647469899225270}
+  - component: {fileID: 7588972296563326802}
+  - component: {fileID: 2402812174777441789}
   m_Layer: 0
   m_Name: VolumetricUFETest
   m_TagString: Untagged
@@ -111,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: -1602337218, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: Idle_68506821_master
+  fileName: FallDown_68505185_master
   autoLoop: 1
   autoPlay: 1
   depthTextureScaleFactor: 0.5
@@ -131,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 1867183640, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createPreview: 0
+  createPreview: 1
   pausePreview: 0
   currentTimestamp: 0
   playableDirector: {fileID: 0}
@@ -274,7 +276,7 @@ MonoBehaviour:
   AutoLoop: 0
   DepthTextureScaleFactor: 0.5
   _playState: 3
---- !u!114 &7985654467044467718
+--- !u!114 &7204647469899225270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -286,3 +288,30 @@ MonoBehaviour:
   m_Script: {fileID: -428674540, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7588972296563326802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302698281038765788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -428674540, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2402812174777441789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302698281038765788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -66675733, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoLoop: 0
+  DepthTextureScaleFactor: 0.5
+  _playState: 3
