@@ -65,7 +65,7 @@ public class DummyClipCreate : EditorWindow
         var path = EditorUtility.SaveFilePanelInProject("Save Dummy Animation Clip", _clipName, "anim", "");
         AnimationClip clip = new AnimationClip();
         clip.name = _clipName;
-        AnimationCurve curve = AnimationCurve.Constant(0.0f, (_clipLength / 60.0f), 1.0f);
+        AnimationCurve curve = AnimationCurve.Constant(0.0f, (_clipLength), 1.0f);
         EditorCurveBinding binding = EditorCurveBinding.FloatCurve(string.Empty, typeof(UnityEngine.Animator), "DummyAnimationClip");
         AnimationUtility.SetEditorCurve(clip, binding, curve);
         AssetDatabase.CreateAsset(clip, path);

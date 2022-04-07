@@ -16,7 +16,7 @@ MonoBehaviour:
   profilePictureSmall: {fileID: 2800000, guid: 1ddb301c798824841927cb6270e309b1, type: 3}
   profilePictureBig: {fileID: 2800000, guid: 1ddb301c798824841927cb6270e309b1, type: 3}
   characterName: GameDev
-  gender: 0
+  gender: 1
   characterDescription: TestPrefab
   selectionAnimation: {fileID: 0}
   selectionSound: {fileID: 0}
@@ -106,7 +106,7 @@ MonoBehaviour:
   useScaleFlip: 0
   applyRootMotion: 0
   animationFlow: 2
-  useAnimationMaps: 1
+  useAnimationMaps: 0
   normalizeAnimationFrames: 0
   stanceResourcePath: []
   moves:
@@ -263,11 +263,11 @@ MonoBehaviour:
         _restingClipInterval:
           _serializedValue: 25769803776
         overrideBlendingIn: 0
-        overrideBlendingOut: 0
+        overrideBlendingOut: 1
         _blendingIn:
           _serializedValue: 0
         _blendingOut:
-          _serializedValue: 0
+          _serializedValue: 4294967
         invincible: 0
         disableHeadLook: 0
         applyRootMotion: 0
@@ -452,15 +452,15 @@ MonoBehaviour:
         invincible: 0
         disableHeadLook: 0
         applyRootMotion: 0
-        lockXMotion: 0
-        lockYMotion: 0
+        lockXMotion: 1
+        lockYMotion: 1
         lockZMotion: 0
         loopDownClip: 0
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 1
-          prefab: {fileID: 112666, guid: 3fd40a270c5473142bd7faab396e2b41, type: 3}
+          editorToggle: 0
+          prefab: {fileID: 0}
           duration: 1
           stick: 0
           destroyOnMoveOver: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       moveBack:
         animMap:
@@ -632,15 +632,15 @@ MonoBehaviour:
         invincible: 0
         disableHeadLook: 0
         applyRootMotion: 0
-        lockXMotion: 0
-        lockYMotion: 0
+        lockXMotion: 1
+        lockYMotion: 1
         lockZMotion: 0
         loopDownClip: 0
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 1
-          prefab: {fileID: 112666, guid: 3fd40a270c5473142bd7faab396e2b41, type: 3}
+          editorToggle: 0
+          prefab: {fileID: 0}
           duration: 1
           stick: 0
           destroyOnMoveOver: 0
@@ -654,7 +654,7 @@ MonoBehaviour:
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       moveSideways:
         animMap:
@@ -998,8 +998,8 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 1
-          prefab: {fileID: 112666, guid: 3fd40a270c5473142bd7faab396e2b41, type: 3}
+          editorToggle: 0
+          prefab: {fileID: 0}
           duration: 1
           stick: 0
           destroyOnMoveOver: 0
@@ -1013,7 +1013,7 @@ MonoBehaviour:
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       takeOff:
         animMap:
@@ -5654,7 +5654,7 @@ MonoBehaviour:
         continuousSound: 0
         particleEffect:
           editorToggle: 1
-          prefab: {fileID: 112666, guid: 3fd40a270c5473142bd7faab396e2b41, type: 3}
+          prefab: {fileID: 0}
           duration: 1
           stick: 0
           destroyOnMoveOver: 0
@@ -5859,14 +5859,14 @@ MonoBehaviour:
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 0b50f8ebe96cdab4eac561ef33c3db92, type: 2}
+          clip: {fileID: 7400000, guid: 7e36e108963e6074a8f9157665a01c3e, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
           bakeSpeed: 0
           hitBoxDefinitionType: 0
         - animationMaps: []
-          clip: {fileID: 7400000, guid: 0b50f8ebe96cdab4eac561ef33c3db92, type: 2}
+          clip: {fileID: 7400000, guid: 7e36e108963e6074a8f9157665a01c3e, type: 2}
           customHitBoxDefinition: {fileID: 0}
           length:
             _serializedValue: 0
@@ -6013,7 +6013,7 @@ MonoBehaviour:
         continuousSound: 0
         particleEffect:
           editorToggle: 1
-          prefab: {fileID: 112666, guid: 3fd40a270c5473142bd7faab396e2b41, type: 3}
+          prefab: {fileID: 0}
           duration: 1
           stick: 0
           destroyOnMoveOver: 0
@@ -6193,7 +6193,7 @@ MonoBehaviour:
         continuousSound: 0
         particleEffect:
           editorToggle: 1
-          prefab: {fileID: 112666, guid: 3fd40a270c5473142bd7faab396e2b41, type: 3}
+          prefab: {fileID: 0}
           duration: 1
           stick: 0
           destroyOnMoveOver: 0
@@ -7603,7 +7603,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 8
+        wrapMode: 1
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -7626,7 +7626,7 @@ MonoBehaviour:
         continuousSound: 0
         particleEffect:
           editorToggle: 1
-          prefab: {fileID: 112666, guid: 3fd40a270c5473142bd7faab396e2b41, type: 3}
+          prefab: {fileID: 0}
           duration: 1
           stick: 0
           destroyOnMoveOver: 0
