@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Video;
@@ -71,3 +72,5 @@ public class DummyClipCreate : EditorWindow
         AssetDatabase.CreateAsset(clip, path);
     }
 }
+
+#endif

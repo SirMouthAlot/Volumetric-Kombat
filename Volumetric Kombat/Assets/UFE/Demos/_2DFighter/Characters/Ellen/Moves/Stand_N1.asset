@@ -3307,7 +3307,7 @@ MonoBehaviour:
     customHitBoxDefinition: {fileID: 11400000, guid: 898778ff1c5812747a37a19b89a240f2,
       type: 2}
     length:
-      _serializedValue: 4294967296
+      _serializedValue: 5570572800
     bakeSpeed: 0
     hitBoxDefinitionType: 1
   voluMap:
@@ -3326,7 +3326,7 @@ MonoBehaviour:
     type: 3}
   moveName: Stand_N1
   description: Stand_N1
-  fps: 60
+  fps: 30
   ignoreGravity: 0
   ignoreFriction: 0
   cancelMoveWheLanding: 0
@@ -3339,7 +3339,7 @@ MonoBehaviour:
   _isVolumetric: 0
   frameWindowRotation: 0
   cooldown: 1
-  cooldownFrames: 30
+  cooldownFrames: 60
   disableHeadLook: 1
   speedKeyFrameToggle: 0
   fixedSpeed: 1
@@ -3489,7 +3489,22 @@ MonoBehaviour:
   - castingFrame: 0
     value: 201
     editorToggle: 0
-  particleEffects: []
+  particleEffects:
+  - castingFrame: 19
+    particleEffect:
+      editorToggle: 0
+      prefab: {fileID: 4526072614792396131, guid: e172af6b4713ee04fb0bdc9e3be078f6,
+        type: 3}
+      duration: 1
+      stick: 1
+      destroyOnMoveOver: 0
+      followRotation: 0
+      lockLocalPosition: 0
+      mirrorOn2PSide: 1
+      overrideRotation: 1
+      initialRotation: {x: 0, y: 0, z: 0}
+      positionOffSet: {x: 1, y: 3.5, z: 0}
+      bodyPart: 0
   appliedForces: []
   slowMoEffects: []
   bodyPartVisibilityChanges: []

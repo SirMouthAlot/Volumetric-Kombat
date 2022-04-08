@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEditor;
 #endif
 
+#if UNITY_EDITOR
 public class MarkerManager : MonoBehaviour
 {
     //Tool controls object
@@ -105,3 +106,4 @@ public class MarkerManager : MonoBehaviour
         PrefabUtility.SaveAsPrefabAsset(_markerSpawnPoint, localPath);
     }
 }
+#endif

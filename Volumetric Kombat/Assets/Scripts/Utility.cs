@@ -7,7 +7,9 @@ public class Utility
 {
     static GameObject _gameManagerObj;
     static GameManager _gameManager;
+#if UNITY_EDITOR
     static MarkerManager _markerManager;
+#endif
     static bool _foundGameManagerObj = false;
     static bool _foundGameManager = false;
     static bool _foundMarkerManager = false;
@@ -36,6 +38,7 @@ public class Utility
         return _gameManager;
     }
 
+#if UNITY_EDITOR
     public static MarkerManager GetMarkerManager()
     {
         if (!_foundMarkerManager)
@@ -46,7 +49,7 @@ public class Utility
 
         return _markerManager;
     }
-
+#endif
     public static ToolControls GetToolControlsAsset()
     {
         return GetGameManager()._tc;

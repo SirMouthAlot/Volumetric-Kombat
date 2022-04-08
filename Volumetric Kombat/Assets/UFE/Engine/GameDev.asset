@@ -103,7 +103,7 @@ MonoBehaviour:
     _serializedValue: 429496736
   animationType: 3
   avatar: {fileID: 0}
-  useScaleFlip: 0
+  useScaleFlip: 1
   applyRootMotion: 0
   animationFlow: 2
   useAnimationMaps: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -480,11 +480,12 @@ MonoBehaviour:
         animMap:
         - animationMaps: []
           clip: {fileID: 7400000, guid: 101d8b3ce6b612d4a9b8061e20c6fa4a, type: 2}
-          customHitBoxDefinition: {fileID: 0}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -1908,7 +1909,7 @@ MonoBehaviour:
         reference: 0
         name: 
         voluName: 
-        editorToggle: 1
+        editorToggle: 0
         soundEffectsToggle: 0
       fallBack:
         animMap:
@@ -2450,12 +2451,13 @@ MonoBehaviour:
       blockingCrouchingPose:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: c47eec79038fa5e48a8767fa1535fbd5, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
-            _serializedValue: 0
+            _serializedValue: 18738941952
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -2609,46 +2611,50 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 0
-          prefab: {fileID: 0}
+          editorToggle: 1
+          prefab: {fileID: 5390453863259713057, guid: 0da3b2e68ba56ee48a30915ac0d45bb5,
+            type: 3}
           duration: 1
-          stick: 0
+          stick: 1
           destroyOnMoveOver: 0
           followRotation: 0
           lockLocalPosition: 0
           mirrorOn2PSide: 0
           overrideRotation: 1
           initialRotation: {x: 0, y: 0, z: 0}
-          positionOffSet: {x: 0, y: 0, z: 0}
+          positionOffSet: {x: 0, y: 1.6, z: 0}
           bodyPart: 0
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       blockingCrouchingHit:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 7e36e108963e6074a8f9157665a01c3e, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 7e36e108963e6074a8f9157665a01c3e, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 7e36e108963e6074a8f9157665a01c3e, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -2788,32 +2794,34 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 0
-          prefab: {fileID: 0}
+          editorToggle: 1
+          prefab: {fileID: 5390453863259713057, guid: 0da3b2e68ba56ee48a30915ac0d45bb5,
+            type: 3}
           duration: 1
-          stick: 0
+          stick: 1
           destroyOnMoveOver: 0
           followRotation: 0
           lockLocalPosition: 0
           mirrorOn2PSide: 0
           overrideRotation: 1
           initialRotation: {x: 0, y: 0, z: 0}
-          positionOffSet: {x: 0, y: 0, z: 0}
+          positionOffSet: {x: 0, y: 1.6, z: 0}
           bodyPart: 0
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       blockingHighPose:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 54a5c67902a0a0343a47ae9844897fc6, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
-            _serializedValue: 0
+            _serializedValue: 18738941952
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -2967,46 +2975,50 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 0
-          prefab: {fileID: 0}
+          editorToggle: 1
+          prefab: {fileID: 5390453863259713057, guid: 0da3b2e68ba56ee48a30915ac0d45bb5,
+            type: 3}
           duration: 1
-          stick: 0
+          stick: 1
           destroyOnMoveOver: 0
           followRotation: 0
           lockLocalPosition: 0
           mirrorOn2PSide: 0
           overrideRotation: 1
           initialRotation: {x: 0, y: 0, z: 0}
-          positionOffSet: {x: 0, y: 0, z: 0}
+          positionOffSet: {x: 0, y: 3.5, z: 0}
           bodyPart: 0
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       blockingHighHit:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 0b50f8ebe96cdab4eac561ef33c3db92, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
-            _serializedValue: 0
+            _serializedValue: 18738941952
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 0b50f8ebe96cdab4eac561ef33c3db92, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
-            _serializedValue: 0
+            _serializedValue: 18738941952
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 0b50f8ebe96cdab4eac561ef33c3db92, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
-            _serializedValue: 0
+            _serializedValue: 18738941952
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -3146,46 +3158,50 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 0
-          prefab: {fileID: 0}
+          editorToggle: 1
+          prefab: {fileID: 5390453863259713057, guid: 0da3b2e68ba56ee48a30915ac0d45bb5,
+            type: 3}
           duration: 1
-          stick: 0
+          stick: 1
           destroyOnMoveOver: 0
           followRotation: 0
           lockLocalPosition: 0
           mirrorOn2PSide: 0
           overrideRotation: 1
           initialRotation: {x: 0, y: 0, z: 0}
-          positionOffSet: {x: 0, y: 0, z: 0}
+          positionOffSet: {x: 0, y: 4.8, z: 0}
           bodyPart: 0
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       blockingLowHit:
         animMap:
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 7e36e108963e6074a8f9157665a01c3e, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 7e36e108963e6074a8f9157665a01c3e, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
-          clip: {fileID: 0}
-          customHitBoxDefinition: {fileID: 0}
+          clip: {fileID: 7400000, guid: 7e36e108963e6074a8f9157665a01c3e, type: 2}
+          customHitBoxDefinition: {fileID: 11400000, guid: 9424f897261234e4e82820e37b544fb3,
+            type: 2}
           length:
             _serializedValue: 0
           bakeSpeed: 0
-          hitBoxDefinitionType: 0
+          hitBoxDefinitionType: 1
         - animationMaps: []
           clip: {fileID: 0}
           customHitBoxDefinition: {fileID: 0}
@@ -3303,7 +3319,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 1
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -3325,22 +3341,23 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 0
-          prefab: {fileID: 0}
+          editorToggle: 1
+          prefab: {fileID: 5390453863259713057, guid: 0da3b2e68ba56ee48a30915ac0d45bb5,
+            type: 3}
           duration: 1
-          stick: 0
+          stick: 1
           destroyOnMoveOver: 0
           followRotation: 0
           lockLocalPosition: 0
           mirrorOn2PSide: 0
           overrideRotation: 1
           initialRotation: {x: 0, y: 0, z: 0}
-          positionOffSet: {x: 0, y: 0, z: 0}
+          positionOffSet: {x: 0, y: 4.8, z: 0}
           bodyPart: 0
         reference: 0
         name: 
         voluName: 
-        editorToggle: 0
+        editorToggle: 1
         soundEffectsToggle: 0
       blockingAirPose:
         animMap:
@@ -3504,10 +3521,10 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 0
+          editorToggle: 1
           prefab: {fileID: 0}
           duration: 1
-          stick: 0
+          stick: 1
           destroyOnMoveOver: 0
           followRotation: 0
           lockLocalPosition: 0
@@ -3661,7 +3678,7 @@ MonoBehaviour:
           hitBoxDefinitionType: 0
         _animationSpeed:
           _serializedValue: 4294967296
-        wrapMode: 0
+        wrapMode: 1
         moveInfo: {fileID: 0}
         useMoveFile: 0
         autoSpeed: 1
@@ -3683,10 +3700,10 @@ MonoBehaviour:
         soundEffects: []
         continuousSound: 0
         particleEffect:
-          editorToggle: 0
+          editorToggle: 1
           prefab: {fileID: 0}
           duration: 1
-          stick: 0
+          stick: 1
           destroyOnMoveOver: 0
           followRotation: 0
           lockLocalPosition: 0

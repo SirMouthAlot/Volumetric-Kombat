@@ -417,19 +417,42 @@ public class MecanimControl : MonoBehaviour {
 		Fix64 currentNormalizedTime = GetCurrentClipPosition();
         currentState = "State1";
 
-        if (!mirror){
-            if (targetAnimationData.originalSpeed >= 0){
-                currentState = "State1";
-			}else{
-                currentState = "State2";
-			}
-		}else{
-            if (targetAnimationData.originalSpeed >= 0){
-                currentState = "State3";
-			}else{
-                currentState = "State4";
-			}
-		}
+        if (controlScript.myInfo.animationType != AnimationType.Volumetric)
+        {
+            if (!mirror)
+            {
+                if (targetAnimationData.originalSpeed >= 0)
+                {
+                    currentState = "State1";
+                }
+                else
+                {
+                    currentState = "State2";
+                }
+            }
+            else
+            {
+                if (targetAnimationData.originalSpeed >= 0)
+                {
+                    currentState = "State3";
+                }
+                else
+                {
+                    currentState = "State4";
+                }
+            }
+        }
+        else
+        {
+            if (!mirror)
+            {
+                volAnimator.transform.localEulerAngles.Set(0.0f, 0.0f, 0.0f);
+            }
+            else
+            {
+                volAnimator.transform.localEulerAngles.Set(0.0f, 180.0f, 0.0f);
+            }
+        }
 
         overrideController = new AnimatorOverrideController();
         overrideController.runtimeAnimatorController = controller;

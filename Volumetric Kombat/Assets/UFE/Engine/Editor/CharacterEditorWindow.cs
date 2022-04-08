@@ -886,7 +886,7 @@ public class CharacterEditorWindow : EditorWindow {
                             characterInfo.avatar = (Avatar)EditorGUILayout.ObjectField("Avatar:", characterInfo.avatar, typeof(Avatar), false);
                         }
 
-                        if (characterInfo.animationType == AnimationType.Mecanim3D || characterInfo.animationType == AnimationType.Mecanim2D)
+                        if (characterInfo.animationType == AnimationType.Mecanim3D || characterInfo.animationType == AnimationType.Mecanim2D || characterInfo.animationType == AnimationType.Volumetric)
                         {
                             characterInfo.useScaleFlip = EditorGUILayout.Toggle("Mirror Using Scale Flip", characterInfo.useScaleFlip);
                         }
