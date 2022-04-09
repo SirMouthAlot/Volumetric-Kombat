@@ -261,7 +261,7 @@ public class MecanimControl : MonoBehaviour {
         if (GetAnimationData(newName) != null) Debug.LogWarning("An animation with the name '"+ newName +"' already exists.");
         MecanimAnimationData animData = new MecanimAnimationData();
         animData.clip = (AnimationClip) Instantiate(clip);
-        animData.voluClip = animData.clip.name;
+        animData.voluClip = animData.clip.name.Remove(animData.clip.name.Length - 7);
         //if (wrapMode == WrapMode.Default) wrapMode = defaultWrapMode;
         animData.clip.wrapMode = wrapMode;
 		animData.clip.name = newName;
@@ -481,10 +481,10 @@ public class MecanimControl : MonoBehaviour {
             else
             {
                 //@ Change
-                string _tempString = currentAnimationData.voluClip.Remove(currentAnimationData.voluClip.Length - 7);
+                string _tempString = targetAnimationData.voluClip;
                 Debug.Log("Volumetric Play: " + _tempString);
 
-                if (currentAnimationData.wrapMode == WrapMode.Loop)
+                if (targetAnimationData.wrapMode == WrapMode.Loop)
                 {
                     volAnimator.autoLoop = true;
                 }

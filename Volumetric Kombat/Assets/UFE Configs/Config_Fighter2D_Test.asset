@@ -860,7 +860,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 2
+    engineRelatedButton: 3
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W
@@ -1372,14 +1372,14 @@ MonoBehaviour:
       charactersToggle: 0
     teamsToggle: 0
   debugOptions:
-    debugMode: 1
+    debugMode: 0
     emulateNetwork: 0
-    trainingModeDebugger: 0
+    trainingModeDebugger: 1
     preloadedObjects: 0
     inputsToggle: 0
     networkToggle: 0
     recordToggle: 0
-    hitboxColorsToggle: 1
+    hitboxColorsToggle: 0
     connectionLog: 1
     ping: 1
     frameDelay: 1
@@ -1389,11 +1389,11 @@ MonoBehaviour:
     stateTrackerTest: 0
     recordMatchTools: 0
     playbackPhysics: 0
-    displayInputsNetwork: 1
+    displayInputsNetwork: 0
     displayInputsVersus: 0
     displayInputsTraining: 1
     displayInputsStoryMode: 0
-    displayInputsChallengeMode: 1
+    displayInputsChallengeMode: 0
     p1DebugInfo:
       toggle: 0
       currentMove: 1
@@ -1410,15 +1410,15 @@ MonoBehaviour:
       aiWeightList: 0
     p2DebugInfo:
       toggle: 0
-      currentMove: 1
-      position: 1
-      lifePoints: 1
-      gaugePoints: 1
-      currentState: 1
-      currentSubState: 1
-      stunTime: 1
-      comboHits: 1
-      comboDamage: 1
+      currentMove: 0
+      position: 0
+      lifePoints: 0
+      gaugePoints: 0
+      currentState: 0
+      currentSubState: 0
+      stunTime: 0
+      comboHits: 0
+      comboDamage: 0
       inputs: 0
       buttonSequence: 0
       aiWeightList: 0

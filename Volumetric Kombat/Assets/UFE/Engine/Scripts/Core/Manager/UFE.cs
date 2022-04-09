@@ -3191,8 +3191,8 @@ public class UFE : MonoBehaviour, UFEInterface
     private static void _StartGame(float fadeTime){
 		UFE.HideScreen(UFE.currentScreen);
 
-        // Initialize Battle GUI
-        if (UFE.config.gameGUI.battleGUI == null){
+		// Initialize Battle GUI
+		if (UFE.config.gameGUI.battleGUI == null){
 			Debug.LogError("Battle GUI not found! Make sure you have set the prefab correctly in the Global Editor");
 			UFE.battleGUI = new GameObject("BattleGUI").AddComponent<UFEScreen>();
 		}else{
@@ -3360,7 +3360,7 @@ public class UFE : MonoBehaviour, UFEInterface
 			// Initialize Debuggers
 			if (UFE.debugger1 == null)
 			{
-				UFE.debugger1 = UFE.DebuggerText("Debugger1", "", new Vector2(-Screen.width + 50, Screen.height - 180), TextAnchor.UpperLeft);
+				UFE.debugger1 = UFE.DebuggerText("Debugger1", "", new Vector2(0, 0), TextAnchor.UpperLeft);
 				UFE.p1ControlsScript.debugger = UFE.debugger1;
 			}
 
