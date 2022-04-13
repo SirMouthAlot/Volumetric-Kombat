@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SoarSDK;
 using UnityEngine.UI;
+using System;
 
 public class PlaybackControls : MonoBehaviour
 {
@@ -13,15 +14,28 @@ public class PlaybackControls : MonoBehaviour
     private int volumetricIndex;
     public string newClipFileName;
 
+
+    public Text totalTime;
+    public Text currentTime;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     private void Update()
     {
+        currentTime.text = Math.Round((double)((playbackComponent.GetCurrentPosition(0) / 1000000.0f)), 3).ToString();
+        totalTime.text = Math.Round((double)((playbackComponent.GetFullDuration(0) / 1000000.0f)), 3).ToString();
 
+        if (double.Parse(currentTime.text) >= double.Parse(totalTime.text))
+        {
+            currentTime.text = totalTime.text;
+        }
+
+        currentTime.text += "s";
+        totalTime.text += "s";
 
         if (Input.GetMouseButtonDown(0))
         {

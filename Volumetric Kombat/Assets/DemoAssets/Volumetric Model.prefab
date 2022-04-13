@@ -126,7 +126,6 @@ GameObject:
   m_Component:
   - component: {fileID: 334249727632062883}
   - component: {fileID: 6121646134955053562}
-  - component: {fileID: 5579252210537324284}
   m_Layer: 0
   m_Name: MeshCenter
   m_TagString: Untagged
@@ -164,18 +163,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
---- !u!114 &5579252210537324284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1224878175903954547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3653aeaeb3294f0a8d7131391ce003e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4964373587931536725
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,9 +258,9 @@ MonoBehaviour:
   m_Script: {fileID: -1602337218, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: Riley_70933461_master
-  autoLoop: 1
-  autoPlay: 1
+  fileName: ArialA_68510485_master
+  autoLoop: 0
+  autoPlay: 0
   depthTextureScaleFactor: 0.5
   chromaColor: {r: 0, g: 1, b: 0, a: 1}
   gain: 1.5
