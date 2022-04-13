@@ -1187,14 +1187,14 @@ MonoBehaviour:
       z:
         _serializedValue: 0
   characters:
+  - {fileID: 11400000, guid: 06c3d4c828b2877449506f593a1cb860, type: 2}
+  - {fileID: 11400000, guid: ac6ffbd93fffdbb47a2a75f1f84ecd37, type: 2}
   - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
   - {fileID: 11400000, guid: f0ed0d0ea0c86e24e8af99019d695928, type: 2}
   - {fileID: 11400000, guid: d6338f103bbb0da46ba6acf3b027f17a, type: 2}
   - {fileID: 11400000, guid: 54057043117984643925ed339c232c0d, type: 2}
   - {fileID: 11400000, guid: 5d6dc227d62e62a40af291dbbd4c5276, type: 2}
-  - {fileID: 11400000, guid: ac6ffbd93fffdbb47a2a75f1f84ecd37, type: 2}
   - {fileID: 11400000, guid: 573f29652f969dd429ee24d097b56bc0, type: 2}
-  - {fileID: 11400000, guid: 06c3d4c828b2877449506f593a1cb860, type: 2}
   teamModes:
   - modeName: Tag Battle (DBZF\Marvel) - 2D 3v3 Tag Team
     teams:

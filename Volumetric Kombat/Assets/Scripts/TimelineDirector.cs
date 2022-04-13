@@ -10,7 +10,7 @@ public class TimelineDirector : MonoBehaviour
 {
     public TimelineAsset timelineasset;
     public PlayableDirector director;
-    public bool ready;
+    internal bool ready;
 
     private void Awake()
     {

@@ -220,8 +220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4afac6bb5d574bb19a3afb667c9d315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playbackComponent: {fileID: 0}
+  playbackComponent: {fileID: 699973306440243370}
   scrubbingSlider: {fileID: 196379256}
+  newClipFileName: 
 --- !u!114 &167718169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,11 +236,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 0
+  m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -504,7 +505,6 @@ GameObject:
   m_Component:
   - component: {fileID: 537836200}
   - component: {fileID: 537836199}
-  - component: {fileID: 537836201}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -588,19 +588,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &537836201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537836198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UsePipelineSettings: 1
 --- !u!1 &564562255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,54 +1643,22 @@ PrefabInstance:
       value: Volumetric Model VFX
       objectReference: {fileID: 0}
     - target: {fileID: 699973305894447642, guid: 54fbe11439a644948b36634808094c9c, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 699973305894447642, guid: 54fbe11439a644948b36634808094c9c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 699973305894447717, guid: 54fbe11439a644948b36634808094c9c, type: 3}
-      propertyPath: m_PropertySheet.m_NamedObject.m_Array.Array.data[2].m_Value
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4743356224840550377, guid: 54fbe11439a644948b36634808094c9c, type: 3}
-      propertyPath: fileName
-      value: Riley_01637261937_master
-      objectReference: {fileID: 0}
-    - target: {fileID: 7859977237456781957, guid: 54fbe11439a644948b36634808094c9c, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4743356224840550377, guid: 54fbe11439a644948b36634808094c9c, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54fbe11439a644948b36634808094c9c, type: 3}
---- !u!1 &699973306440243366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5571570091742879835, guid: 54fbe11439a644948b36634808094c9c, type: 3}
+--- !u!114 &699973306440243370 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4287296402999549537, guid: 54fbe11439a644948b36634808094c9c, type: 3}
   m_PrefabInstance: {fileID: 699973306440243365}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &699973306440243367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699973306440243366}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -1602337218, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: Riley_01637261937_master
-  autoLoop: 1
-  autoPlay: 1
-  depthTextureScaleFactor: 0.5
-  instanceRef: []
-  paused: 0
-  stopped: 0
-  playing: 0
-  finished: 0
 --- !u!1001 &1273201141381208287
 PrefabInstance:
   m_ObjectHideFlags: 0

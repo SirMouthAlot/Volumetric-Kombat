@@ -187,9 +187,8 @@ GameObject:
   - component: {fileID: 6279199038666795458}
   - component: {fileID: 3335294005484355475}
   - component: {fileID: 7251624036734566283}
-  - component: {fileID: 7409405992830241488}
   - component: {fileID: 5121757925772763274}
-  - component: {fileID: 5243300760852669038}
+  - component: {fileID: 1245072605}
   m_Layer: 0
   m_Name: ModelMesh
   m_TagString: Untagged
@@ -206,7 +205,7 @@ Transform:
   m_GameObject: {fileID: 4964373587931536725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.8103995, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: -2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 911070104534723498}
   m_RootOrder: 0
@@ -238,7 +237,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6478a6bd75a944ad5b4259071dd84125, type: 2}
+  - {fileID: 2100000, guid: e10bebeaebef2a443b2229a0ccbdb021, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -260,18 +259,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7409405992830241488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4964373587931536725}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54a0ce3cebf2442f5b1a6dbf1368e203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5121757925772763274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,15 +271,15 @@ MonoBehaviour:
   m_Script: {fileID: -1602337218, guid: b495353b2c0b33844b25ec28bd085a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fileName: BobbyAREight_01643667857_master
-  autoLoop: 0
-  autoPlay: 0
+  fileName: Riley_70933461_master
+  autoLoop: 1
+  autoPlay: 1
   depthTextureScaleFactor: 0.5
   chromaColor: {r: 0, g: 1, b: 0, a: 1}
   gain: 1.5
   bias: 0.1
   overrideChroma: 0
---- !u!114 &5243300760852669038
+--- !u!114 &1245072605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -307,4 +294,3 @@ MonoBehaviour:
   createPreview: 0
   pausePreview: 0
   currentTimestamp: 0
-  playableDirector: {fileID: 0}

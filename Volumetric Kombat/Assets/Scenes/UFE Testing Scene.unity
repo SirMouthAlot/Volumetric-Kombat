@@ -297,7 +297,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timelineasset: {fileID: 11400000, guid: fc3bf23fb12e04fcbbb120d43124ce40, type: 2}
   director: {fileID: 881552161}
-  ready: 0
 --- !u!4 &881552163
 Transform:
   m_ObjectHideFlags: 0
@@ -502,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e874e23c9b8dec04fb89a2536402b845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UFE_Config: {fileID: 11400000, guid: 6d1f76710b8eb3e45b24d4c739c483a9, type: 2}
+  UFE_Config: {fileID: 11400000, guid: 76d645e52177dab4b9437649e0e28466, type: 2}
 --- !u!4 &1522328571
 Transform:
   m_ObjectHideFlags: 0

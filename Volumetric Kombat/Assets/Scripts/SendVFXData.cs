@@ -31,9 +31,7 @@ public class SendVFXData : MonoBehaviour
     [HideInInspector] public int cameraCount;
     [HideInInspector] public int index;
 
-    public bool checkPos;
-
-    public bool testBool;
+    internal bool checkPos;
     // Start is called before the first frame update
     void Start()
     {

@@ -5,95 +5,171 @@ using UnityEngine.Playables;
 using SoarSDK;
 using UnityEngine.Timeline;
 
+public class VolumetricTimelineGlobals : MonoBehaviour
+{
+    public static List<PlaybackInstance> instanceList = new List<PlaybackInstance>();
+}
+
 public class VolumetricRenderTrackMixer : PlayableBehaviour
 {
 
-    public bool outOfClip;
-    public bool paused;
-    public bool played;
-    public bool seeking;
-    public bool newClip;
+    public PlaybackState state;
+    public PlaybackInstancePlayState instanceState;
 
     public override void ProcessFrame(Playable playable, FrameData info, object playerData)
     {
         VolumetricRender volRender = playerData as VolumetricRender;
         if (!volRender.GetComponent<PlaybackInstance>()) { return; }
-
         int inputCount = playable.GetInputCount();
-        for(int i = 0; i < inputCount; i++)
+        for (int i = 0; i < inputCount; i++)
         {
             float inputWeight = playable.GetInputWeight(i);
             if (inputWeight > 0f)
             {
                 ScriptPlayable<VolumetricRenderBehavior> inputPlayable = (ScriptPlayable<VolumetricRenderBehavior>)playable.GetInput(i);
                 VolumetricRenderBehavior input = inputPlayable.GetBehaviour();
+                PlayableGraph playableGraph = playable.GetGraph();
                 PlayableDirector director = playable.GetGraph().GetResolver() as PlayableDirector;
-                TimelineAsset timelineAsset = director.playableAsset as TimelineAsset;
-                var currentIndex = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
-                PlaybackState state = volRender.GetInstanceState(currentIndex);
 
-                switch (state)
+                for (int j = 0; j < VolumetricTimelineGlobals.instanceList.Count; j++)
                 {
-                    case PlaybackState.READY:
-                        director.time += Time.deltaTime;
-                        break;
-                    case PlaybackState.BUFFERING:
-                        director.time += Time.deltaTime;
-                        break;
-                    default:
-                        director.time += 0;
-                        Debug.Log("Decoding Video");
-                        break;
-                }
+                    state = volRender.GetInstanceState(j);
+                    PlaybackInstancePlayState instanceState = volRender.GetComponent<PlaybackInstance>()._playState;
+                    switch (state)
+                    {
+                        case PlaybackState.READY:
+                            if(instanceState == PlaybackInstancePlayState.Playing)
+                            {
+                                Time.timeScale = 1;
+                                director.time += (Time.deltaTime / (VolumetricTimelineGlobals.instanceList.Count * VolumetricTimelineGlobals.instanceList.Count));
+                            }
+                            break;
+                        case PlaybackState.BUFFERING:
+                            break;
+                        default:
+                            Time.timeScale = 0;
+                            break;
+                    }
 
-                if (!outOfClip)
-                {
-                    if (seeking)
-                    {
-                        newClip = true;
-                    }
-                    if (!seeking)
-                    {
-                        if (newClip)
-                        {
-                            var newIndex = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
-                            volRender.SeekToCursor(newIndex, (int)(inputPlayable.GetTime() * 1000000.0f));
-                            volRender.StartPlayback(newIndex);
-                            outOfClip = true;
-                        }
-                        if (!newClip)
-                        {
-                            var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
-                            volRender.SeekToCursor(index, 0);
-                            outOfClip = true;
-                        }
-                    }
                 }
 
                 if (director.state == PlayState.Paused)
                 {
-                    if (info.seekOccurred)
+
+                    if (input.fileName.Length > 0)
                     {
-                        var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
-                        seeking = true;
-                        played = false;
-                        volRender.SeekToCursor(index, (int)(inputPlayable.GetTime() * 1000000.0f));
+                        if (input.clipLoaded)
+                        {
+                            if (input.clipPlaying)
+                            {
+                                var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
+                                volRender.SeekToCursor(index, (int)(inputPlayable.GetTime() * 1000000.0f));
+                                input.seeking = true;
+                            }
+
+                            if (!input.clipPlaying)
+                            {
+                                var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
+                                PlaybackInstance instance = volRender.GetComponent<PlaybackInstance>();
+                                if (!input.clipNotLoadedPause)
+                                {
+                                    volRender.GetComponent<MeshRenderer>().GetPropertyBlock(instance.props);
+                                    instance.props.Clear();
+                                    volRender.GetComponent<MeshRenderer>().SetPropertyBlock(instance.props);
+                                    volRender.LoadNewClip(input.fileName, index);
+                                    PlaybackInstance newInstance = volRender.GetComponent<PlaybackInstance>();
+                                    VolumetricTimelineGlobals.instanceList.Add(newInstance);
+                                    input.clipNotLoadedPause = true;
+                                }
+                                var newIndex = volRender.instanceRef.IndexOf(instance);
+                                volRender.SeekToCursor(newIndex, (int)(inputPlayable.GetTime() * 1000000.0f));
+                                input.seeking = true;
+                            }
+                        }
+
+                        if (!input.clipLoaded)
+                        {
+                            var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
+                            PlaybackInstance instance = volRender.GetComponent<PlaybackInstance>();
+                            volRender.GetComponent<MeshRenderer>().GetPropertyBlock(instance.props);
+                            instance.props.Clear();
+                            volRender.GetComponent<MeshRenderer>().SetPropertyBlock(instance.props);
+                            volRender.LoadNewClip(input.fileName, index);
+                            var newIndex = volRender.instanceRef.IndexOf(instance);
+                            volRender.SeekToCursor(newIndex, (int)(inputPlayable.GetTime() * 1000000.0f));
+                            PlaybackInstance newInstance = volRender.GetComponent<PlaybackInstance>();
+                            VolumetricTimelineGlobals.instanceList.Add(newInstance);
+                            input.seeking = true;
+                        }
                     }
+
+
                 }
 
                 if (director.state == PlayState.Playing)
                 {
-                    var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
-                    if (!played)
+                    if (input.fileName.Length > 0)
                     {
-                        volRender.StartPlayback(index);
-                        played = true;
-                        seeking = false;
+                        if (input.clipLoaded)
+                        {
+                            if (input.clipPlaying)
+                            {
+                                if (!input.seeking)
+                                {
+                                    if (!input.clipStarted)
+                                    {
+                                        var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
+                                        PlaybackInstance newInstance = volRender.GetComponent<PlaybackInstance>();
+                                        var newIndex = VolumetricTimelineGlobals.instanceList.Count - 1;
+                                        VolumetricTimelineGlobals.instanceList.Insert(newIndex, newInstance);
+                                        VolumetricTimelineGlobals.instanceList.RemoveAt(VolumetricTimelineGlobals.instanceList.Count - 1);
+                                        volRender.StartPlayback(index);
+                                        input.clipStarted = true;
+                                    }
+                                }
+
+                                if (input.seeking)
+                                {
+                                    var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
+                                    volRender.StartPlayback(index);
+                                    input.seeking = false;
+                                }
+                            }
+
+                            if (!input.clipPlaying)
+                            {
+                                if (!input.seeking)
+                                {
+                                    var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
+                                    PlaybackInstance instance = volRender.GetComponent<PlaybackInstance>();
+                                    volRender.GetComponent<MeshRenderer>().GetPropertyBlock(instance.props);
+                                    instance.props.Clear();
+                                    volRender.GetComponent<MeshRenderer>().SetPropertyBlock(instance.props);
+                                    volRender.LoadNewClip(input.fileName, index);
+                                    var newIndex = volRender.instanceRef.IndexOf(instance);
+                                    PlaybackInstance newInstance = volRender.GetComponent<PlaybackInstance>();
+                                    VolumetricTimelineGlobals.instanceList.Add(newInstance);
+                                    input.clipPlaying = true;
+                                }
+
+                                if (input.seeking)
+                                {
+                                    VolumetricTimelineGlobals.instanceList.Clear();
+                                    PlaybackInstance instance = volRender.GetComponent<PlaybackInstance>();
+                                    var newIndex = volRender.instanceRef.IndexOf(instance);
+                                    volRender.SeekToCursor(newIndex, (int)(inputPlayable.GetTime() * 1000000.0f));
+                                    PlaybackInstance newInstance = volRender.GetComponent<PlaybackInstance>();
+                                    VolumetricTimelineGlobals.instanceList.Add(newInstance);
+                                    input.seeking = false;
+                                    input.clipPlaying = true;
+                                }
+                            }
+                        }
                     }
                 }
             }
 
-            if(inputWeight == 0f)
+            if (inputWeight == 0f)
             {
                 ScriptPlayable<VolumetricRenderBehavior> inputPlayable = (ScriptPlayable<VolumetricRenderBehavior>)playable.GetInput(i);
                 VolumetricRenderBehavior input = inputPlayable.GetBehaviour();
@@ -101,46 +177,26 @@ public class VolumetricRenderTrackMixer : PlayableBehaviour
 
                 if (director.state == PlayState.Paused)
                 {
-                    if (info.seekOccurred)
+                    if (input.clipPlaying)
                     {
-                        var index = volRender.instanceRef.IndexOf(volRender.GetComponent<PlaybackInstance>());
-                        if(index == 0)
-                        {
-                            volRender.SeekToCursor(index, (int)(inputPlayable.GetDuration() * 1000000.0f));
-                        }
-                        if (index > 0)
-                        {
-                            volRender.SeekToCursor(index, 0);
-                        }
-                        outOfClip = false;
-                        seeking = true;
-                        played = false;
-
+                        PlaybackInstance instance = volRender.GetComponent<PlaybackInstance>();
+                        VolumetricTimelineGlobals.instanceList.Remove(instance);
                     }
+                    input.clipPlaying = false;
+                    input.clipStarted = false;
                 }
-            }
-        }
-    }
 
-    public override void OnBehaviourPause(Playable playable, FrameData info)
-    {
-        PlayableDirector director = playable.GetGraph().GetResolver() as PlayableDirector;
-        int inputCount = playable.GetInputCount();
-        for (int i = 0; i < inputCount; i++)
-        {
-            float inputWeight = playable.GetInputWeight(i);
-        }
-    }
+                if (director.state == PlayState.Playing)
+                {
+                    if (input.clipPlaying)
+                    {
+                        PlaybackInstance instance = volRender.GetComponent<PlaybackInstance>();
+                        VolumetricTimelineGlobals.instanceList.Remove(instance);
+                    }
+                    input.clipPlaying = false;
+                    input.clipStarted = false;
+                }
 
-    public override void OnBehaviourPlay(Playable playable, FrameData info)
-    {
-        int inputCount = playable.GetInputCount();
-        for (int i = 0; i < inputCount; i++)
-        {
-            float inputWeight = playable.GetInputWeight(i);
-            if (inputWeight > 0f)
-            {
-                played = false;
             }
         }
     }
