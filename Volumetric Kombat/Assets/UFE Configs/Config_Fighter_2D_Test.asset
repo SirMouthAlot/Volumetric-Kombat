@@ -282,20 +282,20 @@ MonoBehaviour:
     selectedChallengeMode: 0
     skipLoadingScreen: 0
   cameraOptions:
-    initialDistance: {x: 1, y: 3.31, z: -5}
-    initialRotation: {x: 0, y: 0, z: 0}
+    initialDistance: {x: 1, y: 6, z: -7}
+    initialRotation: {x: 12, y: 0, z: 0}
     enableLookAt: 0
     dollyAngle: 0
     distance3d: 0
     height3d: 0
     enableZoom: 1
     followCharacters: 0
-    initialFieldOfView: 100
+    initialFieldOfView: 70.2
     verticalPriority: 1
     verticalThreshold: 2
     movementSpeed: 12
-    minZoom: 9
-    maxZoom: 9
+    minZoom: 7
+    maxZoom: 11
     _maxDistance:
       _serializedValue: 85899345920
     rotationSpeed: 11.67
@@ -844,7 +844,7 @@ MonoBehaviour:
   player1_Inputs:
   - inputType: 0
     inputButtonName: P1KeyboardHorizontal
-    engineRelatedButton: 0
+    engineRelatedButton: 1
     joystickAxisName: P1JoystickHorizontal
     cInputPositiveKeyName: P1Right
     cInputPositiveDefaultKey: D
@@ -860,7 +860,7 @@ MonoBehaviour:
     inputViewerIcon6: {fileID: 2800000, guid: 90523496d8897124e989ad256f109d27, type: 3}
   - inputType: 1
     inputButtonName: P1KeyboardVertical
-    engineRelatedButton: 3
+    engineRelatedButton: 2
     joystickAxisName: P1JoystickVertical
     cInputPositiveKeyName: P1Up
     cInputPositiveDefaultKey: W
@@ -1603,10 +1603,10 @@ MonoBehaviour:
     inputMessageFrequency: 0
     synchronizationMessageFrequency: 0
     synchronizationAction: 0
-  music: 1
-  musicVolume: 0.13638276
-  soundfx: 1
-  soundfxVolume: 0.16466469
+  music: 0
+  musicVolume: 0.10975602
+  soundfx: 0
+  soundfxVolume: 0.23542167
   colorStateOne: {r: 1, g: 0, b: 0, a: 1}
   colorIsHit: {r: 1, g: 0, b: 1, a: 1}
   colorBodyCollider: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
