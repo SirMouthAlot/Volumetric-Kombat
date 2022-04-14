@@ -21,12 +21,6 @@ public class HitBoxEditorWindow : EditorWindow
     private GUIStyle labelStyle;
     private GUIContent helpGUIContent = new GUIContent();
     private bool animatorSettings;
-    public bool _isVolumetric = false;
-    public bool _confirmVol = false;
-    private string toggleStyle;
-    string _stringTemp = null;
-    string _clipTemp;
-
 
     private Texture circleTexture;
     private Texture squareTexture;
@@ -134,7 +128,6 @@ public class HitBoxEditorWindow : EditorWindow
         buttonStyleGreen = "minibutton";
         subGroupStyle = "ObjectFieldThumb";
         subArrayElementStyle = "HelpBox";
-        toggleStyle = "ToggleBold";
 
         labelStyle = new GUIStyle();
         labelStyle.alignment = TextAnchor.MiddleCenter;
@@ -192,8 +185,6 @@ public class HitBoxEditorWindow : EditorWindow
                 helpButton("animator:start");
             }
             EditorGUILayout.EndHorizontal();
-
-            
         }
         EditorGUILayout.EndVertical();
 
@@ -203,69 +194,23 @@ public class HitBoxEditorWindow : EditorWindow
         // Animation and Preview Controls
         EditorGUILayout.BeginHorizontal();
         {
-
-
             EditorGUIUtility.labelWidth = 98;
             EditorGUIUtility.fieldWidth = 240;
-            if (_isVolumetric != true)
+            AnimationClip clipTemp = animatorInfo.clip;
+            clipTemp = (AnimationClip)EditorGUILayout.ObjectField("Animation Clip:", clipTemp, typeof(AnimationClip), true);
+            if (clipTemp != animatorInfo.clip)
             {
-
-                AnimationClip clipTemp = animatorInfo.clip;
-                clipTemp = (AnimationClip)EditorGUILayout.ObjectField("Animation Clip:", clipTemp, typeof(AnimationClip), true);
-                if (clipTemp != animatorInfo.clip)
+                bool updateConfirm = EditorUtility.DisplayDialog("Replace Animation", "Replacing animations may cause data loss in the current hitbox definitions.", "Confirm", "Cancel");
+                if (updateConfirm)
                 {
-                    bool updateConfirm = EditorUtility.DisplayDialog("Replace Animation", "Replacing animations may cause data loss in the current hitbox definitions.", "Confirm", "Cancel");
-                    if (updateConfirm)
-                    {
-                        animatorInfo.clip = clipTemp;
-                        animatorInfo.totalFrames = animatorInfo.clip != null ? (int)Mathf.Abs(Mathf.Ceil(UFE.fps * (animatorInfo.clip.length / (float)animatorInfo.speed))) : 1; //TODO: Adjustable FPS; Detach UFE
-                        ResizeFrameDefinitions();
-                    }
+                    animatorInfo.clip = clipTemp;
+                    animatorInfo.totalFrames = animatorInfo.clip != null ? (int)Mathf.Abs(Mathf.Ceil(UFE.fps * (animatorInfo.clip.length / (float)animatorInfo.speed))) : 1; //TODO: Adjustable FPS; Detach UFE
+                    ResizeFrameDefinitions();
                 }
             }
-            else
-            {
-                //_clipTemp = animatorInfo._move;
-                GUI.SetNextControlName("voluField");
-                _clipTemp = (String)EditorGUILayout.TextField("Volumetric Clip:", _clipTemp);
-
-
-
-
-
-                if ((Event.current.keyCode == KeyCode.Return || Event.current.keyCode == KeyCode.KeypadEnter)
-                 && Event.current.type == EventType.KeyUp && Event.current.isKey
-                 && GUI.GetNameOfFocusedControl() == "voluField")
-                { 
-                    bool updateConfirm = EditorUtility.DisplayDialog("Replace Animation", "Replacing animations may cause data loss in the current hitbox definitions.", "Confirm", "Cancel");
-                        //_stringTemp = _clipTemp;
-                    
-                    if (updateConfirm)
-                        {
-                            animatorInfo._move = _clipTemp;
-                        if (animatorInfo.playbackComponent != null)
-                        {
-                            animatorInfo.totalFrames = animatorInfo._move != null ? (int)Mathf.Abs(Mathf.Ceil(UFE.fps * (animatorInfo.playbackComponent.GetFullDuration(0) * 1000000.0f / (float)animatorInfo.speed))) : 1; //TODO: Adjustable FPS; Detach UFE
-                        }
-                        else
-                        {
-
-                            bool _tempBool = EditorUtility.DisplayDialog("ERROR", "CustomHitBoxesInfo.cs playbackComponent is == null. If it should exist then please check HitboxEditorWindow.cs line 246 for this error", "Cancel");
-                        }
-                            ResizeFrameDefinitions();
-                            _confirmVol = false;
-                        
-                    }
-                }
-            }
-
-
-
-
-
 
             EditorGUIUtility.labelWidth = 50;
-            EditorGUIUtility.fieldWidth = 50;
+            EditorGUIUtility.fieldWidth = 30;
 
             GUI.SetNextControlName("SpeedField");
             speedTemp = EditorGUILayout.FloatField(new GUIContent("Speed:", "Press 'Enter' to change the speed value"), (float)speedTemp);
@@ -276,153 +221,103 @@ public class HitBoxEditorWindow : EditorWindow
                 && speedTemp != animatorInfo.speed && Event.current.isKey
                 && GUI.GetNameOfFocusedControl() == "SpeedField")
             {
-                bool updateConfirm2 = EditorUtility.DisplayDialog("Update Speed", "Changing the speed value may cause data loss in the current hitbox definitions." + "\n" + "IF YOU ARE USING VOLUMETRICS WE DON'T HAVE A WAY TO ADJUST SPEED DO NOT CONFIRM UNLESS ALL REQUIRED ENGINE CODE HAS BEEN UPDATED", "Confirm", "Cancel");
-
-
-
+                bool updateConfirm2 = EditorUtility.DisplayDialog("Update Speed", "Changing the speed value may cause data loss in the current hitbox definitions.", "Confirm", "Cancel");
                 if (updateConfirm2)
                 {
-                    if (_isVolumetric != true)
-                    {
-                        RecordChange(animatorInfo, "Speed Change");
-                        animatorInfo.speed = speedTemp;
-                        animatorInfo.totalFrames = animatorInfo.clip != null ? (int)Mathf.Abs(Mathf.Ceil(UFE.fps * (animatorInfo.clip.length / (float)animatorInfo.speed))) : 1; //TODO: Adjustable FPS; Detach UFE
-                        ResizeFrameDefinitions();
-                    }
-                    else
-                    {
-                        speedTemp = animatorInfo.speed;
-                    }
-
+                    RecordChange(animatorInfo, "Speed Change");
+                    animatorInfo.speed = speedTemp;
+                    animatorInfo.totalFrames = animatorInfo.clip != null ? (int)Mathf.Abs(Mathf.Ceil(UFE.fps * (animatorInfo.clip.length / (float)animatorInfo.speed))) : 1; //TODO: Adjustable FPS; Detach UFE
+                    ResizeFrameDefinitions();
                 }
                 else
                 {
-                    if (updateConfirm2)
-                    {
-                        RecordChange(animatorInfo, "Speed Change");
-                        animatorInfo.speed = speedTemp;
-                        animatorInfo.totalFrames = animatorInfo._move != null ? (int)Mathf.Abs(Mathf.Ceil(UFE.fps * (animatorInfo.playbackComponent.GetFullDuration(0) * 1000000.0f / (float)animatorInfo.speed))) : 1; //TODO: Adjustable FPS; Detach UFE
-                        ResizeFrameDefinitions();
-                    }
-                    else
-                    {
-                        speedTemp = animatorInfo.speed;
-                    }
+                    speedTemp = animatorInfo.speed;
                 }
-            
-        }
-
-
-            string _volu;
-            string _currentButtonStyle;
-            if (_isVolumetric)
-            {
-                _volu = "On";
-                _currentButtonStyle = buttonStyleGreen;
-                //Debug.Log(_isVolumetric);
-            }
-            else
-            {
-                _volu = "Off";
-                //Debug.Log(_isVolumetric);
-                _currentButtonStyle = buttonStyle;
-            }
-            if (GUILayout.Button("Volumetric: " + _volu, _currentButtonStyle, GUILayout.Width(100)))
-            {
-                _isVolumetric = !_isVolumetric;
             }
 
             GUILayout.FlexibleSpace();
-            if (_isVolumetric != true)
-            {
-                GameObject previewTemp = animatorInfo.preview;
-                EditorGUIUtility.labelWidth = 120;
-                EditorGUIUtility.fieldWidth = 240;
-                animatorInfo.preview = (GameObject)EditorGUILayout.ObjectField("Character Preview:", animatorInfo.preview, typeof(GameObject), true);
 
-                if (previewTemp != animatorInfo.preview && animatorInfo.preview.GetComponent<HitBoxesScript>() == null)
-                {
-                    Debug.LogWarning("Prefab must have the HitBoxesScript component attached to it.");
-                    animatorInfo.preview = null;
-                }
+            GameObject previewTemp = animatorInfo.preview;
+            EditorGUIUtility.labelWidth = 120;
+            EditorGUIUtility.fieldWidth = 240;
+            animatorInfo.preview = (GameObject)EditorGUILayout.ObjectField("Character Preview:", animatorInfo.preview, typeof(GameObject), true);
+
+            if (previewTemp != animatorInfo.preview && animatorInfo.preview.GetComponent<HitBoxesScript>() == null)
+            {
+                Debug.LogWarning("Prefab must have the HitBoxesScript component attached to it.");
+                animatorInfo.preview = null;
             }
 
             EditorGUILayout.Space();
-            if (_isVolumetric != true) {
-                if (GUILayout.Button("", "PaneOptions"))
-                {
-                    GenericMenu toolsMenu = new GenericMenu();
+            if (GUILayout.Button("", "PaneOptions"))
+            {
+                GenericMenu toolsMenu = new GenericMenu();
 
-                    if (animatorInfo.customHitBoxes.Length > 0)
-                    {
-                        toolsMenu.AddItem(new GUIContent("Copy All Hit Boxes"), false, delegate ()
-                        {
-                            List<CustomHitBox> list = new List<CustomHitBox>();
-                            list.AddRange(animatorInfo.customHitBoxes);
-                            CloneObject.arrayCopy = CloneObject.ReflectionCloneArray(list.ToArray());
-                            ResizeFrameDefinitions();
-                        });
-                    }
-                    else
-                    {
-                        toolsMenu.AddDisabledItem(new GUIContent("Copy All Hit Boxes"));
-                    }
-                    if (CloneObject.arrayCopy != null && CloneObject.arrayCopy.Length > 0 && CloneObject.arrayCopy[0].GetType() == typeof(CustomHitBox))
-                    {
-                        toolsMenu.AddItem(new GUIContent("Paste All Hit Boxes"), false, delegate ()
-                        {
-                            List<CustomHitBox> list = new List<CustomHitBox>();
-                            list.AddRange(animatorInfo.customHitBoxes);
-                            list.AddRange((CustomHitBox[])CloneObject.arrayCopy);
-                            animatorInfo.customHitBoxes = list.ToArray();
-                            ResizeFrameDefinitions();
-                        });
-                    }
-                    else
-                    {
-                        toolsMenu.AddDisabledItem(new GUIContent("Paste All Hit Boxes"));
-                    }
-                    if (animatorInfo.customHitBoxes.Length > 0)
-                    {
-                        toolsMenu.AddItem(new GUIContent("Remove All Hit Boxes"), false, delegate ()
-                        {
-                            bool removeConfirm = EditorUtility.DisplayDialog("Remove All Hit Boxes", "Removing all hit boxes will result in data loss to the current hitbox definitions. Are you sure?", "Confirm", "Cancel");
-                            if (removeConfirm)
-                            {
-                                List<CustomHitBox> list = new List<CustomHitBox>();
-                                list.AddRange(animatorInfo.customHitBoxes);
-                                list.Clear();
-                                animatorInfo.customHitBoxes = list.ToArray();
-                            }
-                            ResizeFrameDefinitions();
-                        });
-                    }
-                    else
-                    {
-                        toolsMenu.AddDisabledItem(new GUIContent("Remove All Hit Boxes"));
-                    }
-                    toolsMenu.AddSeparator("");
-                    if (animatorInfo.clip != null)
-                    {
-                        toolsMenu.AddItem(new GUIContent("Reload Animation"), false, delegate ()
-                        {
-                            AnimationClip clipTemp2 = animatorInfo.clip;
-                            bool updateConfirm = EditorUtility.DisplayDialog("Reload Animation", "Reloading animations may cause data loss in the current hitbox definitions.", "Confirm", "Cancel");
-                            if (updateConfirm)
-                            {
-                                animatorInfo.clip = clipTemp2;
-                                animatorInfo.totalFrames = animatorInfo.clip != null ? (int)Mathf.Abs(Mathf.Ceil(UFE.fps * (animatorInfo.clip.length / (float)animatorInfo.speed))) : 1; //TODO: Adjustable FPS; Detach UFE
-                            }
-                            ResizeFrameDefinitions();
-                        });
-                    }
-                    else
-                    {
-                        toolsMenu.AddDisabledItem(new GUIContent("Reload Animation"));
-                    }
-                    toolsMenu.ShowAsContext();
-                    GUIUtility.ExitGUI();
+                if (animatorInfo.customHitBoxes.Length > 0)
+                {
+                    toolsMenu.AddItem(new GUIContent("Copy All Hit Boxes"), false, delegate () {
+                        List<CustomHitBox> list = new List<CustomHitBox>();
+                        list.AddRange(animatorInfo.customHitBoxes);
+                        CloneObject.arrayCopy = CloneObject.ReflectionCloneArray(list.ToArray());
+                        ResizeFrameDefinitions();
+                    });
                 }
+                else
+                {
+                    toolsMenu.AddDisabledItem(new GUIContent("Copy All Hit Boxes"));
+                }
+                if (CloneObject.arrayCopy != null && CloneObject.arrayCopy.Length > 0 && CloneObject.arrayCopy[0].GetType() == typeof(CustomHitBox))
+                {
+                    toolsMenu.AddItem(new GUIContent("Paste All Hit Boxes"), false, delegate () {
+                        List<CustomHitBox> list = new List<CustomHitBox>();
+                        list.AddRange(animatorInfo.customHitBoxes);
+                        list.AddRange((CustomHitBox[])CloneObject.arrayCopy);
+                        animatorInfo.customHitBoxes = list.ToArray();
+                        ResizeFrameDefinitions();
+                    });
+                }
+                else
+                {
+                    toolsMenu.AddDisabledItem(new GUIContent("Paste All Hit Boxes"));
+                }
+                if (animatorInfo.customHitBoxes.Length > 0)
+                {
+                    toolsMenu.AddItem(new GUIContent("Remove All Hit Boxes"), false, delegate () {
+                        bool removeConfirm = EditorUtility.DisplayDialog("Remove All Hit Boxes", "Removing all hit boxes will result in data loss to the current hitbox definitions. Are you sure?", "Confirm", "Cancel");
+                        if (removeConfirm)
+                        {
+                            List<CustomHitBox> list = new List<CustomHitBox>();
+                            list.AddRange(animatorInfo.customHitBoxes);
+                            list.Clear();
+                            animatorInfo.customHitBoxes = list.ToArray();
+                        }
+                        ResizeFrameDefinitions();
+                    });
+                }
+                else
+                {
+                    toolsMenu.AddDisabledItem(new GUIContent("Remove All Hit Boxes"));
+                }
+                toolsMenu.AddSeparator("");
+                if (animatorInfo.clip != null)
+                {
+                    toolsMenu.AddItem(new GUIContent("Reload Animation"), false, delegate () {
+                        AnimationClip clipTemp2 = animatorInfo.clip;
+                        bool updateConfirm = EditorUtility.DisplayDialog("Reload Animation", "Reloading animations may cause data loss in the current hitbox definitions.", "Confirm", "Cancel");
+                        if (updateConfirm)
+                        {
+                            animatorInfo.clip = clipTemp2;
+                            animatorInfo.totalFrames = animatorInfo.clip != null ? (int)Mathf.Abs(Mathf.Ceil(UFE.fps * (animatorInfo.clip.length / (float)animatorInfo.speed))) : 1; //TODO: Adjustable FPS; Detach UFE
+                        }
+                        ResizeFrameDefinitions();
+                    });
+                }
+                else
+                {
+                    toolsMenu.AddDisabledItem(new GUIContent("Reload Animation"));
+                }
+                toolsMenu.ShowAsContext();
+                GUIUtility.ExitGUI();
             }
         }
         EditorGUILayout.EndHorizontal();
@@ -438,56 +333,45 @@ public class HitBoxEditorWindow : EditorWindow
             //GUILayout.FlexibleSpace();
 
             EditorGUIUtility.labelWidth = 120;
-            if (_isVolumetric != true)
+            string onOff;
+            string currentButtonStyle;
+            if (previewToggle)
             {
-                string onOff;
-                string currentButtonStyle;
-                if (previewToggle)
-                {
-                    onOff = "On";
-                    currentButtonStyle = buttonStyleGreen;
-                }
-                else
-                {
-                    onOff = "Off";
-                    currentButtonStyle = buttonStyle;
-                }
-                if (GUILayout.Button("Preview: " + onOff, currentButtonStyle, GUILayout.Width(100)))
-                {
-                    previewToggle = !previewToggle;
-                }
+                onOff = "On";
+                currentButtonStyle = buttonStyleGreen;
             }
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUIUtility.labelWidth = 150;
-            EditorGUIUtility.fieldWidth = 150;
-
-            // Animation Preview
-            if (animatorInfo.preview != null)
+            else
             {
-                if (previewToggle)
-                {
-                    if (goInstance == null)
-                    {
-                        EditorCamera.SetPosition(Vector3.up * 4);
-                        EditorCamera.SetRotation(Quaternion.identity);
-                        EditorCamera.SetOrthographic(true);
-                        EditorCamera.SetSize(10);
+                onOff = "Off";
+                currentButtonStyle = buttonStyle;
+            }
+            if (GUILayout.Button("Preview: " + onOff, currentButtonStyle, GUILayout.Width(100)))
+            {
+                previewToggle = !previewToggle;
+            }
+        }
+        EditorGUILayout.EndHorizontal();
 
-                        goInstance = (GameObject)PrefabUtility.InstantiatePrefab(animatorInfo.preview);
-                        goInstance.transform.position = new Vector3(0, 0, 0);
-                    }
+        EditorGUIUtility.labelWidth = 150;
+        EditorGUIUtility.fieldWidth = 150;
 
-                    AnimationSampler(currentPreviewFrame);
-                }
-                else
+        // Animation Preview
+        if (animatorInfo.preview != null)
+        {
+            if (previewToggle)
+            {
+                if (goInstance == null)
                 {
-                    if (goInstance != null)
-                    {
-                        Editor.DestroyImmediate(goInstance);
-                        goInstance = null;
-                    }
+                    EditorCamera.SetPosition(Vector3.up * 4);
+                    EditorCamera.SetRotation(Quaternion.identity);
+                    EditorCamera.SetOrthographic(true);
+                    EditorCamera.SetSize(10);
+
+                    goInstance = (GameObject)PrefabUtility.InstantiatePrefab(animatorInfo.preview);
+                    goInstance.transform.position = new Vector3(0, 0, 0);
                 }
+
+                AnimationSampler(currentPreviewFrame);
             }
             else
             {
@@ -496,8 +380,16 @@ public class HitBoxEditorWindow : EditorWindow
                     Editor.DestroyImmediate(goInstance);
                     goInstance = null;
                 }
-                previewToggle = false;
             }
+        }
+        else
+        {
+            if (goInstance != null)
+            {
+                Editor.DestroyImmediate(goInstance);
+                goInstance = null;
+            }
+            previewToggle = false;
         }
 
 
@@ -641,26 +533,13 @@ public class HitBoxEditorWindow : EditorWindow
                         //if (StyledButton("Add Hit Box"))
                         if (GUILayout.Button("Add Hit Box", buttonStyle))
                         {
-                            if (_isVolumetric != true) {
-                                    if (animatorInfo.clip == null)
-                                    {
-                                        Debug.LogError("You must attach an animation first");
-                                    }
-                                    else
-                                    {
-                                        AddHitBoxDefinition(new CustomHitBox());
-                                    }
+                            if (animatorInfo.clip == null)
+                            {
+                                Debug.LogError("You must attach an animation first");
                             }
                             else
                             {
-                                if (animatorInfo._move == null)
-                                {
-                                    Debug.LogError("You must attach a Volumetric Animation first");
-                                }
-                                else
-                                {
-                                    AddHitBoxDefinition(new CustomHitBox());
-                                }
+                                AddHitBoxDefinition(new CustomHitBox());
                             }
                         }
                         EditorGUILayout.Space();
@@ -683,7 +562,7 @@ public class HitBoxEditorWindow : EditorWindow
                     {
                         EditorGUILayout.BeginHorizontal(GUILayout.Height(22), GUILayout.ExpandWidth(false));
                         {
-                            Rect labelRect = new Rect(- scrollPos2.x, 0, 6 * currentZoom, 16);
+                            Rect labelRect = new Rect(-scrollPos2.x, 0, 6 * currentZoom, 16);
 
                             GUIStyle lineStyle = new GUIStyle();
                             labelStyle.alignment = TextAnchor.MiddleCenter;
@@ -1083,7 +962,8 @@ public class HitBoxEditorWindow : EditorWindow
 
         EditorGUILayout.Space();
 
-        if (GUI.changed) {
+        if (GUI.changed)
+        {
             EditorUtility.SetDirty(animatorInfo);
         }
     }
@@ -1104,15 +984,7 @@ public class HitBoxEditorWindow : EditorWindow
         hitBoxesScript.previewAllBoxes = false;
         hitBoxesScript.hitBoxes = hitBoxesScript.GenerateHitBoxes(castingFrame, animatorInfo);
 
-        if (_isVolumetric != true)
-        {
-
-            animatorInfo.clip.SampleAnimation(goInstance, animTime);
-        }
-        else
-        {
-            //Soar Timeline movement here
-        }
+        animatorInfo.clip.SampleAnimation(goInstance, animTime);
     }
 
     /*public HitBox[] GenerateHitBoxes(int castingFrame)
@@ -1267,7 +1139,7 @@ public class HitBoxEditorWindow : EditorWindow
         toolsMenu.AddItem(new GUIContent("Collision Type/" + activeOption + "Physical Only Collider"), false, delegate () { SetCollisionType(element as CustomHitBox, CollisionType.projectileInvincibleCollider); });
 
         activeOption = ((element as CustomHitBox).collisionType == CollisionType.noCollider) ? "🗸 " : "    ";
-        toolsMenu.AddItem(new GUIContent("Collision Type/"+ activeOption + "No Collider"), false, delegate () { SetCollisionType(element as CustomHitBox, CollisionType.noCollider); });
+        toolsMenu.AddItem(new GUIContent("Collision Type/" + activeOption + "No Collider"), false, delegate () { SetCollisionType(element as CustomHitBox, CollisionType.noCollider); });
 
         activeOption = ((element as CustomHitBox).hitBoxType == HitBoxType.high) ? "🗸 " : "    ";
         toolsMenu.AddItem(new GUIContent("Hit Type/" + activeOption + "High"), false, delegate () { SetHitType(element as CustomHitBox, HitBoxType.high); });

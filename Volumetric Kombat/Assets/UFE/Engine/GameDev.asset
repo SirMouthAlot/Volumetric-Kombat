@@ -9289,8 +9289,10 @@ MonoBehaviour:
       blockEnabled: 1
       parryEnabled: 1
     attackMoves:
+    - {fileID: 11400000, guid: afd72720cfa5bea42a280134f49ce226, type: 2}
+    - {fileID: 11400000, guid: f2dcc05d083649f478c4d3e61e62a94f, type: 2}
     - {fileID: 11400000, guid: 1b703d0a49b01f244a8999f925ee7a57, type: 2}
     enabledBasicMovesToggle: 0
     basicMovesToggle: 1
-    attackMovesToggle: 0
+    attackMovesToggle: 1
   aiInstructionsSet: []
