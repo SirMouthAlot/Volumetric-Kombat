@@ -1,6 +1,6 @@
-# Blender v3.0.1 OBJ File: 'Polonskies.blend'
+# Blender v2.93.6 OBJ File: 'PolonskyMAPPEDwithgrass.blend'
 # www.blender.org
-mtllib walkway.mtl
+mtllib Walkway.mtl
 o Walkway_Roof_Cube.006
 v 204.401642 7.737712 150.098114
 v 204.401642 11.178659 150.098114
@@ -1124,7 +1124,7 @@ vn 0.7156 0.0000 -0.6985
 vn 0.0000 -0.9998 -0.0188
 vn -0.7156 0.0000 -0.6985
 vn 0.0000 0.9998 -0.0188
-usemtl None
+usemtl Material.005
 s off
 f 228/1/1 13/2/1 4/3/1 220/4/1
 f 211/5/2 16/6/2 8/7/2 209/8/2
