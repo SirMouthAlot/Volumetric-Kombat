@@ -285,7 +285,7 @@ MonoBehaviour:
     selectedChallengeMode: 0
     skipLoadingScreen: 0
   cameraOptions:
-    initialDistance: {x: 0.34, y: 5.03, z: -6.24}
+    initialDistance: {x: 0.34, y: 7.03, z: -6.24}
     initialRotation: {x: 1.05, y: 0, z: 0}
     enableLookAt: 0
     dollyAngle: 0
@@ -293,9 +293,9 @@ MonoBehaviour:
     height3d: 0
     enableZoom: 0
     followCharacters: 0
-    initialFieldOfView: 100
+    initialFieldOfView: 120
     verticalPriority: 1
-    verticalThreshold: 2
+    verticalThreshold: 4
     movementSpeed: 12
     minZoom: -3.3
     maxZoom: 10

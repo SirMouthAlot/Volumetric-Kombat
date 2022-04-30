@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GameDev
   m_EditorClassIdentifier: 
   gameplayType: 0
-  profilePictureSmall: {fileID: 2800000, guid: 18eddb7eefeceb94dbbb0563d0c11aea, type: 3}
-  profilePictureBig: {fileID: 2800000, guid: 406f2dd0f80f97540be9b02a9d4aee29, type: 3}
+  profilePictureSmall: {fileID: 2800000, guid: fe12a5263362c8a48822e88aa25aa008, type: 3}
+  profilePictureBig: {fileID: 2800000, guid: c45edeb12b0055542b6f42a1d3ec9cd7, type: 3}
   characterName: GameDev
   gender: 1
   characterDescription: TestPrefab
@@ -23,7 +23,7 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   height: 180
   age: 23
-  bloodType: O-
+  bloodType: Unknown
   lifePoints: 1000
   maxGaugePoints: 1000
   characterPrefabStorage: 0
